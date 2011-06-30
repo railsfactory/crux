@@ -1,0 +1,14 @@
+<%unless current_user.has_role? "admin"%>
+<%= tab :overview, :route => :admin %>
+<%= tab :orders, :payments, :creditcard_payments, :shipments, :creditcards, :return_authorizations %>
+<%= tab :products , :option_types, :properties, :prototypes, :variants, :product_properties, :taxons %>
+<%= tab :users %>
+<%= tab :reports %>
+<%= tab :configurations, :general_settings, :mail_settings, :tax_categories, :zones, :states, :gateway_configurations, :inventory_settings, :taxonomies, :label => 'configuration' %>
+<%else%>
+<%= tab :store_owners,:route=>:admin_users %>
+<%=tab :store_details %>
+<%= tab :reports %>
+<%= tab :configurations, :general_settings, :mail_settings, :tax_categories, :zones, :states, :gateway_configurations, :inventory_settings, :taxonomies, :label => 'configuration' %>
+<%= tab :pricing_plans %>
+<%end%>

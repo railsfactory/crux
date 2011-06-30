@@ -1,0 +1,85 @@
+class Admin::PricingPlansController < Admin::ResourceController
+  # GET /pricing_plans
+  # GET /pricing_plans.xml
+resource_controller
+  def index
+    @search = PricingPlan.search(params[:search])
+    @pricing_plans = @search.all.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @pricing_plans }
+    end
+  end
+
+  # GET /pricing_plans/1
+  # GET /pricing_plans/1.xml
+  def show
+    @pricing_plan = PricingPlan.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @pricing_plan }
+    end
+  end
+
+  # GET /pricing_plans/new
+  # GET /pricing_plans/new.xml
+  def new
+    @pricing_plan = PricingPlan.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @pricing_plan }
+    end
+  end
+
+  # GET /pricing_plans/1/edit
+  def edit
+    @pricing_plan = PricingPlan.find(params[:id])
+  end
+
+  # POST /pricing_plans
+  # POST /pricing_plans.xml
+  def create
+    @pricing_plan = PricingPlan.new(params[:pricing_plan])
+
+    respond_to do |format|
+      if @pricing_plan.save
+        format.html { redirect_to(admin_pricing_plan_path(@pricing_plan), :notice => 'Pricing plan was successfully created.') }
+        format.xml  { render :xml => @pricing_plan, :status => :created, :location => @pricing_plan }
+      else
+        format.html { render  "new" }
+        format.xml  { render :xml => @pricing_plan.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /pricing_plans/1
+  # PUT /pricing_plans/1.xml
+  def update
+    @pricing_plan = PricingPlan.find(params[:id])
+
+    respond_to do |format|
+      if @pricing_plan.update_attributes(params[:pricing_plan])
+        format.html { redirect_to(admin_pricing_plan_path(@pricing_plan), :notice => 'Pricing plan was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render  "edit" }
+        format.xml  { render :xml => @pricing_plan.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /pricing_plans/1
+  # DELETE /pricing_plans/1.xml
+  def destroy
+    @pricing_plan = PricingPlan.find(params[:id])
+    @pricing_plan.destroy
+    respond_to do |format|
+      format.html { redirect_to(admin_pricing_plans_url,:notice=>"Pricing plan was successfully destroyed") }
+      format.xml  { head :ok }
+    end
+  end
+
+end

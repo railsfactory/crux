@@ -1,0 +1,22 @@
+<%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
+<% content_for :sidebar do %>
+  <div data-hook="homepage_sidebar_navigation">
+    <%= render "shared/taxonomies" %>
+  </div>
+<% end %>
+<div data-hook="homepage_products">
+  <%= render "shared/products", :products => @products %>
+</div>
+<%else%>
+<div style="padding-top:30px">
+<h5>We help setup and customize your online store and also take care of future software updates for you. We manage all the products in your store, and work with the top industry brands to ensure your store is always up to date. When your customers place a new order, we'll handle the payment processing, inventory management, shipping, and if your customer has any questions we'll be available to help them. Sound too good to be true?</h5>
+<br/>
+<br/>
+<br/>
+<div style="padding-left:175px"><h3><span>Create an online store</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="<%= stores_registration_index_path%>">Register your store</a></span></h3></div>
+</div>
+<div class="clear"></div>
+<%end%>
+
+
+

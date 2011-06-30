@@ -1,0 +1,24 @@
+<p>
+  <%= f.label :email, t("email") %><br />
+  <%= f.text_field :email, :class => 'title'  %>
+</p>
+<div id="password-credentials">
+  <p>
+    <%= f.label :password, t("password") %><br />
+    <%= f.password_field :password, :class => 'title'  %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation, t(:confirm_password) %><br />
+    <%= f.password_field :password_confirmation, :class => 'title' %>
+  </p>
+	
+	  <p>
+    <%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
+		<%domain=current_subdomain.split(".")[0]%>
+		<%end%>
+<input type="hidden" name="user[domain_url]" value="<%=domain%>">
+  </p>
+</div>
+
+<div data-hook="signup_below_password_fields"></div>

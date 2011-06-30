@@ -1,0 +1,34 @@
+
+<p>
+  <b>Plan name:</b>
+  <%= @pricing_plan.plan_name %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @pricing_plan.amount %>
+</p>
+
+<p>
+  <b>Transaction fee:</b>
+  <%= @pricing_plan.transaction_fee %>
+</p>
+
+<p>
+  <b>No of products:</b>
+  <%= @pricing_plan.no_of_products %>
+</p>
+
+<p>
+  <b>Payment period:</b>
+  <%= @pricing_plan.payment_period %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @pricing_plan.is_active? ? "Active" : "Inactive" %>
+</p>
+
+
+<%= link_to_edit @pricing_plan, :class => "edit" %>  |
+<%= link_to 'Back', admin_pricing_plans_path %>

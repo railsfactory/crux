@@ -1,0 +1,20 @@
+<h2>Select Your Plan</h2>
+<table>
+<tr>
+<th>Name</th>
+<th>Fee</th>
+<th>Transaction Fee</th>
+<th>No of Products</th>
+<th>Payment Period</th>
+</tr>
+<%@plans && @plans.each do |plan|%>
+<tr>
+<td><%= plan.plan_name%></td>
+<td><%= plan.amount%></td>
+<td><%= plan.transaction_fee%></td>
+<td><%= plan.no_of_products%></td>
+<td><%= plan.payment_period%></td>
+<td><a href="/store/<%= plan.plan_name%>">Sign Up</a></td>
+</tr>
+<%end%>
+</table>

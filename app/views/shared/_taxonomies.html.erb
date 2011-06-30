@@ -1,0 +1,12 @@
+<div id="taxonomies" class="sidebar-item">
+  <% get_taxonomies(current_subdomain).each do |taxonomy| %>
+    <ul class="navigation-list">
+      <li<%== ' class="current"' if @taxon && @taxon == taxonomy.root %>>
+        <%= link_to t("shop_by_taxonomy", :taxonomy => taxonomy.name.singularize), seo_url(taxonomy.root),
+                                        :class => 'root' %>
+      </li>
+ </ul>
+ <% end %>
+</div>
+
+

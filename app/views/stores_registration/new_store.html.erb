@@ -1,0 +1,109 @@
+
+<div id="signup">
+<%= flash[:notice]%>
+<%= error_messages_for @user%>
+<h2>You are registering for <%= @plan%> plan and plan amount is <%= @amt %></h2>
+<%=form_for (@user, :url=>{:controller=>:stores_registration,:action=>:save_store_details}) do |u| %>
+<h3>Your Login Information</h3>
+	<p>
+	<%= u.label :email%><br/>
+	<%= u.text_field :email%>
+	</p>
+		<p>
+	<%= u.label :password%><br/>
+	<%= u.password_field :password%>
+	</p>
+		<p>
+	<%= u.label :password_confirmation%><br/>
+	<%= u.password_field :password_confirmation%>
+	</p>
+<h3>Billing Information</h3>
+	<%= fields_for @store_owner do |f| %>
+	<p>
+	<%= f.label :name%><br/><%=error_message_on	:store_owner,:name %>
+	<%= f.text_field :name%>
+	</p>
+	<p>
+	<%= f.label :address1%><br/>
+	<%= f.text_field :address1,:value=>"Rachel street"%>
+	</p>
+	<p>
+	<%= f.label :address2%><br/>
+	<%= f.text_field :address2,:value=>"first cross"%>
+	</p>
+	<p>
+	<%= f.label :city%><br/>
+	<%= f.text_field :city,:value=>"chennai"%>
+	</p>
+	<p>
+	<%= f.label :zipcode%><br/><%=error_message_on	:store_owner,:zipcode%>
+	<%= f.text_field :zipcode,:value=>"600042"%>
+	</p>
+	<p>
+	<%= f.label :state%><br/>
+	<%@states = State.find(:all)%>
+	<%= f.text_field :state, :value=>"California"%>
+</p>
+	<p>
+	<%= f.label :country%><br/>
+	<%@countries = Country.find(:all)%>
+	<%= f.text_field :country ,:value=>"United States" %>
+	</p>
+		<p>
+	<%= f.label :PhoneNumber%><br/><%=error_message_on	:store_owner,:phoneno%>
+	<%= f.text_field :phoneno,:value=>"9952248846"%>
+	</p>
+		<h3>Domain Name</h3>
+	<p>
+	<%= f.label :domain%><br/><%=error_message_on	:store_owner,:domain%>
+http://<%= f.text_field :domain%>.saasspree.railsfactory.com
+	</p>
+	<h3>Enter Your Card Details</h3>
+	<p>
+	<%= f.label :first_name%><br/><%=error_message_on	:store_owner,:first_name %>
+	<%= f.text_field :first_name%>
+	</p>
+	<p>
+	<%= f.label :last_name%><br/><%=error_message_on	:store_owner,:last_name %>
+	<%= f.text_field :last_name%>
+	</p>
+	<p><%=error_message_on	:store_owner,:card_number%>
+	<%= f.label :card_number%><br/><br/>
+	<%= f.text_field :card_number,:value=>"4785636150538332"%>
+	</p>
+	<p>
+	<%= f.label :card_type%><br/>
+	<%= f.select :card_type,%w{Visa}%>
+	</p>
+	<p>
+	<%= f.label :cvv%><br/><%=error_message_on	:store_owner,:cvv %>
+	<%= f.password_field :cvv,:value=>"123"%>
+	</p>
+
+	<p>
+	<%= f.label :expiration_year%>
+	<%= f.select ('expiration_year', options_for_select(card_year))%>
+	<%= f.select ('expiration_month', options_for_select(card_month))%>
+	</p>
+	<input name="commit" id="agree" type="checkbox" />
+  I agree to the <a href="#">Terms and Conditions</a>or <a href="/">Cancel</a>
+	<p>
+	<%end%>
+	
+	<%= u.submit "Create",:onClick=>"check_agreed()" %>
+	</p>
+<%end%>
+  </div>
+
+	<script>
+	function check_agreed()
+{
+val=document.getElementById("agree").checked
+if(val == true)
+{
+return true;
+}
+alert("Please agree to the Terms and Conditions");
+return false;
+}
+</script>

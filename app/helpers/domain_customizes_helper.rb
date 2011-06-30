@@ -1,0 +1,2 @@
+module DomainCustomizesHelper
+end

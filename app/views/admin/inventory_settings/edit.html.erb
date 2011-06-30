@@ -1,0 +1,46 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+<h1><%= t('inventory_settings') %></h1>
+<%= form_tag(admin_inventory_settings_path, :method => :put) do %>
+<input type="hidden"  name = "preferences[domain_url]" value="<%=get_sub_domain(current_subdomain)%>" id="taxonomy_domain_url">
+  <%preference=find_domain_preference("Default configuration")%>
+<% if preference.count<=0%>
+<p>
+    <label>
+	  <input name="preferences[show_zero_stock_products]" type="hidden" value="0" />
+      <%= check_box_tag('preferences[show_zero_stock_products]', "1",true) %>
+      <%= t('show_out_of_stock_products') %>
+    </label>
+  </p>
+<p>
+    <label>
+	  <input name="preferences[allow_backorders]" type="hidden" value="0" />
+      <%= check_box_tag('preferences[allow_backorders]', "1", true) %>
+      <%= t('allow_backorders') %>
+    </label>
+  </p>
+<%else%>
+				<%preference.each do |v|%>
+								<% if v.name=="show_zero_stock_products"%>
+								<p>
+								<label>
+								<input name="preferences[show_zero_stock_products]" type="hidden" value="0" />
+									<%= check_box_tag('preferences[show_zero_stock_products]', "1",v.value) %>
+									<%= t('show_out_of_stock_products') %>
+								</label>
+							</p>
+							 <% elsif v.name=="allow_backorders"%>
+							<p>
+								<label>
+								<input name="preferences[allow_backorders]" type="hidden" value="0" />
+									<%= check_box_tag('preferences[allow_backorders]', "1",v.value) %>
+									<%= t('allow_backorders') %>
+								</label>
+							</p>
+							<%end%>
+				<%end%>
+				<%end%>
+  <p class="form-buttons">
+    <%= button t('update') %>
+  </p>
+<% end %>
+
