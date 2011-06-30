@@ -1,7 +1,7 @@
 require 'mail'
 
 # Spree Configuration
-SESSION_KEY = '_spree_session_id'
+#~ SESSION_KEY = '_spree_session_id'
 #require 'spree/support/core_ext/array/conversions'
 
 # TODO - Add the lib/plugins stuff maybe?
@@ -25,4 +25,4 @@ String.class_eval do
   include SpreeCore::Ext::String
 end
 
-LIKE = ActiveRecord::Base.connection.adapter_name == 'PostgreSQL' ? 'ILIKE' : 'LIKE'
+#~ LIKE = ActiveRecord::Base.connection.adapter_name == 'PostgreSQL' ? 'ILIKE' : 'LIKE'

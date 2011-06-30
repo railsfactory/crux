@@ -5,8 +5,7 @@ ActiveMerchant::Billing::Base.mode = :test
 include ActiveMerchant::Billing
 
 def paypal_gateway	
-	  gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>'railsf_1286521108_biz_api1.gmail.com',:password =>'1286521234',:signature =>'AU562tW4ph9J8h9tWUS9wpuYK9zeAKH7Mk4Fco.pSrh.tWlRw3XLBpiN')
-	
+		   gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>APP_CONFIG['paypal_username'],:password =>APP_CONFIG['paypal_password'],:signature =>APP_CONFIG['paypal_signature'])
 		return gateway
 		end
 def index
