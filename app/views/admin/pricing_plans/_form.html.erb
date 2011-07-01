@@ -9,7 +9,7 @@
     <%= f.text_field :no_of_products %><br />
 
     <%= f.label :payment_period %><br />
-    <%= f.select:payment_period, options_for_select(["Monthly", "Weekly"])%><br/>
+    <%= f.select:payment_period,%w{Monthly Weekly}%><br/>
 
     <%= f.label :is_active %><br/>
     <%= f.check_box :is_active %><br />

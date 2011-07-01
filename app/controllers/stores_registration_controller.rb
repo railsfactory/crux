@@ -17,16 +17,17 @@ end
 def new_store
 	@user = User.new()
 	@store_owner = StoreOwner.new()
-	@plan = session[:plan] = params[:plan_name]
- 	@amt=PricingPlan.find_by_plan_name(session[:plan]).amount
+	session[:plan] = params[:id]
+	@plan=PricingPlan.find_by_id(session[:plan]).plan_name
+ 	@amt=PricingPlan.find_by_id(session[:plan]).amount
    #~ render:layout=>false
 end
 
 def save_store_details
-	@amount= PricingPlan.find_by_plan_name(session[:plan]).amount
+	@amount= PricingPlan.find_by_id(session[:plan]).amount
 	@user = User.new(params[:user])
 	@store_owner = @user.build_store_owner(params[:store_owner])
-	@store_owner.plan_name = session[:plan]
+	@store_owner.pricing_plan_id = session[:plan]
 	if @user.valid? && @store_owner.valid?
 		response_payment=payment_response
 	
@@ -49,10 +50,10 @@ flash[:store_notice] = "Your Store has been registered successfully"
 						#~ redirect_to "/admin"
 				else
  	  			flash[:error]= response_payment.params['message']
-	    		render  "new_store",:plan_name=>session[:plan]
+	    		render  "new_store",:id=>session[:plan]
    		end
 	else
-		render  "new_store",:plan_name=>session[:plan]
+		render  "new_store",:id=>session[:plan]
 	end
 end
 
@@ -110,7 +111,7 @@ if authorize.params['ack']=="Success"
 @response
 else
  	  			flash[:error]= authorize.params['message']
-	    		render  "new_store",:plan_name=>session[:plan]
+	    		render  "new_store",:id=>session[:plan]
    		
 end
 

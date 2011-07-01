@@ -14,7 +14,7 @@ class StoreDetail < ActiveRecord::Base
 	
 
 	def self.find_transaction_fee(owner)
-	price=pricing_plan_transact_fee(owner)
+	price=owner.pricing_plan
 	if owner && !owner.domain.blank?
 	products=StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
 	if products && !products.empty?
@@ -33,13 +33,11 @@ class StoreDetail < ActiveRecord::Base
 	end
 
 	def self.pricing_plan_transact_fee(owner)
-	plan=PricingPlan.find_by_plan_name(owner.plan_name)
-	transaction_fee=plan.transaction_fee
+	transaction_fee=owner.pricing_plan.transaction_fee
 	end
 
 	def self.pricing_plan_amount(owner)
-	plan=PricingPlan.find_by_plan_name(owner.plan_name)
-	transaction_fee=plan.amount
+	amount=owner.pricing_plan.amount
 	end
 
 	def self.total_amount(transaction_fee_amount,pricing_amount)

@@ -1,5 +1,6 @@
 class StoreOwner < ActiveRecord::Base
 	has_one :domain_customize
+	has_one :pricing_plan
 	has_many :storeowner_orders
 	has_many :transactions
 	has_many :billing_histories
