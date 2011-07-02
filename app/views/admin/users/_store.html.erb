@@ -69,7 +69,7 @@
 <tbody>
 <tr><td><B>Owner : </B> <%=owner.first_name%></td></tr>
 <tr><td><B>Store : </B> <%=owner.domain%></td></tr>
-<tr><td><B>Plan : </B> <%=owner.plan_name%></td></tr>
+<tr><td><B>Plan : </B> <%=owner.pricing_plan.plan_name%></td></tr>
 <tr><td><B>Product Transaction Fee</B> <%=find_transaction_fee(owner)%></td></tr>
 </tbody>
 </table>

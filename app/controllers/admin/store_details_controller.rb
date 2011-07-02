@@ -6,7 +6,7 @@ class Admin::StoreDetailsController < Admin::ResourceController
     @store_details=StoreDetail.all
     if request.xhr?
    @owner=StoreOwner.find_by_domain(params[:domain])
-   @plan=PricingPlan.find_by_plan_name(@owner.plan_name)
+   @plan=@owner.pricing_plan
       #~ StoreDetail.find_all_by_domain_url(params[:domain])
     products_id=StoreDetail.find_all_by_domain_url(params[:domain]).map(&:product_id).uniq
     @product_name=[]

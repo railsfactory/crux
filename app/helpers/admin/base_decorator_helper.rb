@@ -1,52 +1,40 @@
-module Admin::BaseHelper
-def find_user_domain
-		unless current_user.has_role?"admin"
-	domain=current_user.domain_url
-	else
-	domain="admin"
-	end
-	end
- def find_transaction_fee(owner)
- price=PricingPlan.find_by_plan_name(owner.plan_name)
-if owner && !owner.domain.blank?
-  products=StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
-    if products && !products.empty?
-			final_price=0
-      products.each do |product|
-       pro_quantity=StoreDetail.find_all_by_product_id(product).map(&:quantity).sum
-       pro_id=Product.find_by_id(product)
-       total_price=(pro_id.master.price*(price.transaction_fee/100))*pro_quantity
-       final_price=final_price+total_price
-       end
-		 end
-	return final_price
-  end
-
-end
-   def get_sub_domain(subdomain)
-		  if (request.url.include?(APP_CONFIG['separate_url'])) 
-    domain= subdomain.split(".")[0]
-		else
-			
-			custom_domain= subdomain.split(".") if subdomain
-       custom=DomainCustomize.find_by_custom_domain(custom_domain)
-			 if custom
-			 store=StoreOwner.find_by_id(custom.store_owner_id)
-       domain=store.domain
-			 else
-				 domain=""
-			 end
-			 end
-    return domain
-	end
-		
-		
-	def find_domain_preference(type)
-  domain=get_sub_domain(current_subdomain)
+module Spree::BaseHelper
+def find_domain_preference(type)
+  domain= current_subdomain.split(".")[0]
 	config=Configuration.find_by_name(type)
   available=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)	
 	return available
 	end
+def find_stock_value(attr)
+	pref=find_domain_preference("Default configuration")
+	if  pref.blank?
+		if attr=="show_zero_stock_products"
+		val=Spree::Config[:show_zero_stock_products]
+		elsif attr=="allow_backorders"
+			val=Spree::Config[:allow_backorders]
+		end	
+	else
+  val=pref.find_by_name(attr).value
+end
+  return val
+end
+  def get_taxons(domain)
+     subdomain= domain.split(".") if domain
+    currentdomain =(subdomain&&subdomain.length >0) ? subdomain[0] : nil
+    taxon=Taxon.roots.where('domain_url= ?',currentdomain)
+  end
+	
+def find_mail_domain(order)
+	store=StoreownerOrder.find_by_order_id(order.id)
+	mail_domain=store.store_owner.domain
+end
 
+def mail_settings(domain)
+	mail_methods=MailMethod.find_all_by_domain_url(domain)
+	unless mail_methods.blank?
+		Spree::MailSettings.init(domain)
+		Mail.register_interceptor(MailDomainInterceptor)
+	end
+end
 
 end
