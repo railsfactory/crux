@@ -13,7 +13,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
   line-height: 1em;
   color: black;
-  background: #ffffff;
+  /*background: #ffffff;*/
 }
 ol, ul { list-style: none; }
 table {
@@ -258,10 +258,10 @@ legend {
   margin-right: 25px;
   border-right: 1px solid #eeeeee;
 }
-body {
+/*body {
   margin-top: 10px;
   background: #ffffff url(../images/body-back.png) top left repeat-x;
-}
+}*/
 div.left {
   float: left;
   width: 49%;
@@ -272,13 +272,13 @@ div.right {
 }
 a { outline: none; }
 #wrapper {
-  background: transparent url(../images/wrapper-back.png) top center no-repeat;
-  padding: 25px 20px 20px;
+  background: #fff;
+  padding: 5px;
   position: relative;
 }
-body.two-col #wrapper { background-image: url(../images/wrapper-back-2.png); }
+/*body.two-col #wrapper { background-image: url(../images/wrapper-back-2.png); }*/
 .container {
-  width: 950px;
+  width: 1000px;
   margin: 0 auto;
   overflow: hidden;
   display: block;
@@ -294,32 +294,38 @@ body.two-col #wrapper { background-image: url(../images/wrapper-back-2.png); }
 }
 #sidebar h3 { margin-bottom: 0.5em; }
 body.one-col #content {
-  display: inline;
+  /*display: inline;
   float: left;
-  width: 950px;
+  width: 950px;*/
+  padding:0 10px;
 }
 body.two-col #content {
-  display: inline;
-  float: left;
-  width: 750px;
+  margin:0 auto;
+  width: 910px;
 }
 #header {
   position: relative;
   color: #2e6ab1;
   clear: both;
 }
-#header a { color: #2e6ab1; }
-#header a:hover { color: #eeeeee; }
+#header a { color: #2e6ab1; font-size:12px;}
+#header a:hover { color: #000; }
 #footer {
   padding-top: 2em;
   clear: both;
 }
-#footer div.left { width: 37%; }
+#footer div.left { width: 37%; margin-left:10px; }
 #footer div.right {
   width: 63%;
   text-align: right;
 }
-h1 { font-size: 2.5em; }
+h1 {     background: none repeat scroll 0 0 #3ABBFF;
+    font-size: 2.5em;
+    margin: -5px 0 15px -16px;
+    padding: 10px;
+    width:992px;
+    color:#fff;
+}
 .form-buttons, .clear { clear: both; }
 input.title { width: auto; }
 p.follow-all {
@@ -393,7 +399,7 @@ p img {
   color: #666666;
 }
 .breadcrumbs ul li span { color: #333333; }
-div#login-bar { display: inline; }
+div#login-bar { float:right; overflow:hidden;}
 ul#language-bar {
   list-style-type: none;
   margin: 0px;
@@ -417,7 +423,7 @@ ul#nav-bar {
 }
 ul#nav-bar li {
   float: left;
-  margin-left: 1em;
+  margin-left: 10px;
 }
 ul#nav-bar li.cart-indicator a {
   padding-right: 40px;
@@ -521,7 +527,7 @@ button, a.button, input.button {
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
-  background: #efefef url(../images/buttons/bg-button.png) center left repeat-x !important;
+  background: #3ABBFF url(../images/buttons/bg-button.png) center left repeat-x !important;
   border-style: solid;
   border-width: 1px !important;
   border-color: #dddddd #999999 #999999 #dddddd !important;
@@ -538,16 +544,17 @@ button, a.button, input.button {
   line-height: 1.2em;
   margin: 0px;
   overflow: visible;
-  padding: 10px 17px;
+  padding: 7px;
   text-decoration: none;
   text-transform: lowercase;
   width: auto;
   height: auto;
   cursor: pointer;
+  color:#ffffff;
 }
 button.primary, a.button.primary, input.button.primary {
   font-weight: bold;
-  color: #000000;
+  color: #ffffff;
 }
 button:hover { background-image: url(../images/buttons/bg-button-hover.png) !important; }
 a.button:hover { background-image: url(../images/buttons/bg-button-hover.png) !important; }
@@ -576,7 +583,7 @@ a.button.update img { margin-right: 7px; }
 a.button.checkout img { margin-right: 7px; }
 input.button.update img { margin-right: 7px; }
 input.button.checkout img { margin-right: 7px; }
-button img { vertical-align: middle; }
+button img { vertical-align: middle; margin-right:5px; }
 a.button img { vertical-align: middle; }
 input.button img { vertical-align: middle; }
 button:focus { outline: none; }
