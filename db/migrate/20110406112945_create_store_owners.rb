@@ -18,7 +18,7 @@ class CreateStoreOwners < ActiveRecord::Migration
       t.string :cvv
       t.string :expiration_year
       t.string :expiration_month
-      t.string :plan_name
+      t.integer :pricing_plan_id
       t.string :ip
       t.string :name
       t.integer :phoneno
