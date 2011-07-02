@@ -1,0 +1,103 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body { background:#BAD9E9; color: #666666; font-family: "Trebuchet MS", Arial,Helvetica,sans-serif; font-size: 11px;}
+.main-header { color: #FFFFFF; float: left; width:100%; height:75px; background:#def3fe; border-bottom:2px solid #0e3f59;}
+.logo { padding:5px; margin:1px 0 0 -10px;}
+.header { margin:0 auto; width:960px;}
+.logo {float: left;}
+.top_navi {float: right; padding:5px 10px; background:#333333; -moz-border-radius:0 0 5px 5px; -webkit-border-radius:0 0 5px 5px;}
+.top_navi ul {list-style: none outside none;}
+.top_navi ul li { background-image: url("../images/sep.gif"); background-position: right center; background-repeat: no-repeat; float: left; padding: 0 7px;}
+.top_navi ul li a { color: #FFFFFF; font-size:14px; text-decoration:none;}
+.top_navi ul li.last { background-image: none; padding-right: 0;}
+
+.main-wrapper {margin: 0 auto; width: 960px;}
+.page { background:#3abbff; padding:10px; clear:both;}
+.ban-img { float:right;}
+#banner p { font-size:14px; color:#fff; margin:20px 0 0 0;}
+.clear { clear:both;}
+h1 { color:#000; font-size:18px;}
+.ban-text { float:left; margin:40px 0 0 10px; width:335px;}
+.sign-up { margin-top:25px;}
+
+.content { background:#DEF3FE; padding:10px; overflow: hidden;}
+.abt { float:left; width:290px; border-right:1px dashed #CCCCCC; padding-right:10px; margin-left:15px;}
+.content p { margin:7px 0 7px; font-size: 13px; line-height:23px;}
+.no-bor { border:none;}
+.client { clear: both; margin-bottom: 20px;}
+.client p { color: #555555; margin-bottom: 7px;}
+.client a { float: right; font-size: 11px;}
+.client span { color: #999999; font-size: 11px;}
+.client .sprites { float: left; margin: 4px 10px 0; background:#0066FF;}
+h1.cli-icon { background:url(../images/clients.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
+h1.wedo-icon { background: url(../images/whatwedo.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
+h1.abt-iocn { background: url(../images/Company.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
+
+.sign-up-form, .plan {background:#FFFFFF;}
+.sign-up-title { color:#FFFFFF; font-size:24px;}
+.sign-up-head { margin:10px 0 0 20px;}
+.sign-up-form h3 { margin:10px 0 10px 0; color:#0e6fa2; border-bottom:1px solid #10425d;}
+
+form { margin:10px 0 0 20px;}
+.form-ele { margin-bottom:10px;}
+form label { float:left; width:220px; font-size:14px;}
+form input, select { width:320px; padding:7px 0 7px; -moz-border-radius:3px; -webkit-border-radius:3px; border:1px solid #999999;}
+.che-box { width:15px;}
+.form-ele span { padding-left:10px; display:inline;}
+.btn-create { background: #3abbff; color:#FFFFFF; box-shadow: 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 0 0.2em rgba(255, 255, 255, 0.3) inset, 0 1px 2px rgba(0, 0, 0, 0.3); font-size:1.5em; width:100px; margin-top:10px; cursor:pointer; font-weight:bold;}
+
+.table-wrap { padding:20px;}
+table th, table td { border:1px solid #fff; padding:7px; text-align:left;}
+table th { background:#5b5a5a; color:#FFFFFF; font-size:14px; font-weight:bold;}
+table tr.bg-bl td{ background:#eaf8fd;}
+table tr.bg-gr td { background:#b1d7a7;}
+table tr td { color:#000000; font-size:12px;}
+.month { float:left;}
+.sign-up-td{ float:right; margin-right:10px;}
+
+
+
+
+.footer p { color:#000; margin:5px 0 0 0;}
