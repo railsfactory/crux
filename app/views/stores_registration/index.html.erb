@@ -1,20 +1,48 @@
-<h2>Select Your Plan</h2>
-<table>
-<tr>
-<th>Name</th>
-<th>Fee</th>
-<th>Transaction Fee</th>
-<th>No of Products</th>
-<th>Payment Period</th>
-</tr>
-<%@plans && @plans.each do |plan|%>
-<tr>
-<td><%= plan.plan_name%></td>
-<td><%= plan.amount%></td>
-<td><%= plan.transaction_fee%></td>
-<td><%= plan.no_of_products%></td>
-<td><%= plan.payment_period%></td>
-<td><a href="/store/<%= plan.id%>">Sign Up</a></td>
-</tr>
-<%end%>
-</table>
+
+<div class="main-wrapper page">
+	<h1 class="sign-up-title">Select Your Plan</h1>
+</div>
+<div class="main-wrapper page plan">
+	<div class="table-wrap">
+        <table cellpadding="0" cellspacing="0" width="100%" border="0">
+            <tr>
+                <th>Name</th>
+                <th>Fee</th>
+                <th>Trasaction Fee</th>
+                <th>No of Products</th>
+                <th>Payment Period</th>
+            </tr>
+						<%@plans && @plans.each do |plan|%>
+<% if plan.id.odd? %>
+            <tr class="bg-bl">
+                <td><%= plan.plan_name%></td>
+							<td><%= plan.amount%></td>
+						<td><%= plan.transaction_fee%></td>
+						<td><%= plan.no_of_products%></td>
+               	<td>
+                	<div class="tabel-td">
+                    	<div class="month"><%= plan.payment_period%></div>
+                    	<div class="sign-up-td"><a href="/store/<%= plan.id%>">Sign up</a></div>
+                    </div>
+            	</td>
+            </tr>
+<%else%>
+            <tr class="bg-gr">
+                 <td><%= plan.plan_name%></td>
+							<td><%= plan.amount%></td>
+						<td><%= plan.transaction_fee%></td>
+						<td><%= plan.no_of_products%></td>
+               	<td>
+                	<div class="tabel-td">
+                    	<div class="month"><%= plan.payment_period%></div>
+                    	<div class="sign-up-td"><a href="/store/<%= plan.id%>">Sign up</a></div>
+                    </div>
+            	</td>
+							<%end%>
+            </tr>
+	
+	<%end%>
+          
+        </table>
+   	</div>
+</div>

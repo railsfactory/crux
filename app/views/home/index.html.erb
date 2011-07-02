@@ -1,4 +1,4 @@
-<%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
+ <%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
 <% content_for :sidebar do %>
   <div data-hook="homepage_sidebar_navigation">
     <%= render "shared/taxonomies" %>
@@ -8,15 +8,40 @@
   <%= render "shared/products", :products => @products %>
 </div>
 <%else%>
-<div style="padding-top:30px">
-<h5>We help setup and customize your online store and also take care of future software updates for you. We manage all the products in your store, and work with the top industry brands to ensure your store is always up to date. When your customers place a new order, we'll handle the payment processing, inventory management, shipping, and if your customer has any questions we'll be available to help them. Sound too good to be true?</h5>
-<br/>
-<br/>
-<br/>
-<div style="padding-left:175px"><h3><span>Create an online store</span>&nbsp;&nbsp;&nbsp;&nbsp;<span><a href="<%= stores_registration_index_path%>">Register your store</a></span></h3></div>
+
+
+<div class="main-wrapper page">
+    <div id="banner">
+    	<div class="ban-img">
+            <img alt="" src="/images/iphone-phone-20100607.png">
+    	</div>
+        <div class="ban-text">
+            <h1> <img alt="" src="/images/hedaer-title.png"></h1>
+            <p>We help setup and customize your online store and also take care of future software updates for you. We manage all the products in your store, and work with the top industry brands to ensure your store is always up to date.</p>
+            <p>Create an online store</p>
+            <a href="<%= stores_registration_index_path%>"><img src="/images/signup.png" alt="" class="sign-up" /></a>
+       	</div>   
+    </div><!--banner-->
+    <div class="clear"></div>
 </div>
-<div class="clear"></div>
+<div class="content main-wrapper">
+	<div class="abt">
+        <h1 class="abt-iocn">About Us</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+   	</div>
+    	<div class="abt">
+        <h1 class="wedo-icon">What we do</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+   	</div>
+	<div class="abt no-bor">
+        <h1 class="cli-icon">Our Clients</h1>
+        <div class="client">
+            <div id="ericmueller" class="sprites"></div>
+            <p>“I remember the first time I saw Railsfactory and thinking wow, this is heck of a lot more elegant than Yahoo! Stores.”</p>
+            <a href="">&raquo; Read More</a>
+            <span>Eric Mueller, co-owner of Themepark</span>
+      </div>
+   	</div>
+</div>
+
 <%end%>
-
-
-
