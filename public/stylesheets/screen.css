@@ -13,7 +13,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
   line-height: 1em;
   color: black;
-  background: #ffffff;
+  /*background: #ffffff;*/
 }
 ol, ul { list-style: none; }
 table {
@@ -60,13 +60,13 @@ body {
   color: #333333;
   font-size: 75%;
 }
-h1 {
+/*h1 {
   font-weight: normal;
   color: #222222;
   font-size: 3em;
   line-height: 1;
   margin-bottom: 0.5em;
-}
+}*/
 h1 img { margin: 0; }
 h2 {
   font-weight: normal;
@@ -272,13 +272,13 @@ div.right {
 }
 a { outline: none; }
 #wrapper {
-  background: transparent url(../images/wrapper-back.png) top center no-repeat;
+  background: #ffffff;
   padding: 25px 20px 20px;
   position: relative;
 }
-body.two-col #wrapper { background-image: url(../images/wrapper-back-2.png); }
+/*body.two-col #wrapper { background-image: url(../images/wrapper-back-2.png); }*/
 .container {
-  width: 950px;
+  width: 1000px;
   margin: 0 auto;
   overflow: hidden;
   display: block;
@@ -308,8 +308,8 @@ body.two-col #content {
   color: #2e6ab1;
   clear: both;
 }
-#header a { color: #2e6ab1; }
-#header a:hover { color: #eeeeee; }
+#header a { color: #2e6ab1; font-size:12px; }
+#header a:hover { color: #000; }
 #footer {
   padding-top: 2em;
   clear: both;
@@ -521,7 +521,7 @@ button, a.button, input.button {
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   border-radius: 0.3em;
-  background: #efefef url(../images/buttons/bg-button.png) center left repeat-x !important;
+  background: #3ABBFF url(../images/buttons/bg-button.png) center left repeat-x !important;
   border-style: solid;
   border-width: 1px !important;
   border-color: #dddddd #999999 #999999 #dddddd !important;
@@ -538,16 +538,17 @@ button, a.button, input.button {
   line-height: 1.2em;
   margin: 0px;
   overflow: visible;
-  padding: 10px 17px;
+  padding: 7px;
   text-decoration: none;
   text-transform: lowercase;
   width: auto;
   height: auto;
   cursor: pointer;
+  color:#ffffff;
 }
 button.primary, a.button.primary, input.button.primary {
   font-weight: bold;
-  color: #000000;
+  color: #ffffff;
 }
 button:hover { background-image: url(../images/buttons/bg-button-hover.png) !important; }
 a.button:hover { background-image: url(../images/buttons/bg-button-hover.png) !important; }
@@ -838,24 +839,20 @@ div#checkout form {
 div#checkout #checkout_form_address { background-image: url("../images/steps/2.png"); }
 div#checkout #checkout_form_delivery { background-image: url("../images/steps/3.png"); }
 div#checkout #checkout_form_address #billing label {
-  width: 190px;
   float: left;
   padding-right: 10px;
-  text-align: right;
 }
 div#checkout #checkout_form_address #shipping label {
-  width: 190px;
   float: left;
   padding-right: 10px;
-  text-align: right;
 }
 div#checkout #checkout_form_address #billing input { width: 304px; }
 div#checkout #checkout_form_address #shipping input { width: 304px; }
 div#checkout #checkout_form_address #billing select { width: 304px; }
 div#checkout #checkout_form_address #shipping select { width: 304px; }
 div#checkout #checkout_form_address #billing p.checkbox { padding-left: 200px; }
-div#checkout #checkout_form_address #shipping p.checkbox { padding-left: 200px; }
-div#checkout #checkout_form_address .form-buttons { padding-left: 200px; }
+div#checkout #checkout_form_address #shipping p.checkbox { /*padding-left: 200px;*/ }
+div#checkout #checkout_form_address .form-buttons { /*padding-left: 200px;*/ }
 div#checkout #checkout_form_address #billing p.checkbox label {
   width: auto !important;
   float: none !important;

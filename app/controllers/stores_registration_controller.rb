@@ -3,7 +3,7 @@ include SpreeBase
 before_filter :load_account
 ActiveMerchant::Billing::Base.mode = :test
 include ActiveMerchant::Billing
-
+layout 'saas'
 def paypal_gateway	
 		   gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>APP_CONFIG['paypal_username'],:password =>APP_CONFIG['paypal_password'],:signature =>APP_CONFIG['paypal_signature'])
 		return gateway
@@ -14,16 +14,22 @@ def index
 
 end
 
+def pricing_plan(id)
+	plan=PricingPlan.find_by_id(id)
+end
+
 def new_store
 	@user = User.new()
 	@store_owner = StoreOwner.new()
 	session[:plan] = params[:id]
-	@plan=PricingPlan.find_by_id(session[:plan]).plan_name
- 	@amt=PricingPlan.find_by_id(session[:plan]).amount
-   #~ render:layout=>false
+	plan=pricing_plan(params[:id])
+	@plan_name=plan.plan_name
+ 	@amount=plan.amount
 end
 
 def save_store_details
+	plan=pricing_plan(session[:plan])
+	@plan_name=plan.plan_name
 	@amount= PricingPlan.find_by_id(session[:plan]).amount
 	@user = User.new(params[:user])
 	@store_owner = @user.build_store_owner(params[:store_owner])
@@ -50,10 +56,10 @@ flash[:store_notice] = "Your Store has been registered successfully"
 						#~ redirect_to "/admin"
 				else
  	  			flash[:error]= response_payment.params['message']
-	    		render  "new_store",:id=>session[:plan]
+	    		render  "new_store"
    		end
 	else
-		render  "new_store",:id=>session[:plan]
+		render  "new_store"
 	end
 end
 
