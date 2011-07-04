@@ -37,7 +37,7 @@ def mail_settings(domain)
 	end
 end
 
-def get_sub_domain(subdomain)
+ def get_sub_domain(subdomain)
 		  if (request.url.include?(APP_CONFIG['separate_url'])) 
     domain= subdomain.split(".")[0]
 		else
@@ -52,6 +52,6 @@ def get_sub_domain(subdomain)
 			 end
 			 end
     return domain
-end
+	end
 
 end
