@@ -20,9 +20,11 @@ class Admin::DomainCustomizesController  < Admin::ResourceController
   end
 
   def edit
+    find_domain_customize
       end
 
   def update
+    find_domain_customize
       if @domain_customize.update_attributes(params[:domain_customize])
        redirect_to(admin_domain_customizes_path(@domain_customize), :notice => 'domain was successfully updated.')
       else

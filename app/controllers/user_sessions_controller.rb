@@ -6,11 +6,12 @@ class UserSessionsController < Devise::SessionsController
   after_filter :associate_user, :only => :create
   ssl_required :new, :create, :destroy, :update
   ssl_allowed :login_bar
-  before_filter :find_session, :only => [:show_error, :destroy,:new]
+  before_filter :find_session, :only => [:show_error, :destroy]
   before_filter :find_superclass, :only => [:destroy,:new]
 
   # GET /resource/sign_in
   def new
+    find_superclass
   end
 
   def create
@@ -37,6 +38,7 @@ class UserSessionsController < Devise::SessionsController
 end
 end
 def show_error
+  find_session
   flash[:error]="You are not a registered user of this site"
   redirect_to  new_user_session_path
 end
@@ -51,6 +53,8 @@ end
 end
 
   def destroy
+    find_session
+    find_superclass
   end
 
   def nav_bar

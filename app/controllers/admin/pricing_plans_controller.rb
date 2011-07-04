@@ -17,6 +17,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
   # GET /pricing_plans/1
   # GET /pricing_plans/1.xml
   def show
+    find_pricing_plan
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @pricing_plan }
@@ -36,6 +37,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
 
   # GET /pricing_plans/1/edit
   def edit
+    find_pricing_plan
   end
 
   # POST /pricing_plans
@@ -57,6 +59,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
   # PUT /pricing_plans/1
   # PUT /pricing_plans/1.xml
   def update
+    find_pricing_plan
     respond_to do |format|
       if @pricing_plan.update_attributes(params[:pricing_plan])
         format.html { redirect_to(admin_pricing_plan_path(@pricing_plan), :notice => 'Pricing plan was successfully updated.') }
@@ -71,6 +74,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
   # DELETE /pricing_plans/1
   # DELETE /pricing_plans/1.xml
   def destroy
+    find_pricing_plan
     @pricing_plan.destroy
     respond_to do |format|
       format.html { redirect_to(admin_pricing_plans_url,:notice=>"Pricing plan was successfully destroyed") }
