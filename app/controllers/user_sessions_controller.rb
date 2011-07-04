@@ -11,7 +11,6 @@ class UserSessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    find_superclass
   end
 
   def create
@@ -38,11 +37,9 @@ class UserSessionsController < Devise::SessionsController
 end
 end
 def show_error
-  find_session
   flash[:error]="You are not a registered user of this site"
   redirect_to  new_user_session_path
 end
-
 def show_success_message
   flash.notice = I18n.t("logged_in_succesfully")
   if current_user.has_role?"admin"
@@ -53,8 +50,6 @@ end
 end
 
   def destroy
-    find_session
-    find_superclass
   end
 
   def nav_bar
@@ -75,7 +70,7 @@ end
 
 def find_session
       session.clear
-      end
+  end
 def find_superclass
   super
  end
