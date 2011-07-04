@@ -7,7 +7,7 @@ def find_user_domain
 	end
 	end
  def find_transaction_fee(owner)
- 
+
 if owner && !owner.domain.blank?
   products=StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
     if products && !products.empty?
@@ -24,10 +24,9 @@ if owner && !owner.domain.blank?
 
 end
    def get_sub_domain(subdomain)
-		  if (request.url.include?(APP_CONFIG['separate_url'])) 
+		  if (request.url.include?(APP_CONFIG['separate_url']))
     domain= subdomain.split(".")[0]
 		else
-			
 			custom_domain= subdomain.split(".") if subdomain
        custom=DomainCustomize.find_by_custom_domain(custom_domain)
 			 if custom

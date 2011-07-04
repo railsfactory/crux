@@ -20,7 +20,7 @@ products_id.each do |product|
   @total_price<<(product_details.master.price*(@plan.transaction_fee/100))*quantity
  end
 
-      render :partial=>"product_details"
+      render :partial=>"product_details", :locals => { :owner => @owner,:product_name=>@product_name,:pro_quantity=>@pro_quantity,:total_price=>@total_price }
      end
   end
 

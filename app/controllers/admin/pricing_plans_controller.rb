@@ -2,6 +2,8 @@ class Admin::PricingPlansController < Admin::ResourceController
   # GET /pricing_plans
   # GET /pricing_plans.xml
 resource_controller
+before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
+
   def index
     @search = PricingPlan.search(params[:search])
     @pricing_plans = @search.all.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
@@ -15,8 +17,6 @@ resource_controller
   # GET /pricing_plans/1
   # GET /pricing_plans/1.xml
   def show
-    @pricing_plan = PricingPlan.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @pricing_plan }
@@ -36,7 +36,6 @@ resource_controller
 
   # GET /pricing_plans/1/edit
   def edit
-    @pricing_plan = PricingPlan.find(params[:id])
   end
 
   # POST /pricing_plans
@@ -58,8 +57,6 @@ resource_controller
   # PUT /pricing_plans/1
   # PUT /pricing_plans/1.xml
   def update
-    @pricing_plan = PricingPlan.find(params[:id])
-
     respond_to do |format|
       if @pricing_plan.update_attributes(params[:pricing_plan])
         format.html { redirect_to(admin_pricing_plan_path(@pricing_plan), :notice => 'Pricing plan was successfully updated.') }
@@ -74,12 +71,13 @@ resource_controller
   # DELETE /pricing_plans/1
   # DELETE /pricing_plans/1.xml
   def destroy
-    @pricing_plan = PricingPlan.find(params[:id])
     @pricing_plan.destroy
     respond_to do |format|
       format.html { redirect_to(admin_pricing_plans_url,:notice=>"Pricing plan was successfully destroyed") }
       format.xml  { head :ok }
     end
   end
-
+ def find_pricing_plan
+        @pricing_plan = PricingPlan.find(params[:id])
+  end
 end

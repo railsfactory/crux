@@ -20,11 +20,11 @@ module SpreeBase
         end
       end
     end
-    
+
   def get_sub_domain(domain)
-    if (request.url.include?(APP_CONFIG['separate_url'])) 
+    if (request.url.include?(APP_CONFIG['separate_url']))
      subdomain= domain.split(".") if domain
-   
+
      else
         custom_domain= domain.split(".") if domain
        custom=DomainCustomize.find_by_custom_domain(custom_domain)
@@ -36,8 +36,7 @@ module SpreeBase
      end
        return subdomain
    end
-  
-  
+
 def load_account
 
 	unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
@@ -51,16 +50,16 @@ def load_account
 				if store && active == false
 				#~ $error = "Your account is inactive."
         					            redirect_to "#{APP_CONFIG['domain_url']}"
-                           
+
 
     end
-				
+
 		else
       if custom_domain
 		custom_domain_status=custom_domain.status
 			store = store = StoreOwner.find_by_domain(domain)
 			active = store.is_active? if store
-    
+
 				if custom_domain && custom_domain_status == true && store && active == false
 									 #~ $error= "Your account is inactive."
                             redirect_to "#{APP_CONFIG['domain_url']}"
@@ -69,7 +68,7 @@ def load_account
 													#~ $error = "Temporarily stopped"
                             redirect_to "#{APP_CONFIG['domain_url']}"
 
-			
+
 
         end
         else
@@ -176,7 +175,6 @@ end
     #  #RAILS 3 TODO
     #  #before_filter :touch_sti_subclasses
     receiver.send :before_filter, 'set_user_language'
-
     receiver.send :helper_method, 'title'
     receiver.send :helper_method, 'title='
     receiver.send :helper_method, 'accurate_title'
