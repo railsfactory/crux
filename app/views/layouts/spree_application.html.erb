@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
 <%= hook :inside_head do %>
   <%= render :partial => 'shared/head'%>
 <% end %>
@@ -15,14 +16,19 @@ if @body_class.nil?
 end
  %>
 <body class="<%= @body_class %>" id="<%= @body_id %>">
-  <div id="header" class="container_bg">
+  <div id="header" class="container_bg main-header" style="float:none;">
     <div class="container">
     <div id="login-bar">
       <ul id="nav-bar">
         <%= render 'shared/nav_bar' %>
       </ul>
     </div>
-  <%= logo %>
+    <div class="logo">
+                  <a href="#"><img alt="" src="/images/logo.png" /></a>
+                  </div>
+
+
+
   </div>
   </div>
 
