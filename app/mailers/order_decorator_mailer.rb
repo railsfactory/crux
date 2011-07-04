@@ -21,5 +21,4 @@ class OrderMailer < ActionMailer::Base
     mail(:to => order.email,
          :subject => subject)
      end
-     
 end

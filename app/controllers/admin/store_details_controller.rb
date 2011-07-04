@@ -19,7 +19,7 @@ products_id.each do |product|
   @pro_quantity<<quantity
   @total_price<<(product_details.master.price*(@plan.transaction_fee/100))*quantity
  end
- 
+
       render :partial=>"product_details"
      end
   end

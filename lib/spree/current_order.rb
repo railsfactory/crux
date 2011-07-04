@@ -22,12 +22,9 @@ module Spree
         @current_order.save!
          if request.url.include?(APP_CONFIG['separate_url'])
                      				subdomain = current_subdomain.split(".")[0]
-
            else
-
-              custom_subdomain=current_subdomain.split(".")[0]
+            custom_subdomain=current_subdomain.split(".")[0]
             custom_domain_collect=DomainCustomize.find_by_custom_domain(custom_subdomain)
-         
             custom_domain=StoreOwner.find_by_id(custom_domain_collect.store_owner_id)
             subdomain=custom_domain.domain
              end

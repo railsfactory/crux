@@ -7,7 +7,6 @@
   <thead>
   <tr>
     <%= hook :admin_customize_index_headers do %>
-      
       <th><%= t("customize_domain") %></th>
       <th><%= t("status") %></th>
       <th>
@@ -17,17 +16,11 @@
   </tr>
   </thead>
   <tbody>
-	
-
-
-    <td><%= @domain_customize.custom_domain %></td>
-    <td><%= (@domain_customize.status?) ? "Active" : "Inactive" %></td>
-
-		<td>
-        <%= link_to_edit @domain_customize, :class => "edit" %> &nbsp;
-		</td>
-		
-
+  <td><%= @domain_customize.custom_domain %></td>
+  <td><%= (@domain_customize.status?) ? "Active" : "Inactive" %></td>
+	<td>
+    <%= link_to_edit @domain_customize, :class => "edit" %> &nbsp;
+  </td>
 </tbody>
 </table>
 <%else%>

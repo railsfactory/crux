@@ -1,4 +1,4 @@
-Taxon.class_eval do 
+Taxon.class_eval do
 
   def active_products(subdomain=nil)
     scope = self.products.active
@@ -9,7 +9,7 @@ Taxon.class_eval do
   end
 def check_stock_value(attr,domain)
 	config=Configuration.find_by_name("Default configuration")
-  pref=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)	
+  pref=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)
 	if  pref.blank?
 		val=Spree::Config[:show_zero_stock_products]
 	else
@@ -17,6 +17,4 @@ def check_stock_value(attr,domain)
 end
   return val
 end
-
-  
 end
