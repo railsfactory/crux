@@ -19,7 +19,7 @@ end
   return val
 end
   def get_taxons(domain)
-     subdomain= domain.split(".") if domain
+     subdomain= get_sub_domain(domain)
     currentdomain =(subdomain&&subdomain.length >0) ? subdomain[0] : nil
     taxon=Taxon.roots.where('domain_url= ?',currentdomain)
   end

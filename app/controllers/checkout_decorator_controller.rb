@@ -25,10 +25,9 @@ class CheckoutController < Spree::BaseController
         return
       end
       if @order.state == "complete" || @order.completed?
-				subdomain= current_subdomain.split(".")[0]
 				lineitems=@order.line_items
         lineitems.each do |item|
-        StoreDetail.create(:product_id=>item.product.id,:quantity=>item.quantity,:domain_url=>subdomain)
+        StoreDetail.create(:product_id=>item.product.id,:quantity=>item.quantity,:domain_url=>get_sub_domain(current_subdomain))
         end
         flash[:notice] = I18n.t(:order_processed_successfully)
         flash[:commerce_tracking] = "nothing special"
