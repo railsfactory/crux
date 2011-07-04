@@ -1,131 +1,102 @@
-
 <div class="main-wrapper page">
-	<h1 class="sign-up-title">Sign Up</h1>
+<h1 class="sign-up-title">Sign Up</h1>
 </div>
 <div class="main-wrapper page sign-up-form">
-	<div class="sign-up-head">
-	<%= flash[:notice]%>
+<div class="sign-up-head">
+<%= flash[:notice]%>
 <%= error_messages_for @user%>
-        <h2>You are registering for <%= @plan_name%> plan and Amount is <%= @amount %></h2>
-        <h3>Your Login Information</h3>
-  	</div>
-				<div id="signup">
-
-
+<h2>You are registering for <%= @plan_name%> plan and Amount is <%= @amount %></h2>
+<h3>Your Login Information</h3>
+</div>
+<div id="signup">
 <%=form_for (@user, :url=>{:controller=>:stores_registration,:action=>:save_store_details}) do |u| %>
-
-    	<div class="form-ele">
-        	<label>Email</label>
-	<%= u.text_field :email%>
-      	</div>
-
-    	<div class="form-ele">
-        	<label>Password</label>
-	<%= u.password_field :password%>
-      	</div>
-
-    	<div class="form-ele">
-        	<label>Password Confirmation</label>
-	<%= u.password_field :password_confirmation%>
-      	</div>
-        
-        <h3>Billing Information</h3>
-		<%= fields_for @store_owner do |f| %>
-    	<div class="form-ele">
-        	<label>Name</label><%=error_message_on	:store_owner,:name %>
-	<%= f.text_field :name%>
-      	</div>
-				
-    	<div class="form-ele">
-        	<label>Address 1</label>
-	<%= f.text_field :address1,:value=>"Rachel street"%>
-      	</div>
-            	<div class="form-ele">
-							        	<label>Address 2</label>
-<%= f.text_field :address2,:value=>"first cross"%>
-      	</div>
-    	<div class="form-ele">
-        	<label>City</label>
-	<%= f.text_field :city,:value=>"chennai"%>
-      	</div>
-    	<div class="form-ele">
-        	<label>Zipcode</label>
-	<%= f.text_field :zipcode,:value=>"600042"%>
-      	</div>
-    	<div class="form-ele">
-        	<label>State</label>
-        	<%@states = State.find(:all)%>
-	<%= f.text_field :state, :value=>"California"%>
-      	</div>
-		<div class="form-ele">
-        	<label>Country</label>
-        	<%@countries = Country.find(:all)%>
-	<%= f.text_field :country ,:value=>"United States" %>
-      	</div>
-    	<div class="form-ele">
-        	<label>Phone Number</label><%=error_message_on	:store_owner,:phoneno%>
-	<%= f.text_field :phoneno,:value=>"9952248846"%>
-      	</div>
-        <h3>Domain Name</h3>
-    	<div class="form-ele">
-        	<label>Domain Name</label><%=error_message_on	:store_owner,:domain%>
-	<%= f.text_field :domain%>
-      	</div>
-        <h3>Credit Card Details</h3>
-    	<div class="form-ele">
-        	<label>First Name</label>	<%=error_message_on	:store_owner,:first_name %>
-        
-	<%= f.text_field :first_name%>
-      	</div>
-        <div class="form-ele">
-        	<label>Last Name</label><%=error_message_on	:store_owner,:last_name %>
-	<%= f.text_field :last_name%>
-      	</div>
-    	<div class="form-ele">
-        	<label>Card Number</label><%=error_message_on	:store_owner,:card_number%>
-		<%= f.text_field :card_number,:value=>"4785636150538332"%>
-      	</div>
-    	<div class="form-ele">
-        	<label>Card Type</label>
-        	<%= f.select :card_type,%w{Visa}%>
-      	</div>
-    	<div class="form-ele">
-        	<label>Cvv</label><%=error_message_on	:store_owner,:cvv %>
-	<%= f.password_field :cvv,:value=>"123"%>
-      	</div>
-    	<div class="form-ele">
-        	<label>Expiration Year</label>
-            		<%= f.select 'expiration_year', options_for_select(card_year),{},{:style=>"width:150px;"}%>
-								<%= f.select 'expiration_month', options_for_select(card_month),{},{:style=>"width:150px; margin-left:20px;"}%>
-
-      	</div>
-        <div class="form-ele">
-        	<label style="visibility:hidden;">Cvv</label>
-        	<input type="checkbox" id="agree" class="che-box" /><span>I agree to the <a href="">Terms and Conditions</a> or <a href="">Cancel</a></span>
-      	</div>
-				<%end%>
-        <div class="form-ele">
-        	<label style="visibility:hidden;">Cvv</label>
-						<%= u.submit "Create",:onClick=>"check_agreed()",:class=>"btn-create" %>
-
-      	
-
+<div class="form-ele">
+<label>Email</label>
+<%= u.text_field :email%>
+</div>
+<div class="form-ele">
+<label>Password</label>
+<%= u.password_field :password%>
+</div>
+<div class="form-ele">
+<label>Password Confirmation</label>
+<%= u.password_field :password_confirmation%>
+</div>
+<h3>Billing Information</h3>
+<%= fields_for @store_owner do |f| %>
+<div class="form-ele">
+<label>Name</label><%=error_message_on	:store_owner,:name %>
+<%= f.text_field :name%>
+</div>
+<div class="form-ele">
+<label>Address 1</label>
+<%= f.text_field :address1%>
+</div>
+<div class="form-ele">
+<label>Address 2</label>
+<%= f.text_field :address2%>
+</div>
+<div class="form-ele">
+<label>City</label>
+<%= f.text_field :city%>
+</div>
+<div class="form-ele">
+<label>Zipcode</label>
+<%= f.text_field :zipcode%>
+</div>
+<div class="form-ele">
+<label>State</label>
+<%= f.select :state,(@states.collect{|x|[x.name]} if @states), {:selected=>"California",:prompt => 'Select State'} %>
+<%= f.text_field :state%>
+</div>
+<div class="form-ele">
+<label>Country</label>
+<%= f.select :country,(@countries.collect{|x|[x.name]} if @states), {:selected=>"United States",:prompt => 'Select Country'} %>
+<%= f.text_field :country%>
+</div>
+<div class="form-ele">
+<label>Phone Number</label><%=error_message_on	:store_owner,:phoneno%>
+<%= f.text_field :phoneno%>
+</div>
+<h3>Domain Name</h3>
+<div class="form-ele">
+<label>Domain Name</label><%=error_message_on	:store_owner,:domain%>
+<%= f.text_field :domain%>
+</div>
+<h3>Credit Card Details</h3>
+<div class="form-ele">
+<label>First Name</label>	<%=error_message_on	:store_owner,:first_name %>
+<%= f.text_field :first_name%>
+</div>
+<div class="form-ele">
+<label>Last Name</label><%=error_message_on	:store_owner,:last_name %>
+<%= f.text_field :last_name%>
+</div>
+<div class="form-ele">
+<label>Card Number</label><%=error_message_on	:store_owner,:card_number%>
+<%= f.text_field :card_number%>
+</div>
+<div class="form-ele">
+<label>Card Type</label>
+<%= f.select :card_type,%w{Visa MasterCard American Express Discover Diners Club}%>
+</div>
+<div class="form-ele">
+<label>Cvv</label><%=error_message_on	:store_owner,:cvv %>
+<%= f.password_field :cvv%>
+</div>
+<div class="form-ele">
+<label>Expiration Year</label>
+<%= f.select 'expiration_year', options_for_select(card_year),{},{:style=>"width:150px;"}%>
+<%= f.select 'expiration_month', options_for_select(card_month),{},{:style=>"width:150px; margin-left:20px;"}%>
+</div>
+<div class="form-ele">
+<label style="visibility:hidden;">Cvv</label>
+</div>
+<%end%>
+<div class="form-ele">
+<label style="visibility:hidden;">Cvv</label>
+<%= u.submit "Create",:class=>"btn-create" %>
 <%end%>
 </div>
-	</div>
-	</div>
-
-
-
-	<script>
-	function check_agreed()
-{
-val=document.getElementById("agree").checked
-if(val == true)
-{
-return true;
-}
-alert("Please agree to the Terms and Conditions");
-return false;
-}
-</script>
+</div>
+</div>
