@@ -9,7 +9,7 @@ def paypal_gateway
 		return gateway
 		end
 def index
-#~ @plans = PricingPlan.find(:all,:conditions=>"is_active=true")
+#~ @plans = PricingPlan.find(:all,:conditions=>"is_active=true")	
 @plans = PricingPlan.plan_val
 end
 
