@@ -46,13 +46,13 @@
 </div>
 <div class="form-ele">
 <label>State</label>
+<%@states = State.find(:all)%>
 <%= f.select :state,(@states.collect{|x|[x.name]} if @states), {:selected=>"California",:prompt => 'Select State'} %>
-<%= f.text_field :state%>
 </div>
 <div class="form-ele">
 <label>Country</label>
+<%@countries = Country.find(:all)%>
 <%= f.select :country,(@countries.collect{|x|[x.name]} if @states), {:selected=>"United States",:prompt => 'Select Country'} %>
-<%= f.text_field :country%>
 </div>
 <div class="form-ele">
 <label>Phone Number</label><%=error_message_on	:store_owner,:phoneno%>
