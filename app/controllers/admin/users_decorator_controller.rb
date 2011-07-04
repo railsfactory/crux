@@ -21,10 +21,10 @@ def collection
 		unless current_user.has_role? "admin"
 			#~ users_arr = User.find(:all,:conditions=>["domain_url = ? AND is_owner is NULL",current_user.domain_url]).map(&:id)
       u=current_user.domain_url
-			users_arr=User.user_val.u
+			users_arr=User.user_val.u.map(&:id)		
 			else
 				#~ users_arr=User.find(:all,:conditions=>["is_owner = ?","1"]).map(&:id)
-				users_arr=User.users_val
+				users_arr=User.users_val.map(&:id)
 			end
 			 users_collection=collection.where("id in (?)",users_arr)
 	return users_collection
