@@ -37,4 +37,21 @@ def mail_settings(domain)
 	end
 end
 
+def get_sub_domain(subdomain)
+		  if (request.url.include?(APP_CONFIG['separate_url'])) 
+    domain= subdomain.split(".")[0]
+		else
+			
+			custom_domain= subdomain.split(".") if subdomain
+       custom=DomainCustomize.find_by_custom_domain(custom_domain)
+			 if custom
+			 store=StoreOwner.find_by_id(custom.store_owner_id)
+       domain=store.domain
+			 else
+				 domain=""
+			 end
+			 end
+    return domain
+end
+
 end
