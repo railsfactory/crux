@@ -14,10 +14,8 @@
   </p>
 	
 	  <p>
-    <%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
-		<%domain=current_subdomain.split(".")[0]%>
-		<%end%>
-<input type="hidden" name="user[domain_url]" value="<%=domain%>">
+ 
+<input type="hidden" name="user[domain_url]" value="<%=get_sub_domain(current_subdomain)%>">
   </p>
 </div>
 
