@@ -26,7 +26,7 @@ Admin::OrdersController.class_eval do
     respond_with(@orders)
   end
  def refine_list(orders)
-                        orders_arr = StoreownerOrder.find(:all,:conditions=>["store_owner_id = ?",current_user.store_owner.id]).map(&:order_id)                        
+                        orders_arr = StoreownerOrder.find(:all,:conditions=>["store_owner_id = ?",current_user.store_owner.id]).map(&:order_id)
                         order_collection=orders.where("id in (?)",orders_arr)
         return order_collection
 end
