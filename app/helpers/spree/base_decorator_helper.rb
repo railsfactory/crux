@@ -1,6 +1,6 @@
 module Spree::BaseHelper
 def find_domain_preference(type)
-  domain= current_subdomain.split(".")[0]
+  domain= get_sub_domain(current_subdomain)
 	config=Configuration.find_by_name(type)
   available=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)	
 	return available
@@ -20,9 +20,8 @@ end
 end
   def get_taxons(domain)
      subdomain= get_sub_domain(domain)
-    currentdomain =(subdomain&&subdomain.length >0) ? subdomain[0] : nil
-    taxon=Taxon.roots.where('domain_url= ?',currentdomain)
-  end
+		taxon=Taxon.roots.where('domain_url= ?',subdomain)
+	end
 	
 def find_mail_domain(order)
 	store=StoreownerOrder.find_by_order_id(order.id)
