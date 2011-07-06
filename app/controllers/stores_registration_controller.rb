@@ -92,8 +92,8 @@ end
  def billing_address
 	 address=Hash.new
 address={ :name => params[:store_owner][:name],
-:address1 => params[:store_owner][:street],
-:address2 => '',
+:address1 => params[:store_owner][:address1],
+:address2 =>params[:store_owner][:address2],
 :city =>params[:store_owner][:city],
 :state => params[:store_owner][:state],
 :country => params[:store_owner][:country],
