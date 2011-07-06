@@ -11,7 +11,7 @@ class Admin::DomainCustomizesController  < Admin::ResourceController
 
   def create
         @domain_customize=DomainCustomize.new(params[:domain_customize])
-        @domain_customize.store_owner_id=current_user.store_owner.id       
+        @domain_customize.store_owner_id=current_user.store_owner.id
         if @domain_customize.save
           redirect_to(admin_domain_customizes_path(@domain_customize), :notice => 'domain was successfully created.')
           else
