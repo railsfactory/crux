@@ -35,7 +35,7 @@ def save_store_details
 	if @user.valid? && @store_owner.valid?
 		response_payment=payment_response
 	
-			if  response_payment && response_payment.params['ack']=="Success"
+			if  response_payment && response_payment.params && response_payment.params['ack']=="Success"
 					 @user.is_owner = true
 						@user.domain_url = params[:store_owner][:domain]
 						@user.roles << Role.find_by_name('storeowner')
