@@ -15,5 +15,12 @@ class StoreOwner < ActiveRecord::Base
 	validates :domain ,:presence =>{:message => "Please enter a domain name"},:uniqueness=>true,:format => { :with => /^[A-Za-z]+$/ },:allow_blank => true
 	validates :phoneno,:presence =>{:message => "Please enter a phone no"},:allow_blank => true
 	validates :name,:presence =>{:message => "Please enter a name"},:allow_blank => true
+	validates :address1, :presence => {:message=>"Please enter a  Address 1"}
+	validates :address2, :presence => {:message=>"Please enter a Address 2"}
+	validates :city, :presence => {:message=>"please enter a city"},:format => { :with => /^[A-Za-z ]+$/ },:allow_blank=>true
+	validates :state, :presence => {:message=>"please enter a state"},:format => { :with => /^[A-Za-z ]+$/ },:allow_blank=>true
+	validates :card_number, :presence => {:message=>"please enter a card number"},:numericality => { :message=>"please enter a valid number"},:allow_blank=>true
+	validates :cvv, :presence => {:message=>"please enter a cvv"},:numericality => { :message=>"please enter a valid cvv"},:allow_blank=>true
 	#~ validates_credit_card :card_number, :card_type,:allow_blank => true
 end
+ 
