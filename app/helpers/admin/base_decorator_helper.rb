@@ -24,18 +24,7 @@ if owner && !owner.domain.blank?
 
 end
 
-   def get_sub_domain(domain)
-    if (request.url.include?(APP_CONFIG['separate_url']))
-     subdomain= domain.split(".")[0] if domain
-     else
-store=StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
-       subdomain=store.domain
-       #~ custom_domain= domain.split(".") if domain
-       #~ store=StoreOwner.find_by_custom_domain(domain)
-       #~ subdomain=store.domain
-     end
-       return subdomain
-   end
+  
 		
 		
 	def find_domain_preference(type)
@@ -51,6 +40,18 @@ def find_customization_domain
 	custom=DomainCustomize.find_by_custom_domain(customdomain)
 	
 end
+
+def get_sub_domain(domain)
+    if (request.url.include?(APP_CONFIG['separate_url']))
+     subdomain= domain.split(".")[0] if domain
+     elsif find_customization_domain
+store=StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
+       subdomain=store.domain
+     
+     end
+       return subdomain
+   end
+
 
 
 
