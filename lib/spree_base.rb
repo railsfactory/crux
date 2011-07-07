@@ -21,29 +21,14 @@ module SpreeBase
       end
     end
 
-  def get_sub_domain(domain)
-    if (request.url.include?(APP_CONFIG['separate_url']))
-     subdomain= domain.split(".") if domain
-
-     else
-        custom_domain= domain.split(".") if domain
-       custom=DomainCustomize.find_by_custom_domain(custom_domain)
-			 store=StoreOwner.find_by_id(custom.store_owner_id)
-       subdomain=store.domain
-       #~ custom_domain= domain.split(".") if domain
-       #~ store=StoreOwner.find_by_custom_domain(domain)
-       #~ subdomain=store.domain
-     end
-       return subdomain
-   end
+  
 
 def load_account
 
 	unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
-
+ 
 		domain = get_sub_domain(current_subdomain)
-    			custom_domain=DomainCustomize.find_by_custom_domain(current_subdomain)
-
+    
 		if request.url.include?(APP_CONFIG['separate_url'])
 			store = StoreOwner.find_by_domain(domain)
 			active = store.is_active? if store
@@ -55,16 +40,16 @@ def load_account
     end
 
 		else
-      if custom_domain
-		custom_domain_status=custom_domain.status
+      if find_customization_domain
+		custom_domain_status=find_customization_domain.status
 			store = store = StoreOwner.find_by_domain(domain)
 			active = store.is_active? if store
 
-				if custom_domain && custom_domain_status == true && store && active == false
+				if find_customization_domain && custom_domain_status == true && store && active == false
 									 #~ $error= "Your account is inactive."
                             redirect_to "#{APP_CONFIG['domain_url']}"
 
-				elsif custom_domain && custom_domain_status == false && store && active == true
+				elsif find_customization_domain && custom_domain_status == false && store && active == true
 													#~ $error = "Temporarily stopped"
                             redirect_to "#{APP_CONFIG['domain_url']}"
 
@@ -80,6 +65,26 @@ def load_account
 	end
 
 end
+
+ def get_sub_domain(domain)
+    if (request.url.include?(APP_CONFIG['separate_url']))
+     subdomain= domain.split(".")[0] if domain
+     else
+store=StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
+       subdomain=store.domain
+       #~ custom_domain= domain.split(".") if domain
+       #~ store=StoreOwner.find_by_custom_domain(domain)
+       #~ subdomain=store.domain
+     end
+       return subdomain
+   end
+		
+    def find_customization_domain
+	customdomain=(request.url).split("/")[2]
+	custom=DomainCustomize.find_by_custom_domain(customdomain)
+	
+end
+
     protected
 
     def default_title
