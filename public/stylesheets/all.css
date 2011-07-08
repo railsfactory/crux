@@ -59,6 +59,15 @@ body {
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
   color: #333333;
   font-size: 75%;
+	background: none repeat scroll 0 0 #DEF3FE;
+}
+.main-header {
+    background: none repeat scroll 0 0 #DEF3FE;
+    border-bottom: 2px solid #0E3F59;
+    color: #FFFFFF;
+    float: left;
+    height: 75px;
+    width: 100%;
 }
 /*h1 {
   font-weight: normal;
@@ -258,10 +267,10 @@ legend {
   margin-right: 25px;
   border-right: 1px solid #eeeeee;
 }
-body {
+/*body {
   margin-top: 10px;
   background: #ffffff url(../images/body-back.png) top left repeat-x;
-}
+}*/
 div.left {
   float: left;
   width: 49%;
