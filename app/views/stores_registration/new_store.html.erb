@@ -4,6 +4,12 @@
 <div class="main-wrapper page sign-up-form">
 <div class="sign-up-head">
 <%= flash[:notice]%>
+<%if flash[:error]%>
+<p style="color:red;font-size:16px">
+<%=flash[:error]%>
+</p>
+<%end%>
+
 <%= error_messages_for @user%>
 <h2>You are registering for <%= @plan_name%> plan and Amount is <%= @amount %></h2>
 <h3>Your Login Information</h3>
