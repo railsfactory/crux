@@ -26,7 +26,7 @@ class UserSessionsController < Devise::SessionsController
       if logged_in_user.domain_url == subdomain[0]
         (logged_in_user.is_owner?)? (redirect_to storeowner_url(:subdomain =>logged_in_user.domain_url + ".#{APP_CONFIG['separate_url']}",:user_id=>logged_in_user.id)) :(show_success_message)
       elsif logged_in_user.store_owner && logged_in_user.store_owner.domain_customize.custom_domain ==find_customization_domain.custom_domain
-              (logged_in_user.is_owner?)? (redirect_to storeowner_url(:user_id=>logged_in_user.id)) :(show_success_message)
+              (logged_in_user.is_owner?)? (redirect_to(:user_id=>logged_in_user.id)) :(show_success_message)
               else
           show_error
       end
