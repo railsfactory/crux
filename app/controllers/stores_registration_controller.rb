@@ -33,7 +33,8 @@ def save_store_details
 	@store_owner = @user.build_store_owner(params[:store_owner])
 	@store_owner.pricing_plan_id = session[:plan]
 	if @user.valid? && @store_owner.valid?
-			if payment_response!="invalid" && payment_response.success?
+			if payment_response!="invalid"
+        if	payment_response.success?
 					 @user.is_owner = true
 						@user.domain_url = params[:store_owner][:domain]
 						@user.roles << Role.find_by_name('storeowner')
@@ -50,6 +51,7 @@ flash[:store_notice] = "Your Store has been registered successfully"
 						current_user = @user
 						redirect_to storeowner_url(:subdomain=>"#{@user.domain_url}.#{APP_CONFIG['separate_url']}",:user_id=>@user.id)
 						#~ redirect_to "/admin"
+				end
 				else
  	  			 flash[:error]= "Payment failed could not be processed,please check your details"
 	    		render  "new_store"
@@ -111,10 +113,9 @@ authorize= paypal_gateway.authorize(@amount, credit_card,
 if authorize.success?
 @response=paypal_gateway.capture(@amount, authorize.authorization)
 else
-	@response="invalid"
-
-   		
-		end
+	@response="invalid"  		
+end
+return @response
 
 
 end
