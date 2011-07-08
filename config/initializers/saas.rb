@@ -1,1 +1,1 @@
-  Spree::Config.set(:stylesheets => 'screen,style,reset')
+  Spree::Config.set(:stylesheets => 'all,screen,style,reset')
