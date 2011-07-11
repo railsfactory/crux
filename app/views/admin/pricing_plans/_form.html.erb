@@ -1,16 +1,16 @@
 <%- locals = {:f => f} %>
-    <%= f.label :plan_name %><br />
-    <%= f.text_field :plan_name %><br />
-    <%= f.label :amount %><br />
+<b><%= t("plan_name") %> </b><br />
+<%= f.text_field :plan_name %><br />
+<b><%= t("amount") %> </b><br />
     <%= f.text_field :amount %><br />
-    <%= f.label :transaction_fee %><br />
+<b><%= t("transaction_fee") %> </b><br />
     <%= f.text_field :transaction_fee %><br />
-    <%= f.label :no_of_products %><br />
+<b><%= t("no_of_products") %> </b><br />
     <%= f.text_field :no_of_products %><br />
 
-    <%= f.label :payment_period %><br />
+<b><%= t("payment_period") %> </b><br />
     <%= f.select:payment_period,%w{Monthly Weekly}%><br/>
 
-    <%= f.label :is_active %><br/>
+<b><%= t("is_active") %> </b><br />
     <%= f.check_box :is_active %><br />
 

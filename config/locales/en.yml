@@ -1020,14 +1020,14 @@ en:
   zone: Zone
   zone_based: "Zone Based"
   zone_setting_description: "Collections of countries, states or other zones to be used in various calculations."
-  zones: Zones
-  pricing_plans: PricingPlans
-  store_details: StoreDetails
-  store_owners: StoreOwners
-  plan: Plan Name
-  amount: Amount
-  transaction_fee: Transaction Fee
-  no_of_products: No of Products
-  payment_period: Payment Period
-  payment_status: Status
+  zones: "Zones"
+  pricing_plans: "PricingPlans"
+  store_details: "StoreDetails"
+  store_owners: "StoreOwners"
+  plan_name: "Plan Name"
+  amount: "Amount"
+  transaction_fee: "Transaction Fee"
+  no_of_products: "Number Of Products"
+  payment_period: "Payment Period"
+  payment_status: "Status"
   
