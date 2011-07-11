@@ -65,9 +65,11 @@
 <%= f.text_field :phoneno%>
 </div>
 <h3>Domain Name</h3>
-<div class="form-ele">
+<div class="form-ele domain-wrap">
 <label>Domain Name</label><%=error_message_on	:store_owner,:domain%>
-<%= f.text_field :domain%>
+<div class="domain">
+http://<%= f.text_field :domain%>.spree.railsfactory.com
+</div>
 </div>
 <h3>Credit Card Details</h3>
 <div class="form-ele">
