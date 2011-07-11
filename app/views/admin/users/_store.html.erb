@@ -43,7 +43,8 @@
         <%- locals = {:user => user} %>
         <%= hook :admin_users_index_rows, locals do %>
           <td width="200px" class='user_email'><%=store.first_name%></td>
-          <td width="200px" class='user_email'><%=store.domain%></td>
+					<% link_path=store.domain+".spree.railsfactory.com"%>
+          <td width="200px" class='user_email'><%=link_to store.domain+".spree.railsfactory.com","http://#{link_path}"%></td>
           <td width="200px" class='user_email'><%= link_to (store.is_active?) ? "Active" : "Inactive",'#',:onclick => "check_status(#{store.id});"%></td>
         <% end %>
         <td>

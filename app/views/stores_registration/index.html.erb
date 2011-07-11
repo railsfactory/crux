@@ -16,7 +16,7 @@
 <% if plan.id.odd? %>
             <tr class="bg-bl">
                 <td><%= plan.plan_name%></td>
-							<td><%= plan.amount%></td>
+							<td><%= plan.amount%> $</td>
 						<td><%= plan.transaction_fee%>%</td>
 						<td><%= plan.no_of_products%></td>
                	<td>
@@ -29,8 +29,8 @@
 <%else%>
             <tr class="bg-gr">
                  <td><%= plan.plan_name%></td>
-							<td><%= plan.amount%></td>
-						<td><%= plan.transaction_fee%>%</td>
+							<td><%= plan.amount%> $</td>
+						<td><%= plan.transaction_fee%> %</td>
 						<td><%= plan.no_of_products%></td>
                	<td>
                 	<div class="tabel-td">

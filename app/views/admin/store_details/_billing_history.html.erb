@@ -1,5 +1,31 @@
+
+
 <table class="index" id='listing_plans'>
-<h1><%=owner.name%><h1>
+<h1>Plan Details And Domain<h1>
+  <tr>
+	<th>Plan Name</th>
+	<th>Amount</th>
+	<th>Payment Period</th>
+		<th>Customize domain</th>
+
+	
+	</tr>
+   <tbody>
+
+<tr>
+<td><%=owner.pricing_plan.plan_name%></td>
+<td><%=owner.pricing_plan.amount%></td>
+<td><%=owner.pricing_plan.payment_period%></td>
+<% if owner.domain_customize%>
+<%domain_url=owner.domain_customize.custom_domain%>
+<td><%=link_to domain_url,"http://#{domain_url}"%></td>
+<%end%>
+</tr>
+
+</tbody>
+</table>
+<table class="index" id='listing_plans'>
+<h1>Billing History</h1>
   <tr>
 	<th>Billing date</th>
 	<th>Amount</th>

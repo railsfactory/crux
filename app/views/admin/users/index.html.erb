@@ -9,7 +9,7 @@
   <br class='clear' />
 </div>
 
-	<% unless current_user.has_role? "superadmin" %>
+	<% unless current_user.has_role? "admin" %>
 <h1><%= t("listing_users") %></h1>
 <%else%>
 <h1><%= t("listing_owners") %></h1>
@@ -19,3 +19,4 @@
 </div>
 <%= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
 
+y
