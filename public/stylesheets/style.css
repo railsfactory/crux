@@ -106,4 +106,20 @@ form { margin:10px 0 0 20px;}
 .errorExplanation { background: #F4B4B4; border: 1px solid #000000; color: #000000; padding: 10px;}
 .errorExplanation h2, .sign-up-head h2 {font-size: 20px; margin:10px 0 10px;}
 .errorExplanation p { margin-bottom:5px;
+/*ne*/
+.main-header {background: #5085a0; /* for non-css3 browsers */
 
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#699fba', endColorstr='#699fba'); /* for IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#699fba), to(#699fba )); /* for webkit browsers */
+background: -moz-linear-gradient(  #699fba, #568ba6, #699fba ); /* for firefox 3.6+ */ }
+
+.page {background: #5085a0; /* for non-css3 browsers */
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7fafc7', endColorstr='#699fba'); /* for IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#7fafc7), to(#699fba)); /* for webkit browsers */
+background: -moz-linear-gradient(#7fafc7, #8bb8ce, #699fba); /* for firefox 3.6+ */ }
+
+.main-wrapper.page.sign-up-form{ background:#fff;}
+.form-ele.domain-wrap label{ width: 189px;}
+
+.domain #store_owner_domain{   margin: 0 4px;}
