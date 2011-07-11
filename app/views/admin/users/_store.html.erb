@@ -48,34 +48,14 @@
         <% end %>
         <td>
           <%= hook :admin_users_index_row_actions, locals do %>
-					<a href ="#" id="viewdetails" onclick="viewdetails(<%=user.id%>);">View-details</a>
-					<%#= link_to_delete user %>
+ <%= link_to "View details",'#',:onclick => "viewdetails(#{store.id});"%>					<%#= link_to_delete user %>
           <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<% @users.each do |user|%>
-<span id ="ownercontent"style="display:none" class="ownercontent_<%=user.id%>">
-<table class="index">
-<thead>
-<tr>
-<th>Details<a href="#"onclick="$('.ownercontent_<%=user.id%>').hide();" style="margin-left:841px;">Close</a></th>
-</tr>
-</thead>
-<%#billing=BillingHistory.find_by_user_id(user.id)%>
-<%owner=StoreOwner.find_by_user_id(user.id)%>
-<tbody>
-<tr><td><B>Owner : </B> <%=owner.first_name%></td></tr>
-<tr><td><B>Store : </B> <%=owner.domain%></td></tr>
-<tr><td><B>Plan : </B> <%=owner.pricing_plan.plan_name%></td></tr>
-<tr><td><B>Product Transaction Fee</B> <%=find_transaction_fee(owner)%></td></tr>
-</tbody>
-</table>
-</table>
-</span>
-<%end%>
+
 <% end %>
 <% unless current_user.has_role? "admin" %>
 	 </tbody>
@@ -99,16 +79,28 @@
     <% end %>
   </div>
 <% end %>
+<div id=billing>
+
+</div>
+
 <script>
 function viewdetails(id){
-$(".ownercontent_"+id).show();
+{
+$.ajax({
+                        url:"/admin/store_details/billing_history",
+                        data: "store="+id,
+												success: function(data) {
+			$('#billing').html(data);
+			}
+                        });
 }
-
+}
 function check_status(store)
 {
 $.ajax({
 			url: "/admin/users/store_owners",
-			data: "userid="+store
+			data: "userid="+store,
+			
 });
 		}
 </script>

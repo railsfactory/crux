@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   # Add your extension routes here
-	
+	match '/admin/store_details'=>'admin/store_details#index'
+match '/admin/store_details/billing_history'=>'admin/store_details#billing_history'
   namespace :admin do
     resources :pricing_plans
-		resources :store_details
+			#~ match '/admin/store_details/billing_history/:store'=>'admin/store_details#billing_history'
+
+		#~ resources :store_details
 		resources :domain_customizes
 	end
 	resources :stores_registration

@@ -24,16 +24,29 @@ products_id.each do |product|
      end
   end
 
-   def new
-   end
+   #~ def new
+   #~ end
 
-   def create
-   end
+   #~ def create
+   #~ end
 
-   def edit
-   end
+   #~ def edit
+   #~ end
 
-   def delete
-   end
+   #~ def delete
+   #~ end
+   #~ def show
+        #~ puts "[[[[[[[[[[[[[[[[[[["
+
+    #~ end
+   
+   def billing_history
+    if request.xhr?
+    store_owner=StoreOwner.find_by_id(params[:store], :include => :billing_histories)
+    billing_histories=store_owner.billing_histories
+          render :partial=>"billing_history", :locals => { :owner => store_owner,:billings=>billing_histories}
+
+    end
+    end
 
 end

@@ -52,6 +52,15 @@ store=StoreOwner.find_by_id(find_customization_domain.store_owner_id)
        return subdomain
    end
 
+def products_count_checking(user)
+	pricing_count=user.store_owner.pricing_plan.no_of_products
+	products_count=Product.where(:domain_url=>user.domain_url,:deleted_at=>nil).length
+	if pricing_count>products_count
+		return true
+	else
+		return false
+		end
+end
 
 
 
