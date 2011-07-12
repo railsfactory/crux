@@ -1,0 +1,30 @@
+
+<div class="main-wrapper page">
+	<h1 class="sign-up-title">Select Your Plan</h1>
+</div>
+<div class="main-wrapper page plan">
+	<div class="table-wrap">
+        <table cellpadding="0" cellspacing="0" width="100%" border="0">
+            <tr>
+                <th>Name</th>
+                <th>Fee</th>
+                <th>Trasaction Fee</th>
+                <th>No of Products</th>
+                <th>Payment Period</th>
+            </tr>
+						<%@pricing_plans && @pricing_plans.each do |plan|%>
+            <tr class="bg-bl">
+                <td><%= plan.plan_name%></td>
+							<td><%= plan.amount%> $</td>
+						<td><%= plan.transaction_fee%> %</td>
+						<td><%= plan.no_of_products%></td>
+               	<td>
+                	<div class="tabel-td">
+                    	<div class="month"><%= plan.payment_period%><span style="margin-left:15px;"><%=link_to "Upgrade",:action=>"user_update_plan",:plan_id=>plan.id%></span></div>
+                    </div>
+            	</td>
+            </tr>    
+	<%end%>
+        </table>
+   	</div>
+</div>
