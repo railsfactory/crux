@@ -1,12 +1,14 @@
 
 
 <table class="index" id='listing_plans'>
-<h1>Plan Details And Domain<h1>
+<h1>Plan Details<h1>
   <tr>
-	<th>Plan Name</th>
-	<th>Amount</th>
-	<th>Payment Period</th>
-		<th>Customize domain</th>
+	<th><%=t("plan_name")%></th>
+	<th><%=t("amount")%></th>
+	<th><%=t("transaction_fee")%></th>
+	<th><%=t("no_of_products")%></th>
+	<th><%=t("payment_period")%></th>
+	<th><%=t("payment_status")%></th>
 
 	
 	</tr>
@@ -15,11 +17,11 @@
 <tr>
 <td><%=owner.pricing_plan.plan_name%></td>
 <td><%=owner.pricing_plan.amount%></td>
+<td><%=owner.pricing_plan.transaction_fee%></td>
+<td><%=owner.pricing_plan.no_of_products%></td>
 <td><%=owner.pricing_plan.payment_period%></td>
-<% if owner.domain_customize%>
-<%domain_url=owner.domain_customize.custom_domain%>
-<td><%=link_to domain_url,"http://#{domain_url}"%></td>
-<%end%>
+<td><%=owner.pricing_plan.is_active%></td>
+
 </tr>
 
 </tbody>
@@ -31,6 +33,7 @@
 	<th>Amount</th>
 	<th>Transaction id</th>
 	<th>Acknowledge</th>
+	<th>Message</th>
 	</tr>
    <tbody>
 <% billings.each do |billing| %>
@@ -38,9 +41,29 @@
 <td><%=billing.billing_date%></td>
 <td><%=billing.amount%></td>
 <td><%=billing.transaction_id%></td>
-<td><%=billing.acknowledge%></td>
+<%acknowledge=billing.acknowledge%>
+<td><%=acknowledge%></td>
+<td><%=billing.message%></td>
+<!--
+<td><%=link_to acknowledge,'#',:onclick=>"message_show('#{billing.id}','#{billing.message}')"%></td>
+<span id="failure_billing_<%=billing.id%>">
+
+</span>-->
+
 </tr>
 
 <%end%>
 </tbody>
 </table>
+<% unless current_user.has_role?"admin"%>
+<%else%>
+<%=link_to "Back",admin_users_path%>
+<%end%>
+<script>
+function message_show(id,message)
+{
+
+$("#failure_billing_"+id).html(message);
+}
+
+</script>

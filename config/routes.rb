@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	match '/admin/store_details'=>'admin/store_details#index'
  match '/admin/store_details/billing_history'=>'admin/store_details#billing_history'
 	match 'user_update_plan/:plan_id'=>'admin/upgrade_plans#user_update_plan',:as=>:update_plan
+match '/admin/store_details/store_billing'=>'admin/store_details#store_billing'
 
   namespace :admin do
     resources :pricing_plans

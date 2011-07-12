@@ -1,3 +1,4 @@
+<div id=billing>
 <table class="index" id='listing_users'>
   <thead>
   <tr>
@@ -8,14 +9,11 @@
         <%= hook :admin_users_index_header_actions %>
       </th>
 			<%else%>
-		 <th><%= "Owner" %></th>
-			<th><%= "Store" %></th>
-			<th>
-			<%= "Status" %>
-			</th>
-			<th>
-			<%= "View Details" %>
-			</th>
+			<th><%= t("store_name") %></th>
+		 <th><%= t("owner_name") %></th>
+		 <th><%= t("custom_domain")%>
+			<th><%= t("status") %></th>
+			<th><%= t("view_details") %></th>
     <% end %>
     <% end %>
   </tr>
@@ -42,11 +40,20 @@
       <tr id="<%= dom_id user %>">
         <%- locals = {:user => user} %>
         <%= hook :admin_users_index_rows, locals do %>
+				<% link_path=store.domain+"."+APP_CONFIG['domain_url'].split("//")[1]%>
+					<td width="200px" class='user_email'><%=link_to link_path,"http://#{link_path}",:target=>"_blank"%></td>
           <td width="200px" class='user_email'><%=store.first_name%></td>
-					<% link_path=store.domain+".spree.railsfactory.com"%>
-          <td width="200px" class='user_email'><%=link_to store.domain+".spree.railsfactory.com","http://#{link_path}"%></td>
-          <td width="200px" class='user_email'><%= link_to (store.is_active?) ? "Active" : "Inactive",'#',:onclick => "check_status(#{store.id});"%></td>
-        <% end %>
+					<%store.domain_customize%>
+					<% if store.domain_customize%>
+					<%domain_url=store.domain_customize.custom_domain%>
+				<td width="200px" class='user_email'><%=link_to domain_url,"http://#{domain_url}",:target=>"_blank"%></td>
+				<% else %>
+								<td width="200px" class='user_email'><%="Unavailable"%></td>
+
+					<%end%>
+
+				<td width="200px" class='user_email'><%= link_to (store.is_active?) ? "Active" : "Inactive",'#',:onclick => "check_status(#{store.id});"%></td>
+				<% end %>
         <td>
           <%= hook :admin_users_index_row_actions, locals do %>
  <%= link_to "View details",'#',:onclick => "viewdetails(#{store.id});"%>					<%#= link_to_delete user %>
@@ -61,7 +68,8 @@
 <% unless current_user.has_role? "admin" %>
 	 </tbody>
 </table>
-<%end%>
+
+
 <% content_for :sidebar do %>
   <div class="box">
     <h3><%= t(:search) %></h3>
@@ -80,8 +88,8 @@
     <% end %>
   </div>
 <% end %>
-<div id=billing>
 
+<%end%>
 </div>
 
 <script>
@@ -91,7 +99,7 @@ $.ajax({
                         url:"/admin/store_details/billing_history",
                         data: "store="+id,
 												success: function(data) {
-			$('#billing').html(data);
+			$('#status').html(data);
 			}
                         });
 }

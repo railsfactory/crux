@@ -87,13 +87,13 @@ end
 
 def payment_response
 	
-authorize= paypal_gateway.authorize(@amount, credit_card,
+authorize= paypal_gateway.authorize((@amount*100).round, credit_card,
 :ip => request.remote_ip,
 :billing_address =>billing_address
 )
-
 if authorize.success?
-@response=paypal_gateway.capture(@amount, authorize.authorization)
+@response=paypal_gateway.capture((@amount* 100).round, authorize.authorization)
+
 if @response.success?
  @user.is_owner = true
 						@user.domain_url = params[:store_owner][:domain]
@@ -106,18 +106,18 @@ if @response.success?
 						@store_owner.transaction_id=	@response.params['transaction_id']
 						@store_owner.ip=request.remote_ip
 						@store_owner.save
-billing_history(@response.params['transaction_id'],@amount,@store_owner.id)
+billing_history(@response.params['transaction_id'],@amount,@store_owner.id,authorize.params['ack'],"Completed")
 flash[:store_notice] = "Your Store has been registered successfully"
 						current_user = @user
 						redirect_to storeowner_url(:subdomain=>"#{@user.domain_url}.#{APP_CONFIG['separate_url']}",:user_id=>@user.id)
 						else
-							 flash[:error]= "Payment could not be processed,please check your details"
+							 flash[:error]= "Payment failed could not be processed,please check your details"
 	    		render  "new_store"
 						#~ redirect_to "/admin"
 						end
 else
-	
- 	  			 flash[:error]= "Payment could not be processed,please check your details"
+					 billing_history(0,@amount,@store_owner.id,authorize.params['ack'],authorize.params['message'])
+ 	  			 flash[:error]= "Payment failed could not be processed,please check your details"
 	    		render  "new_store"
    		end
 			end
@@ -125,7 +125,7 @@ else
 
 
 
-def billing_history(transaction_id,total_amounts,owner)
-	BillingHistory.create!(:store_owner_id=>owner,:amount=>total_amounts,:billing_date=>Date.today,:transaction_id=>transaction_id,:acknowledge=>"success",:payment_type=>"capture")
+def billing_history(transaction_id,total_amounts,owner,acknowledge,message)
+	BillingHistory.create!(:store_owner_id=>owner,:amount=>total_amounts,:billing_date=>Date.today,:transaction_id=>transaction_id,:acknowledge=>acknowledge,:message=>message)
 	end
 end

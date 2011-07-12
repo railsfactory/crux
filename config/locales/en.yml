@@ -365,9 +365,7 @@ en:
   email: Email
   email_address: "Email Address"
   email_server_settings_description: "Set email server settings."
-  domain_customization: "Customize your domain"
-  domain_custom: "Domain Customization"
-  custom_domain: "Custom Domain"
+  
   empty: "Empty"
   empty_cart: "Empty Cart"
   enable_login_via_login_password: "Use standard email/password"
@@ -533,8 +531,6 @@ en:
   new_taxonomy: "New Taxonomy"
   new_tracker: New Tracker
   new_user: "New User"
-  new_plan: "New PricingPlan"
-  new_customize_domain: "Customize domain"
   new_variant: "New Variant"
   new_zone: "New Zone"
   next: Next
@@ -1021,6 +1017,7 @@ en:
   zone_based: "Zone Based"
   zone_setting_description: "Collections of countries, states or other zones to be used in various calculations."
   zones: "Zones"
+  #SAAS
   pricing_plans: "PricingPlans"
   store_details: "StoreDetails"
   store_owners: "StoreOwners"
@@ -1030,4 +1027,14 @@ en:
   no_of_products: "Number Of Products"
   payment_period: "Payment Period"
   payment_status: "Status"
+  listing_owners: "Listing Store Owners"
+  store_name: "Store Name"
+  owner_name: "Owner Name"
+  store_status: "Status"
+  domain_customization: "Customize your domain"
+  domain_custom: "Domain Customization"
+  custom_domain: "Custom Domain"
+  new_plan: "New PricingPlan"
+  new_customize_domain: "Customize domain"
+  view_details: "View Details"
   

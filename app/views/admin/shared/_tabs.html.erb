@@ -6,6 +6,8 @@
 <%= tab :reports %>
 <%= tab :configurations, :general_settings, :mail_settings, :tax_categories, :zones, :states, :gateway_configurations, :inventory_settings, :taxonomies, :label => 'configuration' %>
 <%= tab :upgrade_plans,:route=>:admin_upgrade_plans %>
+<%= tab :payment_details,:route=>:admin_store_details_store_billing %>
+
 <%else%>
 <%= tab :store_owners,:route=>:admin_users %>
 <%=tab :store_details %>
@@ -13,3 +15,5 @@
 <%= tab :configurations, :general_settings, :mail_settings, :tax_categories, :zones, :states, :gateway_configurations, :inventory_settings, :taxonomies, :label => 'configuration' %>
 <%= tab :pricing_plans %>
 <%end%>
+
+
