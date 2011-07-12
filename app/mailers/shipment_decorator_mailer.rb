@@ -4,6 +4,7 @@ class ShipmentMailer < ActionMailer::Base
   include Spree::BaseHelper
 def shipped_email(shipment, resend=false)
     @domain=find_mail_domain(shipment.order)
+     if  @domain.length>0
     mail_settings(@domain)
     @shipment = shipment
     subject = (resend ? "[RESEND] " : "")
@@ -11,4 +12,5 @@ def shipped_email(shipment, resend=false)
     mail(:to => shipment.order.email,
          :subject => subject)
        end
+    end
   end

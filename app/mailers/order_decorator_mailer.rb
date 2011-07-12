@@ -5,20 +5,24 @@ class OrderMailer < ActionMailer::Base
   def confirm_email(order,resend=false)
     @order = order
     @domain=find_mail_domain(order)
+    if  @domain.length>0
     mail_settings(@domain)
     subject = (resend ? "[RESEND] " : "")
     subject += "#{Spree::Config[:site_name]} #{t('subject', :scope =>'order_mailer.confirm_email')} ##{order.number}"
     mail(:to => order.email,
          :subject => subject)
+         end
   end
 
   def cancel_email(order, resend=false)
 @order = order
 @domain=find_mail_domain(order)
+ if  @domain.length>0
     mail_settings(@domain)
     subject = (resend ? "[RESEND] " : "")
     subject += "#{Spree::Config[:site_name]} #{t('subject', :scope => 'order_mailer.cancel_email')} ##{order.number}"
     mail(:to => order.email,
          :subject => subject)
+     end
      end
 end

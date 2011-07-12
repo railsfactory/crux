@@ -105,7 +105,7 @@ form { margin:10px 0 0 20px;}
  /*5july*/
 .errorExplanation { background: #F4B4B4; border: 1px solid #000000; color: #000000; padding: 10px;}
 .errorExplanation h2, .sign-up-head h2 {font-size: 20px; margin:10px 0 10px;}
-.errorExplanation p { margin-bottom:5px;
+.errorExplanation p { margin-bottom:5px;}
 /*ne*/
 .main-header {background: #5085a0; /* for non-css3 browsers */
 

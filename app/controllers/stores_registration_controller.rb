@@ -111,13 +111,13 @@ flash[:store_notice] = "Your Store has been registered successfully"
 						current_user = @user
 						redirect_to storeowner_url(:subdomain=>"#{@user.domain_url}.#{APP_CONFIG['separate_url']}",:user_id=>@user.id)
 						else
-							 flash[:error]= "Payment failed could not be processed,please check your details"
+							 flash[:error]= "Payment could not be processed,please check your details"
 	    		render  "new_store"
 						#~ redirect_to "/admin"
 						end
 else
 	
- 	  			 flash[:error]= "Payment failed could not be processed,please check your details"
+ 	  			 flash[:error]= "Payment could not be processed,please check your details"
 	    		render  "new_store"
    		end
 			end
