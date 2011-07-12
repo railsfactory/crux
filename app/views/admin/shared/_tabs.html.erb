@@ -5,6 +5,7 @@
 <%= tab :users %>
 <%= tab :reports %>
 <%= tab :configurations, :general_settings, :mail_settings, :tax_categories, :zones, :states, :gateway_configurations, :inventory_settings, :taxonomies, :label => 'configuration' %>
+<%= tab :upgrade_plans,:route=>:admin_upgrade_plans %>
 <%else%>
 <%= tab :store_owners,:route=>:admin_users %>
 <%=tab :store_details %>
