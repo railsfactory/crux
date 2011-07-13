@@ -10,7 +10,7 @@
     <li<%== ' class="active"' if controller.controller_name == 'general_settings' %>><%= link_to t("general_settings"), admin_general_settings_path %></li>
 		<%end%>
 				  <% unless current_user.has_role? "admin"%>
-              <li<%== ' class="active"' if controller.controller_name == 'domain_customizes' %>><%= link_to t("domain_customizes"), admin_domain_customizes_path %></li>
+              <li<%== ' class="active"' if controller.controller_name == 'domain_customizes' %>><%= link_to t("custom_domain"), admin_domain_customizes_path %></li>
 
     <li<%== ' class="active"' if controller.controller_name == 'mail_methods' %>><%= link_to t("mail_methods"), admin_mail_methods_path %></li>
     <li<%== ' class="active"' if controller.controller_name == 'tax_categories' %>><%= link_to t("tax_categories"), admin_tax_categories_path %></li>

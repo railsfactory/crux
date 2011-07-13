@@ -10,17 +10,20 @@ class Admin::StoreDetailsController < Admin::ResourceController
       #~ StoreDetail.find_all_by_domain_url(params[:domain])
     products_id=StoreDetail.find_all_by_domain_url(params[:domain]).map(&:product_id).uniq
     @product_name=[]
+    @product_price=[]
     @pro_quantity=[]
     @total_price=[]
 products_id.each do |product|
  product_details=Product.find_by_id(product)
  @product_name<<product_details.name
+ @product_price<<product_details.master.price
+ puts @product_price.inspect
  quantity=StoreDetail.find_all_by_product_id(product).map(&:quantity).sum
   @pro_quantity<<quantity
   @total_price<<(product_details.master.price*(@plan.transaction_fee/100))*quantity
  end
 
-      render :partial=>"product_details", :locals => { :owner => @owner,:product_name=>@product_name,:pro_quantity=>@pro_quantity,:total_price=>@total_price }
+      render :partial=>"product_details", :locals => { :owner => @owner,:product_name=>@product_name,:product_price=>@product_price,:pro_quantity=>@pro_quantity,:total_price=>@total_price,:plan=>@plan }
      end
   end
 
@@ -39,16 +42,6 @@ products_id.each do |product|
         #~ puts "[[[[[[[[[[[[[[[[[[["
 
     #~ end
-    
-    def store_billing
-    @store_owner=current_user.store_owner
-    unless @store_owner.billing_histories.blank?
-    @billing_histories=@store_owner.billing_histories
-    end
-
-    end
-     
-     
    
    def billing_history
     if request.xhr?
