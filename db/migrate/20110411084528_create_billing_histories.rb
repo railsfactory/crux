@@ -8,6 +8,7 @@ class CreateBillingHistories < ActiveRecord::Migration
 			t.string :payment_type
 			t.string :transaction_id
  			t.string :acknowledge
+ 			t.string :message
       t.timestamps
     end
   end
