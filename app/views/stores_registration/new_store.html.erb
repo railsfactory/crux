@@ -1,12 +1,18 @@
+
 <div class="main-wrapper page">
 <h1 class="sign-up-title">Sign Up</h1>
 </div>
 <div class="main-wrapper page sign-up-form">
 <div class="sign-up-head">
+
 <%= flash[:notice]%>
-<%if flash[:error]%>
-<p style="color:red;font-size:16px">
+<%if flash[:error] || @store_owner.errors%>
+<p class="errorExplanation">
+<%@store_owner.errors.full_messages.each do |msg|%>
 <%=flash[:error]%>
+
+<%=msg%><br/>
+<%end%>
 </p>
 <%end%>
 
@@ -54,6 +60,7 @@
 <label>State</label>
 <%@states = State.find(:all)%>
 <%= f.select :state,(@states.collect{|x|[x.name]} if @states), {:selected=>"California",:prompt => 'Select State'} %>
+
 </div>
 <div class="form-ele">
 <label>Country</label>
@@ -82,7 +89,7 @@ http://<%= f.text_field :domain%>.spree.railsfactory.com
 </div>
 <div class="form-ele">
 <label>Card Number</label><%=error_message_on	:store_owner,:card_number%>
-<%= f.password_field :card_number%>
+<%= f.text_field :card_number%>
 </div>
 <div class="form-ele">
 <label>Card Type</label>

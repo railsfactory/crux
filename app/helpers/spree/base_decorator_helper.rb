@@ -23,8 +23,17 @@ end
 		taxon=Taxon.roots.where('domain_url= ?',subdomain)
 	end
 	
+	
+	def find_storeowner_email(order)
+		domain=find_mail_domain(order)
+		store_owner=StoreOwner.find_by_domain(domain)
+		store_owner=store_owner.user.email
+	end
+
+	
 def find_mail_domain(order)
-	store=StoreownerOrder.find_by_order_id(order.id)
+		store=StoreownerOrder.find_by_order_id(order.id)
+
 	mail_domain=store.store_owner.domain
 end
 
@@ -33,6 +42,9 @@ def mail_settings(domain)
 	unless mail_methods.blank?
 		Spree::MailSettings.init(domain)
 		Mail.register_interceptor(MailDomainInterceptor)
+		return true
+		else
+			return false
 	end
 end
 def get_sub_domain(domain)
