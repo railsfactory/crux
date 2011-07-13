@@ -42,6 +42,13 @@ products_id.each do |product|
         #~ puts "[[[[[[[[[[[[[[[[[[["
 
     #~ end
+    
+     def store_billing
+    @store_owner=current_user.store_owner
+    unless @store_owner.billing_histories.blank?
+    @billing_histories=@store_owner.billing_histories
+    end
+    end
    
    def billing_history
     if request.xhr?
