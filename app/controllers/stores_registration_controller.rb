@@ -5,7 +5,7 @@ ActiveMerchant::Billing::Base.mode = :test
 include ActiveMerchant::Billing
 layout 'saas'
 def paypal_gateway	
-		   gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>APP_CONFIG['paypal_username'],:password =>APP_CONFIG['paypal_password'],:signature =>APP_CONFIG['paypal_signature'])
+	 gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>@payment.username,:password =>@payment.password,:signature =>@payment.signature)
 		return gateway
 		end
 def index
@@ -57,8 +57,7 @@ def storeowner
 	sign_in_and_redirect(:user,@user)
 end
 
-	def credit_card
-			
+	def credit_card			
 
 		ActiveMerchant::Billing::CreditCard.new(
 :type =>  params[:store_owner][:card_type],
@@ -86,41 +85,41 @@ end
 
 
 def payment_response
-	
-authorize= paypal_gateway.authorize((@amount*100).round, credit_card,
-:ip => request.remote_ip,
-:billing_address =>billing_address
-)
-if authorize.success?
-@response=paypal_gateway.capture((@amount* 100).round, authorize.authorization)
-
-if @response.success?
- @user.is_owner = true
-						@user.domain_url = params[:store_owner][:domain]
-						@user.roles << Role.find_by_name('storeowner')
-						@user.save
-						 mail_method=MailMethod.find_all_by_domain_url('admin').first
-						unless mail_method.blank?
-						StoreRegisterMailer.register_email(mail_method,@user.email).deliver
-						end
-						@store_owner.transaction_id=	@response.params['transaction_id']
-						@store_owner.ip=request.remote_ip
-						@store_owner.save
-billing_history(@response.params['transaction_id'],@amount,@store_owner.id,authorize.params['ack'],"Completed")
-flash[:store_notice] = "Your Store has been registered successfully"
-						current_user = @user
-						redirect_to storeowner_url(:subdomain=>"#{@user.domain_url}.#{APP_CONFIG['separate_url']}",:user_id=>@user.id)
-						else
-							 flash[:error]= "Payment failed could not be processed,please check your details"
-	    		render  "new_store"
-						#~ redirect_to "/admin"
-						end
-else
-					 billing_history(0,@amount,@store_owner.id,authorize.params['ack'],authorize.params['message'])
- 	  			 flash[:error]= "Payment failed could not be processed,please check your details"
-	    		render  "new_store"
-   		end
-			end
+@payment=StoreRegPaymentMethod.first
+	unless @payment.blank?
+	 authorize= paypal_gateway.authorize((@amount*100).round, credit_card,:ip => request.remote_ip,:billing_address =>billing_address)
+	 if authorize.success?
+	 @response=paypal_gateway.capture((@amount* 100).round, authorize.authorization)
+	   if @response.success?
+			@user.is_owner = true
+			@user.domain_url = params[:store_owner][:domain]
+			@user.roles << Role.find_by_name('storeowner')
+			@user.save
+			mail_method=MailMethod.find_all_by_domain_url('admin').first
+	   unless mail_method.blank?
+		  StoreRegisterMailer.register_email(mail_method,@user.email).deliver
+		 end
+			@store_owner.transaction_id=	@response.params['transaction_id']
+			@store_owner.ip=request.remote_ip
+			@store_owner.save
+			billing_history(@response.params['transaction_id'],@amount,@store_owner.id,authorize.params['ack'],"Completed")
+			flash[:store_notice] = "Your Store has been registered successfully"
+			current_user = @user
+			redirect_to storeowner_url(:subdomain=>"#{@user.domain_url}.#{APP_CONFIG['separate_url']}",:user_id=>@user.id)
+	 else
+		flash[:error]= "Payment failed could not be processed,please check your details"
+		render  "new_store"
+	 end
+	else
+		billing_history(0,@amount,@store_owner.id,authorize.params['ack'],authorize.params['message'])
+		flash[:error]= "Payment failed could not be processed,please check your details"
+		render  "new_store"
+	end
+	else
+		flash[:notice]="No Payment Methods available"
+		redirect_to redirect_to "#{APP_CONFIG['domain_url']}"
+	end
+end
 
 
 
