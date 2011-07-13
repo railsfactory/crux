@@ -1037,4 +1037,5 @@ en:
   new_plan: "New PricingPlan"
   new_customize_domain: "Customize domain"
   view_details: "View Details"
-  
+  upgrade_plans: "Upgrade Plan"
+  payment_details: "Payment Details"
