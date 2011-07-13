@@ -17,6 +17,10 @@
       <td><%= link_to t("mail_methods"), admin_mail_methods_path %></td>
       <td><%= t("email_server_settings_description") %></td>
     </tr>
+ <tr>
+     <td><%= link_to t("store_registration_payment_method"), store_registration_payment_method_path %></td>
+      <td>Payment Method for Store registration</td>
+    </tr>
 
 		<%end%>
 		  <% unless current_user.has_role? "admin"%>
