@@ -14,4 +14,17 @@ include Admin::BaseHelper
       respond_with(@payment_method)
     end
   end
-  end
+	
+	def store_registration_payment_method
+		@payment=StoreRegPaymentMethod.first
+		value=params[:store_reg_payment_method]
+		if value && !value.blank?
+		@payment.update_attributes(value)
+			if @payment.save
+					flash.now[:notice]="Payment Method has been updated successfully"
+			else
+				 render "store_registration_payment_method"
+			end
+   end
+ end
+end
