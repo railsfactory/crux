@@ -16,7 +16,7 @@
 
       <% unless @product.has_variants? %>
       <%= f.field_container :sku do %>
-        <%= f.label :sku, t("sku") %><br />
+        <%= f.label :sku, t("sku") %><span class="required">*</span><br />
         <%= f.text_field :sku, :size => 16 %>
         <%= f.error_message_on :sku %>
       <% end %>
