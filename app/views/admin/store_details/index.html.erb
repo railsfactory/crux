@@ -1,37 +1,36 @@
 <table class="index" id='listing_plans'>
-
-  <tr>
-	<th>Store</th>
-	<th>Product Transaction Fee</th>
-	<th>Details</th>
-	</tr>
-   <tbody>
-<% @store_owners.each do |owner| %>
-<tr>
-<td><%=owner.domain%></td>
-<td><%=find_transaction_fee(owner)%></td>
-<td><%=link_to "Complete Details",'#',:onclick => "call_transactdetails('#{owner.domain}');"%>
-</tr>
-
-<%end%>
-</tbody>
+		<tr>
+		<th>Store</th>
+		<th>Product Transaction Fee</th>
+		<th>Details</th>
+		</tr>
+		<tbody>
+			<% @store_owners.each do |owner| %>
+				<tr>
+				<td><%=owner.domain%></td>
+				<%transaction_fee=find_transaction_fee(owner) if owner%>
+				<%if transaction_fee%>
+				  <td><%=transaction_fee%></td>
+				<%else%>
+				  <td><%="Unavailable"%></td>
+				<%end%>
+				<td><%=link_to "Complete Details",'#',:onclick => "call_transactdetails('#{owner.domain}');"%>
+				</tr>
+			<%end%>
+		</tbody>
 </table>
 <%= will_paginate(@store_owners, :previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
 <div id=details>
-
 </div>
-
-
 <script>
-function call_transactdetails(domain)
-{
-$.ajax({
-			url:"/admin/store_details",
-			data: "domain="+domain,	
-			success: function(data) {
-			$('#details').html(data);
-			}
-		
-});
+		function call_transactdetails(domain)
+		{
+		$.ajax({
+		url:"/admin/store_details",
+		data: "domain="+domain,	
+		success: function(data) {
+		$('#details').html(data);
+		}
+		});
 		}
 </script>

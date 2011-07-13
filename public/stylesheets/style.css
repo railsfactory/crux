@@ -44,7 +44,7 @@ table {
 
 body { background:#BAD9E9; color: #666666; font-family: "Trebuchet MS", Arial,Helvetica,sans-serif; font-size: 11px;}
 .main-header { color: #FFFFFF; float: left; width:100%; height:75px; background:#def3fe; border-bottom:2px solid #0e3f59;}
-.logo { padding:5px; margin:1px 0 0 -10px;}
+.logo { padding:5px; margin:1px 0 0 0px;}
 .header { margin:0 auto; width:960px;}
 .logo {float: left;}
 .top_navi {float: right; padding:5px 10px; background:#333333; -moz-border-radius:0 0 5px 5px; -webkit-border-radius:0 0 5px 5px;}
@@ -123,3 +123,18 @@ background: -moz-linear-gradient(#7fafc7, #8bb8ce, #699fba); /* for firefox 3.6+
 .form-ele.domain-wrap label{ width: 189px;}
 
 .domain #store_owner_domain{   margin: 0 4px;}
+/* sign up */
+.table-wrap table { border:3px solid #fff;}
+.table-wrap table th, .table-wrap table td {padding:15px;}
+.table-wrap table td { font:12px Verdana, Arial, Helvetica, sans-serif;}
+.table-wrap table th { background:#9fdeff; color:#000; font-size:14px; font-weight:bold; border-bottom:1px solid #0e3f59; }
+.table-wrap table tr.bg-bl td{ background:#eaf8fd;}
+.table-wrap table tr.bg-gr td { background:#b1d7a7;}
+.table-wrap table tr td { color:#000000; font-size:12px;}
+.month { float:left;}
+.sign-up-td { float:right; margin-right:10px;}
+.sign-up-td a { background:#9ec01f; color: #FFFFFF; font: 12px "Trebuchet MS"; font-weight: bold; text-align: center; text-decoration: none; -moz-border-radius:3px; padding:2px 6px; border:1px solid #70a207;}
+.right { border-left: 1px solid #0e3f59; text-align:center;}
+tr.add { background:#ddeff9;}
+td.txt-rt { text-align:right;}
+th.fee { width:120px;}

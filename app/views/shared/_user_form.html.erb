@@ -12,11 +12,20 @@
     <%= f.label :password_confirmation, t(:confirm_password) %><br />
     <%= f.password_field :password_confirmation, :class => 'title' %>
   </p>
-	
-	  <p>
-
-<input type="hidden" name="user[domain_url]" value="<%=get_sub_domain(current_subdomain)%>">
+  <p>
+    <input type="hidden" name="user[domain_url]" value="<%=get_sub_domain(current_subdomain)%>">
   </p>
 </div>
-
+ <% unless current_user.has_role? "admin"%>
+    <%= fields_for @store_owner do |s| %>
+      <p>
+        <%= s.label :card_number, t("card_number") %><br />
+        <%= s.text_field :card_number, :class => 'title'  %>
+      </p>
+      <p>
+        <%= s.label :cvv, t("cvv") %><br />
+        <%= s.password_field :cvv, :class => 'title'  %>
+      </p>
+    <%end%>
+ <%end%>
 <div data-hook="signup_below_password_fields"></div>
