@@ -16,7 +16,11 @@ include Admin::BaseHelper
   end
 	
 	def store_registration_payment_method
+		if StroreRegMethod.first
 		@payment=StoreRegPaymentMethod.first
+		else
+		@payment=StoreRegPaymentMethod.new()
+		end
 		value=params[:store_reg_payment_method]
 		if value && !value.blank?
 		@payment.update_attributes(value)
