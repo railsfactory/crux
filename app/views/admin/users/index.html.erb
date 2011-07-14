@@ -1,5 +1,7 @@
   <%#= javascript_include_tag 'prototype.js'%>
+  
 <% unless current_user.has_role? "admin" %>
+
 <div class='toolbar'>
   <ul class='actions'>
     <li>
@@ -8,11 +10,6 @@
   </ul>
   <br class='clear' />
 </div>
-
-	
-<h1><%= t("listing_users") %></h1>
-<%else%>
-<h1><%= t("listing_owners") %></h1>
 <%end%>
 <div id='status'>
 <%= render 'store'%>

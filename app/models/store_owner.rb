@@ -17,11 +17,11 @@ class StoreOwner < ActiveRecord::Base
 	validates :name,:presence =>{:message => "Please enter a name"},:allow_blank => true
 	validates :address1, :presence => {:message=>"Please enter a  Address 1"}
 	validates :address2, :presence => {:message=>"Please enter a Address 2"}
-	validates :city, :presence => true,:format => { :with => /^[A-Za-z ]+$/ },:allow_blank=>true
+	validates :city, :presence =>{:message=>"Please enter a city"},:format => { :with => /^[A-Za-z ]+$/ },:allow_blank=>true
 	validates :card_number, :presence => {:message=>"please enter a card number"},:numericality => { :message=>"please enter a valid number"},:allow_blank=>true
 	validates :cvv, :presence => {:message=>"please enter a cvv"},:numericality => { :message=>"please enter a valid cvv"},:allow_blank=>true
 	#~ validates_credit_card :card_number, :card_type,:allow_blank => true
-	validates_presence_of :zipcode 
+	validates :zipcode,:presence =>{:message=>"Please enter a Zip code"}
 	validate :request_state_and_city_validation_based_on_zipcode, :if => :zipcode
 	
 def request_state_and_city_validation_based_on_zipcode 
@@ -32,11 +32,11 @@ if poll
 		unless loc.success 
 errors.add(:zipcode, " Unable to geocode your location from zipcode entered.") 
 	else # Validate state and city fields in compare to loc object returned by geocode 
-		errors.add(:country," doesn't matches with zipcode entered") if find_country_code!=loc.country
-errors.add(:state, " doesn't matches with zipcode entered") if find_state_code != loc.state
+		errors.add(:country,"Country doesn't matches with zipcode entered") if find_country_code!=loc.country_code
+errors.add(:state, "State doesn't matches with zipcode entered") if find_state_code != loc.state
 
 
-errors.add(:city, " doesn't matches with zipcode entered") if self.city != loc.city 
+errors.add(:city, "City doesn't matches with zipcode entered") if self.city != loc.city 
 	
 		end 
 		end 
