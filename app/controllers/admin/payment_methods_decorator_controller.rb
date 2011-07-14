@@ -16,7 +16,7 @@ include Admin::BaseHelper
   end
 	
 	def store_registration_payment_method
-		if StroreRegMethod.first
+		if StroreRegPaymentMethod.first
 		@payment=StoreRegPaymentMethod.first
 		else
 		@payment=StoreRegPaymentMethod.new()
