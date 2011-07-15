@@ -17,12 +17,17 @@ def pricing_plan(id)
 end
 
 def new_store
+if StoreRegPaymentMethod && StoreRegPaymentMethod.first
 	@user = User.new()
 	@store_owner = StoreOwner.new()
 	session[:plan] = params[:id]
 	plan=pricing_plan(params[:id])
 	@plan_name=plan.plan_name
  	@amount=plan.amount
+ else
+		flash[:notice]="No Payment Methods available"
+		redirect_to "#{APP_CONFIG['domain_url']}"
+	end
 end
 
 def save_store_details
@@ -85,7 +90,7 @@ end
 
 
 def payment_response
-@payment=StoreRegPaymentMethod.first
+@payment=StoreRegPaymentMethod && StoreRegPaymentMethod.first ? StoreRegPaymentMethod.first : []
 	unless @payment.blank?
 	 authorize= paypal_gateway.authorize((@amount*100).round, credit_card,:ip => request.remote_ip,:billing_address =>billing_address)
 	 if authorize.success?
@@ -107,22 +112,15 @@ def payment_response
 			current_user = @user
 			redirect_to storeowner_url(:subdomain=>"#{@user.domain_url}.#{APP_CONFIG['separate_url']}",:user_id=>@user.id)
 	 else
-		flash[:error]= "Payment failed could not be processed,please check your details"
+		flash[:error]= "Payment could not be processed,please check your details"
 		render  "new_store"
 	 end
 	else
-		billing_history(0,@amount,@store_owner.id,authorize.params['ack'],authorize.params['message'])
-		flash[:error]= "Payment failed could not be processed,please check your details"
+		flash[:error]= "Payment could not be processed,please check your details"
 		render  "new_store"
-	end
-	else
-		flash[:notice]="No Payment Methods available"
-		redirect_to redirect_to "#{APP_CONFIG['domain_url']}"
+	end	
 	end
 end
-
-
-
 
 def billing_history(transaction_id,total_amounts,owner,acknowledge,message)
 	BillingHistory.create!(:store_owner_id=>owner,:amount=>total_amounts,:billing_date=>Date.today,:transaction_id=>transaction_id,:acknowledge=>acknowledge,:message=>message)

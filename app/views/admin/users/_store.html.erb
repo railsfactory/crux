@@ -1,4 +1,9 @@
 <div id=billing>
+<% unless current_user.has_role? "admin" %>
+<h1><%= t("listing_users") %></h1>
+<%else%>
+<h1><%= t("listing_owners") %></h1>
+<%end%>
 <table class="index" id='listing_users'>
   <thead>
   <tr>
