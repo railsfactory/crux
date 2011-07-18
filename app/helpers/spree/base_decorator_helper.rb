@@ -68,7 +68,14 @@ def find_customization_domain
 	custom=DomainCustomize.find_by_custom_domain(customdomain)
 	
 end
-
+def find_digital_domain(order)
+store=StoreownerOrder.find_by_order_id(order.id)
+if store.is_custom?
+return store.store_owner.domain_customize.custom_domain
+else
+return store.store_owner.domain+"."+APP_CONFIG['separate_url']+"."+APP_CONFIG['domain_url'].split(".").last
+end
+end
 
   def star(the_class) 
     "<span class=\"#{the_class}\"> &#10030; </span>"
