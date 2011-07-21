@@ -72,7 +72,7 @@
 <div class="form-ele domain-wrap">
 <label>Domain Name</label><%=error_message_on	:store_owner,:domain%>
 <div class="domain">
-http://<%= f.text_field :domain%>.spree.railsfactory.com
+http://<%= f.text_field :domain%><%="."+APP_CONFIG['domain_url'].split("//")[1]%>
 </div>
 </div>
 <h3>Credit Card Details</h3>

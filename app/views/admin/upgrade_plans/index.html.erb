@@ -1,10 +1,42 @@
-
+<%current_plan=current_user.store_owner.pricing_plan%>
+	<h1 class="sign-up-title">Current Plan</h1>
+	
 <div class="main-wrapper page">
-	<h1 class="sign-up-title">Select Your Plan</h1>
 </div>
 <div class="main-wrapper page plan">
 	<div class="table-wrap">
-        <table cellpadding="0" cellspacing="0" width="100%" border="0">
+        <table  class="index">
+					<thead>
+           <tr>
+                <th><%=Name%></th>
+                <th><%=Fee%></th>
+                <th><%=Trasaction Fee%></th>
+                <th>No of Products</th>
+                <th>Payment Period</th>
+            </tr>
+				</thead>
+			<tbody>
+        <tr class="bg-bl">
+						<td><%= current_plan.plan_name%></td>
+						<td><%= current_plan.amount%> $</td>
+						<td><%= current_plan.transaction_fee%> %</td>
+						<td><%= current_plan.no_of_products%></td>                	
+						<td><%= current_plan.payment_period%></td>                	
+            </tr>
+     </tbody>						
+        </table>
+   	</div>
+</div>
+
+
+<div class="main-wrapper page">
+	<h1 class="sign-up-title">Listing of Plans</h1>
+</div>
+<div class="main-wrapper page plan">
+	<div class="table-wrap">
+        <table  class="index">
+										</thead>
+
             <tr>
                 <th>Name</th>
                 <th>Fee</th>
@@ -12,6 +44,8 @@
                 <th>No of Products</th>
                 <th>Payment Period</th>
             </tr>
+						</thead>
+			<tbody>
 						<%@pricing_plans && @pricing_plans.each do |plan|%>
             <tr class="bg-bl">
                 <td><%= plan.plan_name%></td>
@@ -20,11 +54,17 @@
 						<td><%= plan.no_of_products%></td>
                	<td>
                 	<div class="tabel-td">
-                    	<div class="month"><%= plan.payment_period%><span style="margin-left:15px;"><%=link_to "Upgrade",:action=>"user_update_plan",:plan_id=>plan.id%></span></div>
+									<%if current_plan.amount>plan.amount%>
+										<div class="month"><%= plan.payment_period%><span style="margin-left:15px;"><%=link_to "Downgrade",:action=>"user_update_plan",:plan_id=>plan.id%></span></div>
+										<%else%>
+										<div class="month"><%= plan.payment_period%><span style="margin-left:15px;"><%=link_to "Upgrade",:action=>"user_update_plan",:plan_id=>plan.id%></span></div>
+										<%end%>
                     </div>
             	</td>
             </tr>    
 	<%end%>
+				<tbody>
+
         </table>
    	</div>
 </div>
