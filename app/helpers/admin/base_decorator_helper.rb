@@ -57,7 +57,11 @@ end
 
 def find_domain_preference(type)
 	config=Configuration.find_by_name(type)
+	if config
 	available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])	
+	else
+		available=[]
+		end
 end
 
 end

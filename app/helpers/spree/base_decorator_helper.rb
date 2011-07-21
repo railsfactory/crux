@@ -1,10 +1,13 @@
 module Spree::BaseHelper
 def find_domain_preference(type)
-  domain= get_sub_domain(current_subdomain)
 	config=Configuration.find_by_name(type)
-  available=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)	
-	return available
-	end
+	if config
+	available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])	
+	else
+		available=[]
+		end
+end
+
 def find_stock_value(attr)
 	pref=find_domain_preference("Default configuration")
 	if  pref.blank?
@@ -47,6 +50,7 @@ def mail_settings(domain)
 			return false
 	end
 end
+
 def get_sub_domain(domain)
     if (request.url.include?(APP_CONFIG['separate_url']))
      subdomain= domain.split(".")[0] if domain
@@ -68,6 +72,7 @@ def find_customization_domain
 	custom=DomainCustomize.find_by_custom_domain(customdomain)
 	
 end
+
 def find_digital_domain(order)
 store=StoreownerOrder.find_by_order_id(order.id)
 if store.is_custom?
@@ -77,18 +82,5 @@ return store.store_owner.domain+"."+APP_CONFIG['separate_url']+"."+APP_CONFIG['d
 end
 end
 
-  def star(the_class) 
-    "<span class=\"#{the_class}\"> &#10030; </span>"
-  end
-
-  def mk_stars(m)
-    (1..5).collect {|n| n <= m ? star("lit") : star("unlit") }.join
-  end
   
-  def txt_stars(n, show_out_of = true)
-    res = I18n.t('star', :count => n)
-    res += ' ' + t('out_of_5') if show_out_of
-    res
-  end
-
 end
