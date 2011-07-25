@@ -17,7 +17,7 @@ body {
 }
 ol, ul { list-style: none; }
 table {
-  border-collapse: separate;
+  border-collapse:collapse;
   border-spacing: 0;
   vertical-align: middle;
 }
@@ -32,7 +32,7 @@ q:after { content: ""; }
 blockquote:before { content: ""; }
 blockquote:after { content: ""; }
 img a { border: none; }
-hr {
+/*hr {
   background: #dddddd;
   color: #dddddd;
   clear: both;
@@ -41,9 +41,9 @@ hr {
   height: 0.1em;
   margin: 0 0 1.45em;
   border: none;
-}
+}*/
 hr.space {
-  background: #dddddd;
+  background: #F5F5F1;
   color: #dddddd;
   clear: both;
   float: none;
@@ -51,7 +51,6 @@ hr.space {
   height: 0.1em;
   margin: 0 0 1.45em;
   border: none;
-  background: #ffffff;
   color: #ffffff;
 }
 body {
@@ -69,24 +68,21 @@ h1 {
 }
 h1 img { margin: 0; }
 h2 {
-  font-weight: normal;
-  color: #222222;
-  font-size: 2em;
-  margin-bottom: 0.75em;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 15px 15px 20px 5px;
+  padding:2px 0 2px 10px;
 }
 h3 {
   font-weight: normal;
   color: #222222;
-  font-size: 1.5em;
-  line-height: 1;
-  margin-bottom: 1em;
+  font-size: 20px;
+  margin: 10px;
 }
 h4 {
   font-weight: normal;
   color: #222222;
-  font-size: 1.2em;
-  line-height: 1.25;
-  margin-bottom: 1.25em;
+  font-size:20px;
 }
 h5 {
   font-weight: normal;
@@ -106,7 +102,7 @@ h3 img { margin: 0; }
 h4 img { margin: 0; }
 h5 img { margin: 0; }
 h6 img { margin: 0; }
-p { margin: 0 0 1.5em; }
+p { margin: 0 0 0 21px; }
 p img.left {
   display: inline;
   float: left;
@@ -152,22 +148,21 @@ pre, code, tt {
 li ul { margin: 0 1.5em; }
 li ol { margin: 0 1.5em; }
 ul {
-  margin: 0 1.5em 1.5em 1.5em;
   list-style-type: disc;
 }
 ol {
-  margin: 0 1.5em 1.5em 1.5em;
   list-style-type: decimal;
 }
 dl { margin: 0 0 1.5em 0; }
 dl dt { font-weight: bold; }
-dd { margin-left: 1.5em; }
+dd { margin-top: -10px; }
 table {
   margin-bottom: 1.4em;
-  width: 100%;
 }
 th { font-weight: bold; }
-thead th { background: #c3d9ff; }
+thead th { background: #F3F3F3;}
+/*th, td {border:1px solid #000;}*/
+th {border-bottom:1px solid #A7E8F6;}
 th, td, caption { padding: 4px 10px 4px 5px; }
 tr.even td { background: #e5ecf9; }
 tfoot { font-style: italic; }

@@ -11,7 +11,6 @@
 <% if products.any? %>
 <h2 class="title-pro">Products</h2>
 <ul id="products" class="product-listing">
-<% store=find_storename(current_subdomain)%>
 <%stock_val=find_stock_value("show_zero_stock_products")%>
  <% products.each do |product| %>
     <% if stock_val || product.has_stock? %>

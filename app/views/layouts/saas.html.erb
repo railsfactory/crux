@@ -5,29 +5,34 @@
 <title>SaasSpree</title>
 <link href="/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
 <div class="main-header">
-	<div class="header">
-        <div class="logo">
-            <a href="/"><img alt="" src="/images/saas.png" /></a>
-        </div>
-        <div class="top_navi">
-            <ul>
-                <% if current_user %>
-								<li><a href="/account">MyAccount</a></li>
-                <li class="last"><a href="/user/logout">Logout</a></li>
-								<% else%>
-								<li><a href="/login">Admin</a></li>
-                <li class="last"><a href="/">Home</a></li>
-								<%end%>
-            </ul>
-        </div>
-  	</div>
+<div class="logo">
+<a href="/"><img alt="" src="/images/logo.png" /></a>
+<!--<a href="#" style="margin-left:20px;"><img alt="" src="images/spree_50.png" /></a>-->
+</div>
+<!--<div class="top_navi">
+<ul>
+<li><a href="#">Login</a></li>
+<li class="last"><a href="#">Home</a></li>
+</ul>
+</div>-->
+<ul id="nav-primary">
+<li class="active"><a href="#">Home</a></li>
+<!--<li><a href="#">Feature Tour</a></li>
+<li><a href="#">Examples</a></li>-->
+<li><a href="#">FAQ</a></li>
+<li><a href=<%= stores_registration_index_path%>>Pricing &amp; Signup</a></li>
+</ul>
 </div>
 <%=yield%>
-</body>
 <div class="footer main-wrapper">
-	<p>Powered by Railsfactory</p>
+<p>Powered by <a href="">Railsfactory</a></p>
+<ul class="foo-menu">
+<li><a href="">Terms &amp; Conditions</a></li>
+<li><a href="">Privacy Policy</a></li>
+<li><a href="">Contact</a></li>
+</ul>        
 </div>
+</body>
 </html>
