@@ -1,11 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
 <%= hook :inside_head do %>
-  <%= render :partial => 'shared/head'%>
+<%= render :partial => 'shared/head'%>
 <% end %>
-</head>
+
 <%
 if @body_class.nil?
   if content_for?(:sidebar)
@@ -22,13 +21,15 @@ end
       <ul id="nav-bar">
         <%= render 'shared/nav_bar' %>
       </ul>
+			<ul class="search-bar-hme">
+			<li id="search-bar">
+			<%= render 'shared/search' %>
+		</li>
+		</ul>
     </div>
     <div class="logo">
                   <a href="/"><img alt="" src="/images/saas.png" /></a>
                   </div>
-
-
-
   </div>
   </div>
 
@@ -52,7 +53,7 @@ end
       <%= yield %>
     </div>
     <%= render :partial => 'shared/footer'%>
-  </div>
 
+  </div>
 </body>
 </html>

@@ -9,21 +9,22 @@
 <% end %>
 
 <% if products.any? %>
+<h2 class="title-pro">Products</h2>
 <ul id="products" class="product-listing">
+<% store=find_storename(current_subdomain)%>
 <%stock_val=find_stock_value("show_zero_stock_products")%>
  <% products.each do |product| %>
     <% if stock_val || product.has_stock? %>
       <li id="product_<%= product.id %>" data-hook="products_list_item">
-        <%= link_to product.name, product, :class => 'info' %>
-        <%= link_to small_image(product), product %>
-        <span class="price selling"><%= product_price(product) %></span>
+        <div class="pro-image"><%= link_to small_image(product), product %></div>
+				<div class="pro-name"><%= link_to product.name.capitalize, product, :class => 'info' %></div>
+				<div class="price-selling"><span class=""><%= product_price(product) %></span></div>
       </li>
     <% end %>
   <% end %>
 </ul>
 <% end %>
 
-<hr class="space" />
 
 <% if paginated_products.respond_to?(:total_pages)
       params.delete(:search)
@@ -34,4 +35,3 @@
                     :next_label => "#{t('next')} &#187;") %>
 <% end %>
 
-<hr class="space" />

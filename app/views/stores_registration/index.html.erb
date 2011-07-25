@@ -1,30 +1,60 @@
- <div class="main-wrapper page">
-	<h1 class="sign-up-title">Select Your Plan</h1>
-</div>
+<%if @plans%>
+<%id=@plans.map(&:id)%>
+<%fee=@plans.map(&:amount)%>
+<%transaction=@plans.map(&:transaction_fee)%>
+<%prod=@plans.map(&:no_of_products)%>
+<%payment=@plans.map(&:payment_period)%>
+
 <div class="main-wrapper page plan">
-	<div class="table-wrap">
-    <table cellpadding="0" cellspacing="0" width="100%" border="0">
-            <tr>
-                <th>Name</th>
-                <th class="right fee">Fee</th>
-                <th class="right fee">Trasaction Fee</th>
-                <th class="right fee">No of Products</th>
-                <th class="right">Payment Period</th>
-            </tr>
-						<%@plans && @plans.each do |plan|%>
-           <tr class="add">
-                <td class="txt-rt"><%= plan.plan_name%></td>
-                <td class="right"><%= plan.amount%> $</td>
-                <td class="right"><%= plan.transaction_fee%> %</td>
-                <td class="right"><%= plan.no_of_products%></td>
-                <td class="right">
-                 <div class="tabel-td">
-                     <div class="month"><%= plan.payment_period%></div>
-                     <div class="sign-up-td"><a href="/store/<%= plan.id%>">Sign up</a></div>
-                    </div>
-             </td>
-            </tr>
-   		<%end%>
-        </table>
-   	</div>
+<div class="table-wrap">
+<div class="table-banner"></div>
+<table id="price-chart">
+<tbody>
+<tr>
+<th class="heading"></th>
+<th class="table-col-0 basic sign-up-btn">
+<div class="basic-btn"><a href="/store/<%=id[0]%>"></a></div>
+</th>
+<th class="table-col-1 gold sign-up-btn">
+<div class="gold-btn"><a href="/store/<%=id[1]%>"></div>
+</th>
+<th class="table-col-2 silver sign-up-btn">
+<div class="sil-btn"><a href="/store/<%=id[2]%>"></div>
+</th>
+<th class="table-col-3 platinum sign-up-btn"><a href="/store/<%=id[3]%>"></th>
+</tr>
+
+
+<tr class="even">   
+<td class="td-title"><%=t(:Fee)%></td>
+<%fee && fee.each_with_index do |f,i|%>
+<td class="table-col-<%=i%>"><%=f%></td>                  
+<%end%></tr>
+<tr class="odd">   
+<td class="td-title"><%=t(:Transaction_Fee)%></td>
+<%transaction && transaction.each_with_index do |t,i|%>
+<td class="table-col-<%=i%>"><%=t%>%</td>                  
+<%end%></tr>
+<tr class="even">   
+<td class="td-title"><%=t(:Number_Of_Products)%></td>
+<%prod && prod.each_with_index do |p,i|%>
+<td class="table-col-<%=i%>"><%=p%></td>                  
+<%end%></tr>
+<tr class="odd">   
+<td class="td-title"><%=t(:Payment_Period)%></td>
+<%payment && payment.each_with_index do |m,i|%>
+<td class="table-col-<%=i%>"><%=m%></td>                  
+<%end%></tr>
+
+</tbody>
+</table>
 </div>
+<div class="highlight-box">
+<div class="highlight-box-wrapper">
+<h2 class="center">Not sure which plan?</h2>
+<p class="center">Call our sales team at 1.888. SASSSPREE (1.888.746.7439) <span style="display:none" class="chat-on" id="chat-on2">or <a href="">chat with them online</a></span><span id="chat-off2"></span></p>
+<p class="notes center">You can also change your plan at any time</p>
+</div>
+</div>
+</div>
+<%end%>

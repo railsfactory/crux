@@ -36,12 +36,17 @@
       </div>
     <% end%>
     <% if @product.has_stock? || back_order_val%>
-      <%= text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
-        1, :class => "title", :size => 3 %>
+		<dl class="product-price">
+		<dt>Quantity: </dt>
+		<dd><%= text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
+        1, :class => "title", :size => 3 %></dd>
+		</dl>
       &nbsp;
-      <button type="submit" class="large primary" id="add-to-cart-button">
+      <div class="add-to-cart">
+			<button type="submit" class="large primary" id="add-to-cart-button">
         <%= image_tag('icons/add-to-cart.png') + t('add_to_cart') %>
       </button>
+			</div>
     <% else %>
       <%= content_tag('strong', t('out_of_stock')) %>
     <% end %>

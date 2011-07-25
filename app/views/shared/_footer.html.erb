@@ -1,13 +1,61 @@
-<div id="footer">
-  <div class="left">
-    <%= hook :footer_left do %>
-    <p>
-      <%= t("powered_by") %> <a href="http://spreecommerce.com/">Spree</a>
-    </p>
-    <% end %>
-  </div>
-  <div class="right">
-    <%= hook :footer_right %>
-  </div>
+<div id="footer_area">
+  <div class="footer_bound clearfix">
+    <div class="ftr_sections">
+      <ul>
+        <li><strong>Shopping with Us</strong></li>
+        <li><a target="_blank" title="Track an Order" href="/track-your-order.html">Track an Order</a></li>
+        <li><a title="Customer Care Team" onclick="window.open('/shop/faces/jsp/popup/call-customer-care.html','name','height=515, width=410,toolbar=no,directories=no,status=no, menubar=no,scrollbars=yes,resizable=no'); return false;" href="javascript:void(0);">Customer Care Team</a></li>
+        <li><a title="HomeShop18 : Payment Options" target="_blank" href="http://help.homeshop18.com/forums/302968-payment-related">Payment Options</a></li>
+        <li><a title="HomeShop18 : Bulk Orders" href="/shop/faces/jsp/bulkOrders.jsp">Bulk Orders</a></li> 
+        <li><a title="HomeShop18 : Return Policy" target="_blank" href="/return-policy.html">Return Policy</a></li>
+        <li><a title="HomeShop18 : Shipping Policy" target="_blank" href="/shipping-policy.html">Shipping Policy</a></li>
+        <li><a title="HomeShop18 : Why HomeShop18" target="_blank" href="/why-homeshop18.html">Why HomeShop18</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr_sections">
+      <ul>
+        <li><strong>Help</strong></li>
+        <li><a target="_blank" title="HomeShop18 : FAQs and Help" href="">FAQs/Help</a></li>
+        <li><a href="/shopping-demo.html">Shopping Demo</a></li>
+        <li><a target="_blank" title="HomeShop18 : TV Schedule" href="">TV Schedule</a></li>
+        <li><a target="_blank" title="HomeShop18 : Partner with Us" href="">Partner with Us</a></li>
+        <li><a target="_blank" title="Sitemap XML" href="">Sitemap <img width="30" height="12" src="/homeshop18/media/images/homeshop18_2011/commonAssets/icon_xml.gif" alt=""></a></li>
+        <li><a target="_blank" title="HomeShop18 : Privacy Policy" href="">Privacy Policy</a></li>
+        <li><a target="_blank" title="HomeShop18 : Security Policy" href="">Security Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr_sections">
+      <ul>
+        <li><strong>About Us</strong></li>
+        <li><a target="_blank" title="About" href="">About </a></li>
+        <li><a target="_blank" title="HomeShop18 : Awards" href="">Awards</a></li>
+        <li><a target="_blank" title="HomeShop18 : Careers" href="">Careers</a></li>
+        <li><a target="_blank" title="HomeShop18 : Share your feedback" href="">Feedback</a></li>
+        <li><a target="_blank" title="HomeShop18 : Investors" href="">Investors</a></li>
+        <li><a target="_blank" title="HomeShop18 : Terms of Use" href="">Terms of Use</a></li>
+      </ul>
+    </div>
+
+    <div class="ftr_sec_browse">
+      <h5 class="ftr_section_hdr">Browse Products</h5>
+      <p class="browseitem_list">
+        <a href="">Books</a> |
+        <a href="">Cameras &amp; Camcorders</a>  |
+        <a href="">Mobiles &amp; Accessories </a> |
+        <a href="">Apparel &amp; Accessories  </a>|
+        <a href="">Jewellery &amp; Watches </a>  |
+        <a href="">Electronics </a>  |
+        <a href="">Home &amp; Kitchen </a>  |
+        <a href="">Toys &amp; Games </a>  |
+        <a href="">Gifts &amp; Flowers </a>  |
+        <a href="">Computer &amp; Peripherals </a>  |
+        <a href="">Kids &amp; Baby </a>  |
+        <a href="">Health &amp; Beauty </a> |
+        <a href="">Movies </a> |
+        <a href="">Music </a> |
+        <a href="">Household Appliances</a>
+      </p>
+    </div>
 </div>
-<%= render 'shared/google_analytics' %>
