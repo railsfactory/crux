@@ -1,0 +1,28 @@
+<% @body_id = 'product-details' %>
+<h1><%= accurate_title.capitalize %></h1>
+<div class="product-img-wrap">
+	<div id="product-images" data-hook="product_images">
+		<div id="main-image">
+			<%= render 'image' %>
+		</div>
+		<div id="thumbnails">
+			<%= render 'thumbnails', :product => @product %>
+		</div>
+	</div>
+
+	<div id="cart-form" data-hook="cart_form">
+		<%= render 'cart_form' %>
+	</div>
+
+	<div id="product-description" data-hook="product_description">
+		<h3>Product Details</h3>
+		<%= product_description(@product) rescue t("product_has_no_description") %>
+		<div data-hook="product_properties">
+			<%= render 'properties' %>
+		</div>
+		<%= render 'taxons' %>
+
+	</div>
+	</div>
+
+

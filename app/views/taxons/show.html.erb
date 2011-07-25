@@ -1,0 +1,20 @@
+<%#= accurate_title %>
+
+<% content_for :sidebar do %>
+  <div data-hook="taxon_sidebar_navigation">
+
+    <%= render :partial => "shared/taxonomies" %>
+  </div>
+<% end %>
+      <%= render(:partial => "shared/filters") if @taxon.children.empty? %>
+
+<% if @taxon.children.empty? || !params[:keywords].blank? %>
+  <div data-hook="taxon_products">
+    <%= render :partial => "shared/products", :locals => {:products => @products, :taxon => @taxon } %>
+  </div>
+<% else %>
+  <div data-hook="taxon_children">
+    <%= render :partial => "taxon", :collection => @taxon.children %>
+  </div>
+<% end %>
+
