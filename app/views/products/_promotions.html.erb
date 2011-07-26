@@ -1,0 +1,27 @@
+<% promotions = @product.possible_promotions %>
+
+<%if promotions.map(&:domain_url)[0] == @product.domain_url%>
+
+<% if promotions.any?%>
+<div id="promotions">
+  <h3><%= t 'promotions' %></h3>
+
+  <% for promotion in promotions %>
+  <div>
+    <h4><%= promotion.name %></h4>
+    <p><%= promotion.description %></p>
+    <% if promotion.products.any? %>
+    <ul>
+      <% for product in promotion.products %>
+        <li><%= link_to product.name, product_path(product) %></li>
+      <% end %>
+    </ul>
+    <% end %>
+  </div>
+  <% end %>
+
+</div>
+<% end %>
+<% end %>
+
+
