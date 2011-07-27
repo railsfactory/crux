@@ -16,7 +16,7 @@
 
 <tr>
 <td><%=owner.pricing_plan.plan_name%></td>
-<td><%=owner.pricing_plan.amount%></td>
+<td><%=number_to_currency owner.pricing_plan.amount%></td>
 <td><%=owner.pricing_plan.transaction_fee%></td>
 <td><%=owner.pricing_plan.no_of_products%></td>
 <td><%=owner.pricing_plan.payment_period%></td>
@@ -39,7 +39,7 @@
 <% billings.each do |billing| %>
 <tr>
 <td><%=billing.billing_date%></td>
-<td><%=billing.amount%></td>
+<td><%=number_to_currency billing.amount%></td>
 <td><%=billing.transaction_id%></td>
 <%acknowledge=billing.acknowledge%>
 <td><%=acknowledge%></td>

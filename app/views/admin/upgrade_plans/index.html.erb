@@ -8,9 +8,9 @@
         <table  class="index">
 					<thead>
            <tr>
-                <th><%=Name%></th>
-                <th><%=Fee%></th>
-                <th><%=Trasaction Fee%></th>
+                <th>Name</th>
+                <th>Fee%</th>
+                <th>Trasaction Fee</th>
                 <th>No of Products</th>
                 <th>Payment Period</th>
             </tr>
@@ -18,7 +18,7 @@
 			<tbody>
         <tr class="bg-bl">
 						<td><%= current_plan.plan_name%></td>
-						<td><%= current_plan.amount%> $</td>
+						<td><%= number_to_currency current_plan.amount%></td>
 						<td><%= current_plan.transaction_fee%> %</td>
 						<td><%= current_plan.no_of_products%></td>                	
 						<td><%= current_plan.payment_period%></td>                	
@@ -49,7 +49,7 @@
 						<%@pricing_plans && @pricing_plans.each do |plan|%>
             <tr class="bg-bl">
                 <td><%= plan.plan_name%></td>
-							<td><%= plan.amount%> $</td>
+							<td><%=number_to_currency  plan.amount%></td>
 						<td><%= plan.transaction_fee%> %</td>
 						<td><%= plan.no_of_products%></td>
                	<td>

@@ -28,7 +28,7 @@
 <tr class="even">   
 <td class="td-title"><%=t(:Fee)%></td>
 <%fee && fee.each_with_index do |f,i|%>
-<td class="table-col-<%=i%>"><%=f%></td>                  
+<td class="table-col-<%=i%>"><%= number_to_currency f%></td>                  
 <%end%></tr>
 <tr class="odd">   
 <td class="td-title"><%=t(:Transaction_Fee)%></td>
