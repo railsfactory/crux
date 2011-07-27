@@ -120,18 +120,6 @@ http:<%= f.text_field :domain%>.spree.railsfactory.com
 <%= f.select 'expiration_year', options_for_select(card_year),{},{:style=>"width:150px;"}%>
 <%= f.select 'expiration_month', options_for_select(card_month),{},{:style=>"width:150px; margin-left:20px;"}%>
 </div>
-
-<div class="filed-wrap">
-<label class="inlined">Theme</label>*
-<%= f.select :theme,%w{yellow blue green},{},{:onchange =>"theme_color(this.value)" }%> 
-</div>
-<div id="image">
-<img id ="yellow" src="/images/gold.png" height="200" width="200" >
-<img id ="green" src="/images/basic.png" height="200" width="200" style="display:none;">
-<img id ="blue" src="/images/platinum.png" height="200" width="200" style="display:none;">
-
-
-</div>
 <%end%>
 </div>
 <div class="block cl rc8">
@@ -144,31 +132,14 @@ http:<%= f.text_field :domain%>.spree.railsfactory.com
 <label for="">Accept payments through PayPal to your email.</label>
 </div>
 </dd>
-
 <div class="create-btn "><input type="image" src="/images/btn-createaccount.png" /></div>
 </dl>
 </div>
 </div>
-
 </div>
 <%end%>
 </div>
 </div>
 </div>
-
 </body>
 </html>
-
-<script>
-function theme_color(value)
-{
-if(value=="yellow"){img1="green";img2="blue"}
-if(value=="blue"){img1="yellow";img2="green"}
-if(value=="green"){img1="yellow";img2="blue"}
-$("#"+img1).hide();
-$("#"+img2).hide();
-$( "#"+value).show();
-
-
-}
-</script>

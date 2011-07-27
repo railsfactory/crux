@@ -32,7 +32,7 @@
 
   <tr id="pricing_plan_<%=pricing_plan.id%>">
     <td class='user_email'><%=link_to pricing_plan.plan_name, admin_pricing_plan_path(pricing_plan) %></td>
-    <td><%= pricing_plan.amount %> $</td>
+    <td><%= number_to_currency pricing_plan.amount %></td>
     <td><%= pricing_plan.transaction_fee %> %</td>
     <td><%= pricing_plan.no_of_products %></td>
     <td><%= pricing_plan.payment_period %></td>
