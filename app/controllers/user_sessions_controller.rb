@@ -13,6 +13,11 @@ class UserSessionsController < Devise::SessionsController
   end
 
   def create
+     unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
+    $domain_value_url=get_sub_domain(current_subdomain)
+    else
+      $domain_value_url=""
+    end
   authenticate_user!
   if user_signed_in?
   logged_in_user = current_user
