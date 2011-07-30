@@ -2,7 +2,7 @@
 
 class Admin::OverviewController < Admin::BaseController
   before_filter :check_json_authenticity, :only => :get_report_data
-  before_filter :verify_user
+  #~ before_filter :verify_user
   #todo, add rss feed of information that is happening
 
   def index
