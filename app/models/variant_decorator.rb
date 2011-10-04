@@ -10,7 +10,7 @@ Variant.class_eval do
 			if  pref.blank?
 				val=Spree::Config[:allow_backorders]
 			else
-			val=pref.find_by_name(attr).value
+			val=pref.select{|x|x.name==attr}.map(&:value)[0]
 		end
 			return val
 end

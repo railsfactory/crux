@@ -13,7 +13,7 @@ def check_stock_value(attr,domain)
 	if  pref.blank?
 		val=Spree::Config[:show_zero_stock_products]
 	else
-  val=pref.find_by_name(attr).value
+				val=pref.select{|x|x.name==attr}.map(&:value)[0]
 end
   return val
 end
