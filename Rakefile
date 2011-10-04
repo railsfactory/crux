@@ -23,7 +23,7 @@ end
 desc "Default Task"
 task :default => [:spec, :cucumber ]
 
-spec = eval(File.read('saas.gemspec'))
+spec = eval(File.read('crux.gemspec'))
 
 Rake::GemPackageTask.new(spec) do |p|
   p.gem_spec = spec
@@ -42,12 +42,12 @@ task :default => [ :spec ]
 desc "Regenerates a rails 3 app for testing"
 task :test_app do
   require '../spree/lib/generators/spree/test_app_generator'
-  class SaaTestAppGenerator < Spree::Generators::TestAppGenerator
+  class CruxTestAppGenerator < Spree::Generators::TestAppGenerator
 
     def install_gems
       inside "test_app" do
         run 'bundle exec rake spree_core:install'
-        run 'bundle exec rake saas:install'
+        run 'bundle exec rake crux:install'
       end
     end
 
@@ -59,12 +59,12 @@ task :test_app do
     def full_path_for_local_gems
       <<-gems
 gem 'spree_core', :path => \'#{File.join(File.dirname(__FILE__), "../spree/", "core")}\'
-gem 'saas', :path => \'#{File.dirname(__FILE__)}\'
+gem 'crux', :path => \'#{File.dirname(__FILE__)}\'
       gems
     end
 
   end
-  SaaTestAppGenerator.start
+  CruxTestAppGenerator.start
 end
 
 namespace :test_app do
