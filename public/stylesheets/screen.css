@@ -193,7 +193,6 @@ form p.field {
 }
 form p.field span.req {
   color: red;
-  float: left;
   position: relative;
   top: -3px;
 }

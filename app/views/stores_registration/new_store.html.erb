@@ -5,30 +5,30 @@
 <div class="sign-up-banner"></div>
 <div class="sign-up">
 <%= flash[:notice]%>
+<%=form_for (@user, :url=>{:controller=>:stores_registration,:action=>:save_store_details}) do |u| %>                          
+<div class="abt-u">
+<div class="form-left"> 
+<div class="login-info rc8">
 <%if flash[:error]%>
 <p class="err-msg">
 <%=flash[:error]%>
 </p>
 <%end%>
-<%=form_for (@user, :url=>{:controller=>:stores_registration,:action=>:save_store_details}) do |u| %>                          
-<div class="abt-u">
-<div class="form-left"> 
-<div class="login-info rc8">
 <h3>You are registering for <%= @plan_name%> plan and Amount is <%= @amount %></h3>
 
 <h3>Login Information</h3>
 <div class="filed-wrap">
-<label class="inlined">Email Address</label>*
+<label class="inlined">Email Address<span>*</span></label>
 <%= u.text_field :email,:class=>"input-text full"%>
 <div class="err-msg"><%=error_message_on        :user,:email %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Password</label>*
+<label class="inlined">Password<span>*</span></label>
 <%= u.password_field :password%>
 <div class="err-msg"><%=error_message_on        :user,:password %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Confirm Password</label>*
+<label class="inlined">Confirm Password</label>
 <%= u.password_field :password_confirmation%>
 <div class="err-msg"><%=error_message_on        :user,:password_confirmation %></div>
 </div>
@@ -38,44 +38,44 @@
 <%= fields_for @store_owner do |f| %>
 
 <div class="filed-wrap">
-<label class="inlined">Name</label>*
+<label class="inlined">Name<span>*</span></label>
 <%= f.text_field :name%>
 <div class="err-msg"><%=error_message_on        :store_owner,:name %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Address 1</label>*
+<label class="inlined">Address 1<span>*</span></label>
 <%= f.text_field :address1%>
 <div class="err-msg"><%=error_message_on        :store_owner,:address1 %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Address 2</label>*
+<label class="inlined">Address 2<span>*</span></label>
 <%= f.text_field :address2%>
 <div class="err-msg"><%=error_message_on        :store_owner,:address2 %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">City</label>*
+<label class="inlined">City<span>*</span></label>
 <%= f.text_field :city%>
 <div class="err-msg"><%=error_message_on        :store_owner,:city %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Zipcode</label>*
+<label class="inlined">Zipcode<span>*</span></label>
 <%= f.text_field :zipcode%>
 <div class="err-msg"><%=error_message_on        :store_owner,:zipcode %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Country</label>*
+<label class="inlined">Country<span>*</span></label>
 <%@countries = Country.find(:all)%>
 <%= f.select :country,(@countries.collect{|x|[x.name]} if @countries), {:selected=>"United States",:prompt => 'Select Country'} %>
 <div class="err-msg"></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">State</label>*
+<label class="inlined">State<span>*</span></label>
 <%@states = State.find(:all)%>
 <%= f.select :state,(@states.collect{|x|[x.name]} if @countries), {:selected=>"California",:prompt => 'Select State'} %>                                
 </div>
 
 <div class="filed-wrap">
-<label class="inlined">Phone Number</label>*
+<label class="inlined">Phone Number<span>*</span></label>
 <%= f.text_field :phoneno,:maxlength=>16%>
 <div class="err-msg"><%=error_message_on        :store_owner,:phoneno%></div>
 </div>
@@ -83,7 +83,7 @@
 <div class="login-info rc8">
 <h3>Domain Name</h3>
 <div class="filed-wrap">
-<label class="inlined">Domain Name</label>*
+<label class="inlined">Domain Name<span>*</span></label>
 http:<%= f.text_field :domain%>.spree.railsfactory.com
 <div class="err-msg"><%=error_message_on        :store_owner,:domain%></div>
 </div>
@@ -91,17 +91,17 @@ http:<%= f.text_field :domain%>.spree.railsfactory.com
 <div class="login-info rc8">
 <h3>Credit Card Details</h3>
 <div class="filed-wrap">
-<label class="inlined">First Name</label>*
+<label class="inlined">First Name<span>*</span></label>
 <%= f.text_field :first_name%>
 <div class="err-msg"><%=error_message_on        :store_owner,:first_name %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Last Name</label>*
+<label class="inlined">Last Name<span>*</span></label>
 <%= f.text_field :last_name%>
 <div class="err-msg"><%=error_message_on        :store_owner,:last_name %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Card Number</label>*
+<label class="inlined">Card Number<span>*</span></label>
 <%= f.text_field :card_number%>
 <div class="err-msg"><%=error_message_on        :store_owner,:card_number%></div>
 </div>
@@ -111,12 +111,12 @@ http:<%= f.text_field :domain%>.spree.railsfactory.com
 <div class="err-msg"></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Cvv</label>*
+<label class="inlined">Cvv<span>*</span></label>
 <%= f.password_field :cvv%>
 <div class="err-msg"><%=error_message_on        :store_owner,:cvv %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Expiration Year </label>*
+<label class="inlined">Expiration Year<span>*</span> </label>
 <%= f.select 'expiration_year', options_for_select(card_year),{},{:style=>"width:150px;"}%>
 <%= f.select 'expiration_month', options_for_select(card_month),{},{:style=>"width:150px; margin-left:20px;"}%>
 </div>

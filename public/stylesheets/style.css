@@ -143,10 +143,15 @@ table#price-chart .odd .table-col-1 {background:#f5e6a9;}
 table#price-chart .odd .table-col-2 {background:#c7ecfe;}
 table#price-chart .odd .table-col-3 {background:#aed4ee;}
 
-table#price-chart th.sign-up-btn a { width:88px; height:28px; position:absolute; left:1012px; top:394px; display:block; }
-table#price-chart th .sil-btn a { left:813px; }
-table#price-chart th .gold-btn a { left:615px; }
-table#price-chart th .basic-btn a { left:414px; }
+table#price-chart th.sign-up-btn a { /*width:88px; height:28px; left:1012px; top:404px; display:block; position:relative; */}
+.basic-btn, .sil-btn, .gold-btn, .platinum { position:relative; width:198px; height:160px;} 
+.basic-btn a, .sil-btn a, .gold-btn a, .platinum a { position:absolute;}
+.sil-btn a, .gold-btn a, .platinum a { position:absolute; top:131px; left:55px;}
+table#price-chart th .sil-btn a { background:url(../images/sign-up-sil.png) no-repeat 0 0 scroll; width:89px; height:30px; }
+table#price-chart th .gold-btn a { background:url(../images/sign-up-gd.png) no-repeat 0 0 scroll; width:89px; height:30px;  }
+table#price-chart th .platinum a { background:url(../images/sign-up-pl.png) no-repeat 0 0 scroll;  width:89px; height:30px;  }
+table#price-chart th .basic-btn a { background:url(../images/sign-up-basic.png) no-repeat 0 0 scroll; top:132px; left:55px; width:87px; height:28px; }
+
 .highlight-box-wrapper {padding: 15px;}
 .highlight-box {background: none repeat scroll 0 0 #94dff2;border: 1px solid #165363; -moz-border-radius:5px; -webkit-border-radius:5px; box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999;}
 .highlight-box h2 {margin: 0 0 10px;font-size:30px;}
@@ -206,7 +211,8 @@ label.inlined { float:left; color: #1c424c; font-size: 14px;font-weight: normal;
 #user-agreement p { margin:10px 0 10px;}
 .create-btn input { margin:20px 0 10px;}
 .filed-wrap { overflow:hidden;}
-.err-msg { float:left; padding:10px 0 0 15px; color:#FF0000; font-size:12px;}
+div.err-msg { float:left; padding:10px 0 0 15px; color:#FF0000; font-size:12px;}
+p.err-msg { padding:10px 0 10px 0px; color:#FF0000; font-size:12px;}
 .month { float:left; margin-left:10px;}
 
 /* */
@@ -214,3 +220,6 @@ label.inlined { float:left; color: #1c424c; font-size: 14px;font-weight: normal;
 #updatecart p a { color:#fff !important; padding:6px;}
 #clear_cart_link { float:left; margin:45px 0 0 0;}
 #billing, #shipping { width:650px;}
+.filed-wrap label.inlined span { color:#ff0000; margin-left:5px;}
+form p.field { 
+overflow:hidden;
