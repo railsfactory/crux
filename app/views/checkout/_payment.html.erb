@@ -22,7 +22,7 @@
     <br style='clear:both;' />
 			<% if @order.available_payment_methods.count>0%>
 
-    <div data-hook="coupon_code_field"></div>
+    <%= hook :coupon_code_field, {:form => form} %>
 		<%end%>
   </div>
 </fieldset>
