@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 	match '/storeowner' => 'stores_registration#storeowner',:as=>:storeowner
 	match 'user_update_plan/:plan_id'=>'admin/upgrade_plans#user_update_plan',:as=>:update_plan
 	match 'admin/store_registration_payment_method'=>'admin/payment_methods#store_registration_payment_method',:as=>:store_registration_payment_method
+	match '/admin/users/store_status'=>'admin/users#store_owners'
 	namespace :admin do
 		resources :pricing_plans
 		resources :domain_customizes
