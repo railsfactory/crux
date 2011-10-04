@@ -15,7 +15,7 @@ add_column :tax_rates,:domain_url,:string
 add_column :zones,:domain_url,:string
 add_column :preferences,:domain_url,:string
 add_column :products,:domain_url,:string
-add_column :activators,:domain_url,:string
+#~ add_column :activators,:domain_url,:string
 add_column :users,:domain_url,:string
 end
 

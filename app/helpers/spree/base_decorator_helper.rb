@@ -8,7 +8,7 @@ module Spree::BaseHelper
 			  	val=Spree::Config[:allow_backorders]
 				end	
 			else
-				val=pref.find_by_name(attr).value
+				val=pref.select{|x|x.name==attr}.map(&:value)[0]
 			end
 			return val
 		end
@@ -68,7 +68,7 @@ module Spree::BaseHelper
 		def find_domain_preference(type)
 			config=Configuration.find_by_name(type)
 			if config
-				available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),type,config.id])        
+				available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])        
 			else
 				available=[]
 			end

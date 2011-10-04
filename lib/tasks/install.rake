@@ -1,8 +1,8 @@
-namespace :saas do
+namespace :crux do
   desc "Copies all migrations and assets (NOTE: This will be obsolete with Rails 3.1)"
   task :install do
-    Rake::Task['saas:install:migrations'].invoke
-    Rake::Task['saas:install:assets'].invoke
+    Rake::Task['crux:install:migrations'].invoke
+    Rake::Task['crux:install:assets'].invoke
   end
 
   namespace :install do

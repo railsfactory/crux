@@ -63,7 +63,7 @@ protected
     end
   end
   def condition
- if ((model_class.name == "Product")||(model_class.name == "OptionType")||(model_class.name == "Property")||(model_class.name == "Prototype")||(model_class.name == "ProductGroup")||(model_class.name == "MailMethod")||(model_class.name == "TaxCategory")||(model_class.name == "Zone")||(model_class.name == "PaymentMethod")||(model_class.name == "ShippingMethod")||(model_class.name == "ShippingCategory")||(model_class.name == "Taxonomy")||(model_class.name == "Promotion"))
+ if ((model_class.name == "Product")||(model_class.name == "OptionType")||(model_class.name == "Property")||(model_class.name == "Prototype")||(model_class.name == "ProductGroup")||(model_class.name == "MailMethod")||(model_class.name == "TaxCategory")||(model_class.name == "Zone")||(model_class.name == "PaymentMethod")||(model_class.name == "ShippingMethod")||(model_class.name == "ShippingCategory")||(model_class.name == "Taxonomy") ||(model_class.name == "Promotion"))
    return true
    else
      return false

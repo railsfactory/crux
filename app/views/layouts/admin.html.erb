@@ -2,22 +2,26 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head data-hook="admin_inside_head">
-<%= render "admin/shared/head" %>
-</head>
+  <%= hook :admin_inside_head do %>
+    <%=render :partial => "shared/admin_head" %>
+  <% end %>
+	</head>
 <body class='yui-skin-sam admin'>
 <!--[if IE 7]>
 <div id='IE7'>
 <![endif]-->
 <div id='wrapper'>
 <div id="header">
-<div data-hook="admin_login_navigation_bar"></div>
+    <%= hook :admin_login_navigation_bar %>
 <a href="<%= admin_path %>"><%= image_tag Spree::Config[:admin_interface_logo], :id => 'logo' %></a>
 <h1><%= link_to t("administration"), admin_path %></h1>
 <div id="progress"><%= image_tag '/admin/images/progress.gif' %> <%= t('loading') %>...</div>
 </div>
 <div id="admin-menu">
-<ul data-hook="admin_tabs">
+<ul>
+      <%= hook :admin_tabs do %>
 <%= render 'admin/shared/tabs' %>
+<% end %>
 </ul>
 <br class="clear" />
 </div>
@@ -47,8 +51,7 @@
 <!--[if IE]>
 </div>
 <![endif]-->
-<div data-hook="admin_footer_scripts">
+<%= hook :admin_footer_scripts do %>
 <%= javascript_include_tag '/admin/javascripts/unobtrusive_handlers.js' %>
-</div>
-</body>
+<%end%></body>
 </html>

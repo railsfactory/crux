@@ -7,7 +7,7 @@ InventoryUnit.class_eval do
 			if  pref.blank?
 				back_order_val=Spree::Config[:allow_backorders]
 			else
-			back_order_val=pref.find_by_name("allow_backorders").value
+							back_order_val=pref.select{|x|x.name=="allow_backorders"}.map(&:value)[0]
 		end			
 		
     if back_order > 0 && !back_order_val

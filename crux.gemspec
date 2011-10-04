@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'saas'
-  s.version     = '0.70.99'
+  s.name        = 'crux'
+  s.version     = '0.60.1'
   s.summary     = 'Add gem summary here'
   s.description = 'Add (optional) gem description here'
   s.required_ruby_version = '>= 1.8.7'
@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency('spree_core', '>= 0.70.99')
+  s.add_dependency('spree_core', '>= 0.60.1')
 end

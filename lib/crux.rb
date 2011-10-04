@@ -1,7 +1,7 @@
 require 'spree_core'
-require 'saas_hooks'
+require 'crux_hooks'
 
-module Saas
+module Crux
   class Engine < Rails::Engine
 
     config.autoload_paths += %W(#{config.root}/lib)
