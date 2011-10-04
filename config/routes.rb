@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # Add your extension routes here
+	root :to => 'home#index'
 	match '/admin/store_details'=>'admin/store_details#index'
 	match '/admin/store_details/billing_history'=>'admin/store_details#billing_history'
 	match '/admin/store_details/store_billing'=>'admin/store_details#store_billing'
@@ -15,5 +16,4 @@ Rails.application.routes.draw do
 		resources :upgrade_plans
 	end
 	resources :stores_registration
-
 end
