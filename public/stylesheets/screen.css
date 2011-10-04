@@ -923,8 +923,8 @@ div#checkout #checkout_form_address #shipping label {
 }
 div#checkout #checkout_form_address #billing input { width: 304px; float:left; }
 div#checkout #checkout_form_address #shipping input { width: 304px; }
-div#checkout #checkout_form_address #billing select { width: 311px; float:left; }
-div#checkout #checkout_form_address #shipping select { width: 311px; }
+div#checkout #checkout_form_address #billing select { width: 308px; float:left; }
+div#checkout #checkout_form_address #shipping select { width: 308px; }
 div#checkout #checkout_form_address #billing p.checkbox { padding-left: 200px; }
 div#checkout #checkout_form_address #shipping p.checkbox { /*padding-left: 200px;*/ }
 div#checkout #checkout_form_address .form-buttons { /*padding-left: 200px;*/ }

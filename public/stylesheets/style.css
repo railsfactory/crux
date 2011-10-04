@@ -211,5 +211,6 @@ label.inlined { float:left; color: #1c424c; font-size: 14px;font-weight: normal;
 
 /* */
 #updatecart p { float:left; margin:45px 5px 0 21px;}
+#updatecart p a { color:#fff !important; padding:6px;}
 #clear_cart_link { float:left; margin:45px 0 0 0;}
 #billing, #shipping { width:650px;}
