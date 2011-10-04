@@ -18,11 +18,20 @@
 </ul>
 </div>-->
 <ul id="nav-primary">
+<%c=controller.controller_name%>
+<%if c=="home"%>
 <li class="active"><a href="#">Home</a></li>
+<%else%>
+<li ><a href="#">Home</a></li>
+<%end%>
 <!--<li><a href="#">Feature Tour</a></li>
 <li><a href="#">Examples</a></li>-->
 <li><a href="#">FAQ</a></li>
-<li><a href=<%= stores_registration_index_path%>>Pricing &amp; Signup</a></li>
+<%if c=="stores_registration"%>
+<li class="active"><a href=<%= stores_registration_index_path%>>Pricing &amp; Signup</a></li>
+<%else%>
+<li ><a href=<%= stores_registration_index_path%>>Pricing &amp; Signup</a></li>
+<%end%>
 </ul>
 </div>
 <%=yield%>
