@@ -2,7 +2,7 @@
 
 class Admin::OverviewController < Admin::BaseController
   before_filter :check_json_authenticity, :only => :get_report_data
-  #~ before_filter :verify_user
+  before_filter :verify_user
   #todo, add rss feed of information that is happening
 
   def index
@@ -156,9 +156,9 @@ def out_of_stock_products
   Product.where(:count_on_hand => 0,:domain_url=>current_user.domain_url).limit(5)
 end
 def verify_user
-  if current_user.has_role?"admin"
+  if (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
     redirect_to  admin_users_path
-    end
+  end
 end
 
 end
