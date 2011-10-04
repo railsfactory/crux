@@ -587,7 +587,7 @@ button, a.button, input.button, .forgot_password p input.submit_btn {
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
-  line-height: 1.2em;
+  /*line-height: 1.2em;*/
   margin: 0px;
   overflow: visible;
   padding: 7px;
@@ -660,11 +660,12 @@ p button img { margin: 0 5px 0 0; }
     -moz-border-radius: 5px 5px 5px 5px;
     -webkit-border-radius: 5px 5px 5px 5px;
     float: left;
-    height: 150px;
+    /*height: 150px;*/
     margin: 10px 0 10px 12px;
     padding: 3px;
     position: relative;
-    width: 160px;
+    /*width: 160px;*/
+	width: 190px;
 }
 .product-listing li a {
     color: #333333;
@@ -739,6 +740,7 @@ ul.thumbnails li.selected { border-color: #999999; }
   margin: 0px;
   font-weight: bold;
   clear: both;
+  font-size:15px;
 }
 #product-images #main-image {
     padding: 5px;
@@ -765,7 +767,7 @@ ul.thumbnails li.selected { border-color: #999999; }
   display: inline;
   float: left;
   width: 270px;
-  margin:10px 0 0 0;
+  margin:10px 0 0 20px;
 }
 #taxon-crumbs {
   display: inline;
@@ -900,7 +902,7 @@ div#checkout { position: relative;     -moz-border-radius: 10px 10px 10px 10px; 
     border: 1px solid #D5D5D3;}
 div#checkout .progress-steps {
   position: absolute;
-  top:10px;
+  top:48px;
   right: 15px;
 }
 div#checkout form {
@@ -911,16 +913,18 @@ div#checkout #checkout_form_address { margin-left:15px;}
 div#checkout #checkout_form_delivery { margin: 0 0 0 15px;}
 div#checkout #checkout_form_address #billing label {
   float: left;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
+  width:190px;
 }
 div#checkout #checkout_form_address #shipping label {
   float: left;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
+  width:190px;
 }
 div#checkout #checkout_form_address #billing input { width: 304px; float:left; }
 div#checkout #checkout_form_address #shipping input { width: 304px; }
-div#checkout #checkout_form_address #billing select { width: 304px; float:left; }
-div#checkout #checkout_form_address #shipping select { width: 304px; }
+div#checkout #checkout_form_address #billing select { width: 311px; float:left; }
+div#checkout #checkout_form_address #shipping select { width: 311px; }
 div#checkout #checkout_form_address #billing p.checkbox { padding-left: 200px; }
 div#checkout #checkout_form_address #shipping p.checkbox { /*padding-left: 200px;*/ }
 div#checkout #checkout_form_address .form-buttons { /*padding-left: 200px;*/ }
@@ -1043,20 +1047,26 @@ dl.table-display dt.even { background:#D6F7FF; -moz-border-radius:6px; -webkit-b
 #user-info dd { float:left; margin-top:0px;}
 .order-summary { width:928px; margin-left:15px;}
 .pro-image { text-align:center; margin:5px;}
-.pro-name { bottom: 6px;
+.pro-name { 
+	/*bottom: 6px;
     left: 6px;
-    width:100px;
-    position: absolute;}
-.pro-name a { color: #666666;
+    position: absolute;
+	width:100px;*/
+	float:left;
+	margin: 41px 10px 0 6px;
+}
+.pro-name a { 
+	color: #666666;
     line-height: 15px;
-    font-size:12px;
+    font-size:14px;
     margin-bottom: 0;}
 .price-selling {
-    bottom: 2px;
-    color: #0192B5;
-    margin-bottom: 0;
+    /*bottom: 2px;
     position: absolute;
-    right: 6px;
+    right: 6px;*/
+	color: #0192B5;
+	float:left;
+	margin:5px 10px 0 6px;
 }
 #product-price, .product-price { border-bottom: 1px solid #DEE7F1; padding-bottom:5px;} 
 #product-price dt, .product-price dt { width:100px; float:left;}
