@@ -5,6 +5,7 @@ Introduction goes here.
 
 Clone the git repo   
 git clone -b 0-60-stable git://github.com/spree/spree.git
+
 cd spree
 
 Install the gem dependencies
