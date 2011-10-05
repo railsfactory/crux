@@ -4,31 +4,31 @@
 Introduction goes here.
 
 Clone the git repo   
-     git clone -b 0-60-stable git://github.com/spree/spree.git
-     cd spree
+git clone -b 0-60-stable git://github.com/spree/spree.git
+cd spree
 
 Install the gem dependencies
-      bundle install
+bundle install
 
 Create a sandbox rails application for testing purposes (and automatically perform all necessary database setup)
-      bundle exec rake sandbox
-      cd sandbox
+bundle exec rake sandbox
+cd sandbox
 
 Install the gem dependencies supported for sandbox
-      bundle install
+bundle install
 
 Now you just need to create new database
-      bundle exec rake db:create
+bundle exec rake db:create
 
 Then use the install generator to do the basic setup (Copies all migrations and assets)
-      bundle exec rake spree:install
+bundle exec rake spree:install
 
 Now you just need to run the new migrations, and setup some basic data
-      bundle exec rake db:migrate
-      bundle exec rake db:seed
+bundle exec rake db:migrate
+bundle exec rake db:seed
 
 Now just loads sample data into the store
-      bundle exec rake db:sample
+bundle exec rake db:sample
 
 Crux
 ====
@@ -43,17 +43,17 @@ domain name and branding. Store owner can act as admin for his domain and he can
 Personalised configurations for his shop.
 
 Add to the following gem dependency in sandbox/Gemfile
-     gem "crux",:git => "git://github.com/railsfactory/crux.git"
-     gem 'subdomain-fu', '1.0.0.beta2', :git => "git://github.com/nhowell/subdomain-fu.git"
-     gem 'dynamic_form'
-     gem 'geokit'
+gem "crux",:git => "git://github.com/railsfactory/crux.git"
+gem 'subdomain-fu', '1.0.0.beta2', :git => "git://github.com/nhowell/subdomain-fu.git"
+gem 'dynamic_form'
+gem 'geokit'
 
 Run
-     cd sandbox
-     bundle install
-     bundle exec rake spree_core:install
-     bundle exec rake crux:install
-     bundle exec rake db:migrate
+cd sandbox
+bundle install
+bundle exec rake spree_core:install
+bundle exec rake crux:install
+bundle exec rake db:migrate
 
 Add the settings.yml file in sandbox/config
 
@@ -65,11 +65,11 @@ Add the settings.yml file in sandbox/config
 For instance:
 ====
 
-     development/production:
-     domain_url: http://yourdomain.com (eg:http://shop.storefront.com)
-     secure_domain_url: https://yourdomain.com (eg:https://shop.storefront.com)
-     sub_domain: yoursubdomain (eg:shop)
-     separate_url: yourdomain (eg:shop.storefront)
+development/production:
+domain_url: http://yourdomain.com (eg:http://shop.storefront.com)
+secure_domain_url: https://yourdomain.com (eg:https://shop.storefront.com)
+sub_domain: yoursubdomain (eg:shop)
+separate_url: yourdomain (eg:shop.storefront)
 
 Note:
 ====
