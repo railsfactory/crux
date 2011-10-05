@@ -38,7 +38,6 @@ module SpreeBase
       else        
         verify_custom_domain
       end
-       I18n.locale= @store.user.language if @store
       end
     end
 
