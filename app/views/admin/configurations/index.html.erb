@@ -7,7 +7,8 @@
       <th><%= t("description") %></th>
     </tr>
   </thead>
-  <tbody data-hook="admin_configurations_menu">
+ <tbody>
+    <%= hook :admin_configurations_menu do %>
 		  <% if current_user.has_role? "admin"%>
     <tr>
       <td><%= link_to t("general_settings"), admin_general_settings_path %></td>
@@ -83,5 +84,6 @@
       <td><%= link_to t("analytics_trackers"), admin_trackers_path %></td>
       <td><%= t("google_analytics_setting_description") %></td>
     </tr>
+ 			<%end%>
   </tbody>
 </table>
