@@ -20,51 +20,43 @@ module SpreeBase
         end
       end
     end
-
-  
-
-def load_account
-
-	unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
- 
-		domain = get_sub_domain(current_subdomain)
     
-		if request.url.include?(APP_CONFIG['separate_url'])
-			store = StoreOwner.find_by_domain(domain)
-			active = store.is_active? if store
-				if store && active == false
-				#~ $error = "Your account is inactive."
-        					            redirect_to "#{APP_CONFIG['domain_url']}"
-
-
+    
+    def load_account
+      unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url'])) 
+        domain = get_sub_domain(current_subdomain)
+        @store = StoreOwner.find_by_domain(domain)
+        if request.url.include?(APP_CONFIG['separate_url'])
+          unless @store.blank?
+           active = @store.is_active? 
+            if !active 
+             redirect_to "#{APP_CONFIG['domain_url']}"     
+            end
+        else
+         redirect_to "#{APP_CONFIG['domain_url']}"
+        end
+      else        
+        verify_custom_domain
+      end
+       I18n.locale= @store.user.language if @store
+      end
     end
 
-		else
-      if find_customization_domain
-		custom_domain_status=find_customization_domain.status
-			store = store = StoreOwner.find_by_domain(domain)
-			active = store.is_active? if store
-
-				if find_customization_domain && custom_domain_status == true && store && active == false
-									 #~ $error= "Your account is inactive."
-                            redirect_to "#{APP_CONFIG['domain_url']}"
-
-				elsif find_customization_domain && custom_domain_status == false && store && active == true
-													#~ $error = "Temporarily stopped"
-                            redirect_to "#{APP_CONFIG['domain_url']}"
-
-
-
-        end
+    def verify_custom_domain
+      custom_domain_status=find_customization_domain.status
+      active = @store.is_active? if @store
+      if find_customization_domain 
+        if custom_domain_status  
+          if !active                                        
+           redirect_to "#{APP_CONFIG['domain_url']}"
+          end
         else
-                          redirect_to "#{APP_CONFIG['domain_url']}"
+         redirect_to "#{APP_CONFIG['domain_url']}"
+        end
+      end
+    end
 
-				end
-				end
 
-	end
-
-end
 
  def get_sub_domain(domain)
     if (request.url.include?(APP_CONFIG['separate_url']))
