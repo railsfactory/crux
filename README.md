@@ -1,33 +1,33 @@
-Spree
+﻿Spree
 ====
 
 Introduction goes here.
 
-1.Clone the git repo   
+Clone the git repo   
      git clone -b 0-60-stable git://github.com/spree/spree.git
      cd spree
 
-2. Install the gem dependencies
+Install the gem dependencies
       bundle install
 
-3. Create a sandbox rails application for testing purposes (and automatically perform all necessary database setup)
+Create a sandbox rails application for testing purposes (and automatically perform all necessary database setup)
       bundle exec rake sandbox
       cd sandbox
 
-4. Install the gem dependencies supported for sandbox
+Install the gem dependencies supported for sandbox
       bundle install
 
-5. Now you just need to create new database
+Now you just need to create new database
       bundle exec rake db:create
 
-6. Then use the install generator to do the basic setup (Copies all migrations and assets)
+Then use the install generator to do the basic setup (Copies all migrations and assets)
       bundle exec rake spree:install
 
-7. Now you just need to run the new migrations, and setup some basic data
+Now you just need to run the new migrations, and setup some basic data
       bundle exec rake db:migrate
       bundle exec rake db:seed
 
-8. Now just loads sample data into the store
+Now just loads sample data into the store
       bundle exec rake db:sample
 
 Crux
@@ -42,20 +42,25 @@ And start their own store. Each store will operate as a unique business and will
 domain name and branding. Store owner can act as admin for his domain and he can set his
 Personalised configurations for his shop.
 
-1. Add to the following gem dependency in sandbox/Gemfile
+Add to the following gem dependency in sandbox/Gemfile
      gem "crux",:git => "git://github.com/railsfactory/crux.git"
      gem 'subdomain-fu', '1.0.0.beta2', :git => "git://github.com/nhowell/subdomain-fu.git"
      gem 'dynamic_form'
      gem 'geokit'
 
-2. Run
+Run
      cd sandbox
      bundle install
      bundle exec rake spree_core:install
      bundle exec rake crux:install
      bundle exec rake db:migrate
 
-3.Add the settings.yml file in sandbox/config
+Add the settings.yml file in sandbox/config
+
+
+
+
+
 
 For instance:
 ====
@@ -69,9 +74,9 @@ For instance:
 Note:
 ====
 
-1. Super-Admin:spree sample user.
-2.Before register any store, the store registration payment method  should be updated in admin/configuration panel by super admin. Then only the store can be registered.
-3.Subdomain Configuration
+Super-Admin:spree sample user.
+Before register any store, the store registration payment method  should be updated in admin/configuration panel by super admin. Then only the store can be registered.
+DNS Subdomain Configuration
 
 Example
 =======
