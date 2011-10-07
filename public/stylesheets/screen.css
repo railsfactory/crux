@@ -327,7 +327,7 @@ a { outline: none; }
     margin:0 0 10px 0;
     text-transform:capitalize;
 }
- .title-pro { margin-left:12px;}
+ /*.title-pro { margin-left:12px;}*/
 body.one-col #content {
   display: inline;
   float: left;
