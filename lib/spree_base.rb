@@ -42,7 +42,7 @@ module SpreeBase
     end
 
     def verify_custom_domain
-      custom_domain_status=find_customization_domain.status
+      custom_domain_status=find_customization_domain.status if find_customization_domain
       active = @store.is_active? if @store
       if find_customization_domain 
         if custom_domain_status  
