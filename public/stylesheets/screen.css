@@ -313,7 +313,7 @@ a { outline: none; }
     font-family: arial;
     font-size: 14px;
     font-weight: bold;
-    margin: 0px 30px 0px 0;
+    margin: 0px;
     padding: 4px 8px 4px 10px;
 }
 #sidebar h2 {
@@ -335,8 +335,8 @@ body.one-col #content {
 }
 body.two-col #content {
   display: inline;
-  float: left;
-  width: 750px;
+  float: right;
+  width: 738px;
   min-height:600px;
 }
 #header {
@@ -660,11 +660,11 @@ p button img { margin: 0 5px 0 0; }
     -webkit-border-radius: 5px 5px 5px 5px;
     float: left;
     /*height: 150px;*/
-    margin: 10px 0 10px 12px;
+    margin: 10px 10px 10px 0px;
     padding: 3px;
     position: relative;
     /*width: 160px;*/
-	width: 190px;
+    width: 190px;
 }
 .product-listing li a {
     color: #333333;
@@ -1045,14 +1045,15 @@ dl.table-display dt.even { background:#D6F7FF; -moz-border-radius:6px; -webkit-b
 #user-info dt { float:left; width:120px;}
 #user-info dd { float:left; margin-top:0px;}
 .order-summary { width:928px; margin-left:15px;}
-.pro-image { text-align:center; margin:5px;}
+.pro-image { text-align:center; margin:5px;height:100px;}
 .pro-name { 
 	/*bottom: 6px;
     left: 6px;
     position: absolute;
 	width:100px;*/
 	float:left;
-	margin: 41px 10px 0 6px;
+	margin: 5px 10px 0 6px;
+    width:175px;
 }
 .pro-name a { 
 	color: #666666;
