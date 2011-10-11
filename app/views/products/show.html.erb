@@ -10,8 +10,10 @@
 		</div>
 	</div>
 
-	<div id="cart-form" data-hook="cart_form">
+	<div id="cart-form">
+	<%= hook :cart_form do %>
 		<%= render 'cart_form' %>
+	<%end%>	
 	</div>
 
 	<div id="product-description" data-hook="product_description">
