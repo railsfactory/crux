@@ -10,15 +10,19 @@
 		</div>
 	</div>
 
-	<div id="cart-form" data-hook="cart_form">
+	<div id="cart-form">
+	<%= hook :cart_form do %>
 		<%= render 'cart_form' %>
+	<%end%>	
 	</div>
 
 	<div id="product-description" data-hook="product_description">
 		<h3>Product Details</h3>
-		<%= product_description(@product) rescue t("product_has_no_description") %>
-		<div data-hook="product_properties">
-			<%= render 'properties' %>
+  <%= hook :product_description do %>
+    <%= product_description(@product) rescue t("product_has_no_description") %>
+  <% end %>
+	<div data-hook="product_properties">
+		<%= render 'properties' %>
 		</div>
 		<%= render 'taxons' %>
 
