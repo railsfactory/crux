@@ -15,20 +15,20 @@ Admin::PaymentMethodsController.class_eval do
     end
   end
 	
-		def store_registration_payment_method
-				if StoreRegPaymentMethod && StoreRegPaymentMethod.first
-				  @payment=StoreRegPaymentMethod.first
-				else
-			  	@payment=StoreRegPaymentMethod.new()
-				end
-				value=params[:store_reg_payment_method]
-				if value && !value.blank?
-						@payment.update_attributes(value)
-						if @payment.save
-								flash.now[:notice]="Payment Method has been updated successfully"
-						else
-								render "store_registration_payment_method"
-						end
-				end
+	def store_registration_payment_method
+		if StoreRegPaymentMethod && StoreRegPaymentMethod.first
+			@payment=StoreRegPaymentMethod.first
+		else
+			@payment=StoreRegPaymentMethod.new()
 		end
+		value=params[:store_reg_payment_method]
+		if value && !value.blank?
+			@payment.update_attributes(value)
+			if @payment.save
+				flash.now[:notice]="Payment Method has been updated successfully"
+		  else
+				render "store_registration_payment_method"
+			end
+		end
+	end
 end

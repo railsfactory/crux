@@ -3,10 +3,8 @@
 # order that this approach is waranted.
 class CheckoutController < Spree::BaseController
   ssl_required
-
   before_filter :load_order
   rescue_from Spree::GatewayError, :with => :rescue_from_spree_gateway_error
-
   respond_to :html
 
   # Updates the order and advances to the next state (when possible.)
@@ -16,7 +14,6 @@ class CheckoutController < Spree::BaseController
       if @order.respond_to?(:coupon_code) && @order.coupon_code.present?
         fire_event('spree.checkout.coupon_code_added', :coupon_code => @order.coupon_code)
       end
-
       if @order.next
         state_callback(:after)
       else
@@ -27,7 +24,7 @@ class CheckoutController < Spree::BaseController
       if @order.state == "complete" || @order.completed?
 				lineitems=@order.line_items
         lineitems.each do |item|
-        StoreDetail.create(:product_id=>item.product.id,:quantity=>item.quantity,:domain_url=>get_sub_domain(current_subdomain))
+         StoreDetail.create(:product_id=>item.product.id,:quantity=>item.quantity,:domain_url=>get_sub_domain(current_subdomain))
         end
         flash[:notice] = I18n.t(:order_processed_successfully)
         flash[:commerce_tracking] = "nothing special"

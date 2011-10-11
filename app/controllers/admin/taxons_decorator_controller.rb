@@ -16,14 +16,14 @@ Admin::TaxonsController.class_eval do
     end
   end
 	
-	 def available
+  def available
     @product = load_product
     @taxons = params[:q].blank? ? [] : Taxon.where('lower(name) LIKE ? AND domain_url=?', "%#{params[:q].mb_chars.downcase}%",find_user_domain)
     @taxons.delete_if { |taxon| @product.taxons.include?(taxon) }
     respond_with(:admin, @taxons)
   end
 
-	 def load_product
+  def load_product
     Product.find_by_permalink! params[:product_id]
   end
 
