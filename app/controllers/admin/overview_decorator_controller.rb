@@ -8,21 +8,18 @@ class Admin::OverviewController < Admin::BaseController
   def index
     @show_dashboard = show_dashboard
     return unless @show_dashboard
-
     p = {:from => (Time.new().to_date  - 1.week).to_s(:db), :value => "Count"}
     @orders_by_day = orders_by_day(p)
     @orders_line_total = orders_line_total(p)
     @orders_total = orders_total(p)
     @orders_adjustment_total = orders_adjustment_total(p)
     @orders_credit_total = orders_credit_total(p)
-
     @best_selling_variants = best_selling_variants
     @top_grossing_variants = top_grossing_variants
     @last_five_orders = last_five_orders
     @biggest_spenders = biggest_spenders
     @out_of_stock_products = out_of_stock_products
     @best_selling_taxons = best_selling_taxons
-
     @pie_colors = [ "#0093DA", "#FF3500", "#92DB00", "#1AB3FF", "#FFB800"]
   end
 
@@ -35,29 +32,27 @@ class Admin::OverviewController < Admin::BaseController
       when "this_year" then {:from => Date.new(Time.now.year, 1, 1).to_s(:db)}
       when "last_year" then {:from => Date.new(Time.now.year - 1, 1, 1).to_s(:db), :to => Date.new(Time.now.year - 1, 12, -1).to_s(:db)}
     end
-
     case params[:report]
       when "orders_by_day"
         opts[:value] = params[:value]
-
         render :js => "[[" + orders_by_day(opts).map { |day| "['#{day[0]}',#{day[1]}]" }.join(",") + "]]"
       when "orders_totals"
         render :js => [:orders_total => orders_total(opts).to_i, :orders_line_total => orders_line_total(opts).to_i,
-          :orders_adjustment_total => orders_adjustment_total(opts).to_i, :orders_credit_total => orders_credit_total(opts).to_i ].to_json
+        :orders_adjustment_total => orders_adjustment_total(opts).to_i, :orders_credit_total => orders_credit_total(opts).to_i ].to_json
     end
   end
-
   private
+  
   def show_dashboard
     Order.count > 50
   end
 
   def conditions(params)
-      if params.key? :to
-       ["completed_at >= ? AND completed_at <= ? AND id in (?)", params[:from], params[:to],store_orders]
-      else
-          ["completed_at >= ? AND id in (?)", params[:from],store_orders]
-      end
+    if params.key? :to
+      ["completed_at >= ? AND completed_at <= ? AND id in (?)", params[:from], params[:to],store_orders]
+    else
+      ["completed_at >= ? AND id in (?)", params[:from],store_orders]
+    end
   end
 
   def fill_empty_entries(orders, params)
@@ -98,31 +93,30 @@ class Admin::OverviewController < Admin::BaseController
     Order.sum(:credit_total, :conditions => conditions(params))
   end
 
-def best_selling_variants
-	cond=["order_id in (?)",store_orders]
-
-   li= LineItem.sum(:quantity, :group => :variant_id,:limit=>5,:conditions=>cond)
+  def best_selling_variants
+    cond=["order_id in (?)",store_orders]
+    li= LineItem.sum(:quantity, :group => :variant_id,:limit=>5,:conditions=>cond)
     variants = li.map do |v|
-			variant = Variant.find(v[0])
-		[variant.name, v[1] ]
-      end
+      variant = Variant.find(v[0])
+      [variant.name, v[1] ]
+    end
     variants.sort { |x,y| y[1] <=> x[1] }
-end
-def store_orders
-owner_orders=StoreownerOrder.find_all_by_store_owner_id(current_user.store_owner).map(&:order_id)
-return owner_orders
-end
+  end
+
+  def store_orders
+    owner_orders=StoreownerOrder.find_all_by_store_owner_id(current_user.store_owner).map(&:order_id)
+    return owner_orders
+  end
 
  def top_grossing_variants
-	 	cond=["order_id in (?)",store_orders]
-
-   quantity = LineItem.sum(:quantity, :group => :variant_id, :limit => 5,:conditions=>cond)
-   prices = LineItem.sum(:price, :group => :variant_id, :limit => 5,:conditions=>cond)
+    cond=["order_id in (?)",store_orders]
+    quantity = LineItem.sum(:quantity, :group => :variant_id, :limit => 5,:conditions=>cond)
+    prices = LineItem.sum(:price, :group => :variant_id, :limit => 5,:conditions=>cond)
     variants = quantity.map do |v|
-			variant = Variant.find(v[0])
-		  [variant.name, v[1] * prices[v[0]]]
+      variant = Variant.find(v[0])
+      [variant.name, v[1] * prices[v[0]]]
     end
-		variants=variants.compact
+    variants=variants.compact
     variants.sort { |x,y| y[1] <=> x[1] }
   end
 
@@ -134,17 +128,17 @@ end
   end
 
   def last_five_orders
-  order = Order.includes(:line_items).where("completed_at IS NOT NULL").order("completed_at DESC").limit(5)
-	orders=order.where('id in (?)',store_orders )
+    order = Order.includes(:line_items).where("completed_at IS NOT NULL").order("completed_at DESC").limit(5)
+    orders=order.where('id in (?)',store_orders )
     orders.map do |o|
       qty = o.line_items.inject(0) {|sum,li| sum + li.quantity}
       [o.email, qty, o.total]
     end
   end
 
-   def biggest_spenders
-      spenders = Order.sum(:total, :group => :user_id, :limit => 5, :order => "sum(total) desc", :conditions =>["completed_at is not null AND user_id is not null AND id in (?)",store_orders])
-         spenders = spenders.map do |o|
+  def biggest_spenders
+    spenders = Order.sum(:total, :group => :user_id, :limit => 5, :order => "sum(total) desc", :conditions =>["completed_at is not null AND user_id is not null AND id in (?)",store_orders])
+    spenders = spenders.map do |o|
       orders = User.find(o[0]).orders
       qty = orders.size
       [orders.first.email, qty, o[1]]
@@ -152,13 +146,14 @@ end
     spenders.sort { |x,y| y[2] <=> x[2] }
   end
 
-def out_of_stock_products
-  Product.where(:count_on_hand => 0,:domain_url=>current_user.domain_url).limit(5)
-end
-def verify_user
-  if (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
-    redirect_to  admin_users_path
+  def out_of_stock_products
+    Product.where(:count_on_hand => 0,:domain_url=>current_user.domain_url).limit(5)
   end
-end
+  
+  def verify_user
+    if (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))
+      redirect_to  admin_users_path
+    end
+  end
 
 end

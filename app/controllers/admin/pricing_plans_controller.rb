@@ -1,13 +1,12 @@
 class Admin::PricingPlansController < Admin::ResourceController
   # GET /pricing_plans
   # GET /pricing_plans.xml
-resource_controller
-before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
+  resource_controller
+  before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
 
   def index
     @search = PricingPlan.search(params[:search])
     @pricing_plans = @search.all.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @pricing_plans }
@@ -16,6 +15,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
 
   # GET /pricing_plans/1
   # GET /pricing_plans/1.xml
+  
   def show
     find_pricing_plan
     respond_to do |format|
@@ -26,9 +26,9 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
 
   # GET /pricing_plans/new
   # GET /pricing_plans/new.xml
+  
   def new
     @pricing_plan = PricingPlan.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @pricing_plan }
@@ -36,15 +36,16 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
   end
 
   # GET /pricing_plans/1/edit
+  
   def edit
     find_pricing_plan
   end
 
   # POST /pricing_plans
   # POST /pricing_plans.xml
+  
   def create
     @pricing_plan = PricingPlan.new(params[:pricing_plan])
-
     respond_to do |format|
       if @pricing_plan.save
         format.html { redirect_to(admin_pricing_plan_path(@pricing_plan), :notice => 'Pricing plan was successfully created.') }
@@ -58,6 +59,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
 
   # PUT /pricing_plans/1
   # PUT /pricing_plans/1.xml
+  
   def update
     find_pricing_plan
     respond_to do |format|
@@ -73,6 +75,7 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
 
   # DELETE /pricing_plans/1
   # DELETE /pricing_plans/1.xml
+  
   def destroy
     find_pricing_plan
     @pricing_plan.destroy
@@ -81,7 +84,8 @@ before_filter :find_pricing_plan, :only => [:show,:edit,:update,:destroy]
       format.xml  { head :ok }
     end
   end
- def find_pricing_plan
-        @pricing_plan = PricingPlan.find(params[:id])
+  
+  def find_pricing_plan
+    @pricing_plan = PricingPlan.find(params[:id])
   end
 end
