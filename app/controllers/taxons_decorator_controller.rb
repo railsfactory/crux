@@ -6,7 +6,6 @@ TaxonsController.class_eval do
     @searcher = Spree::Config.searcher_class.new(params.merge(:taxon => @taxon.id))
     domain = get_sub_domain(current_subdomain)
     @products = @searcher.retrieve_products(domain)
-
     respond_with(@taxon)
   end
 end

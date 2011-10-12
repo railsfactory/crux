@@ -1,51 +1,20 @@
-#~ class User < ActiveRecord::Base
-
-  #~ devise :database_authenticatable, :token_authenticatable, :registerable, :recoverable,
-         #~ :rememberable, :trackable,:encryptable, :encryptor => "authlogic_sha512"
-				 
-	#~ has_one :store_owner
-  #~ attr_accessible :domain_url
-	 #~ #validation for saas spree
-  #~ validates_presence_of   :email, :if => :email_required?
-   #~ validates_uniqueness_of :email, :scope => :domain_url
-  #~ with_options :if => :password_required? do |v|
-            #~ v.validates_presence_of     :password
-            #~ v.validates_confirmation_of :password
-            #~ v.validates_length_of       :password, :within => 6...20, :allow_blank => true
-  #~ end
-          
-   #~ def email_required?
-        #~ true
-		#~ end
-      
-  #~ def password_required?
-        #~ !persisted? || !password.nil? || !password_confirmation.nil?
-	#~ end
-      
-		#~ end
-		
 class User < ActiveRecord::Base
-
   devise :database_authenticatable, :token_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :encryptable, :encryptor => "authlogic_sha512"
-
 	has_one :store_owner
   attr_accessible :domain_url
   has_many :orders
   has_and_belongs_to_many :roles
   belongs_to :ship_address, :foreign_key => "ship_address_id", :class_name => "Address"
   belongs_to :bill_address, :foreign_key => "bill_address_id", :class_name => "Address"
-
   before_save :check_admin
   before_validation :set_login
-
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :persistence_token
-
   scope :admin, lambda { includes(:roles).where("roles.name" => "admin") }
   scope :registered, where("users.email NOT LIKE ?", "%@example.net")
-
   # has_role? simply needs to return true or false whether a user has a role or not.
+
   def has_role?(role_in_question)
     roles.any? { |role| role.name == role_in_question.to_s }
   end
@@ -71,34 +40,32 @@ class User < ActiveRecord::Base
     UserMailer.password_reset_instructions(self).deliver
   end
 
-  
- #validation for saas spree
+ #validation for crux
   validates_presence_of   :email, :if => :email_required?
-   validates_uniqueness_of :email, :scope => :domain_url
-   with_options :if => :password_required? do |v|
-            v.validates_presence_of     :password
-            v.validates_confirmation_of :password
-            v.validates_length_of       :password, :within => 6...20, :allow_blank => true
-          end
-          
+  validates_uniqueness_of :email, :scope => :domain_url
+    with_options :if => :password_required? do |v|
+      v.validates_presence_of     :password
+      v.validates_confirmation_of :password
+      v.validates_length_of       :password, :within => 6...20, :allow_blank => true
+    end
 protected
 
    def email_required?
-        true
+      true
 		end
-      
+
   def password_required?
     !persisted? || password.present? || password_confirmation.present?
   end
 
- def self.find_for_authentication(conditions={})
-unless $domain_value_url.blank?
-conditions[:domain_url]=$domain_value_url
-end
-   filter_auth_params(conditions)
-          (case_insensitive_keys || []).each { |k| conditions[k].try(:downcase!) }
-          to_adapter.find_first(conditions)
-end
+  def self.find_for_authentication(conditions={})
+    unless $domain_value_url.blank?
+    conditions[:domain_url]=$domain_value_url
+    end
+    filter_auth_params(conditions)
+    (case_insensitive_keys || []).each { |k| conditions[k].try(:downcase!) }
+    to_adapter.find_first(conditions)
+  end
   private
 
   def check_admin
