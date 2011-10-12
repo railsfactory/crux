@@ -21,9 +21,9 @@
   <%= hook :product_description do %>
     <%= product_description(@product) rescue t("product_has_no_description") %>
   <% end %>
-	<div data-hook="product_properties">
+   <%= hook :product_properties do %>
 		<%= render 'properties' %>
-		</div>
+		<%end%>
 		<%= render 'taxons' %>
 
 	</div>
