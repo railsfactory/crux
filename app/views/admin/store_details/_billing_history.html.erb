@@ -1,7 +1,7 @@
 
 
 <table class="index" id='listing_plans'>
-<h1>Plan Details<h1>
+<h1><%=t(:Plan_Details)%><h1>
   <tr>
 	<th><%=t("plan_name")%></th>
 	<th><%=t("amount")%></th>
@@ -27,13 +27,13 @@
 </tbody>
 </table>
 <table class="index" id='listing_plans'>
-<h1>Billing History</h1>
-  <tr>
-	<th>Billing date</th>
-	<th>Amount</th>
-	<th>Transaction id</th>
-	<th>Acknowledge</th>
-	<th>Message</th>
+<h1><%=t(:Billing_History)%></h1>
+   <tr>
+	<th><%=t(:Billing_date)%></th>
+	<th><%=t(:Amount)%></th>
+	<th><%=t(:Transaction_id)%></th>
+	<th><%=t(:Acknowledge)%></th>
+	<th><%=t(:Message)%>s</th>
 	</tr>
    <tbody>
 <% billings.each do |billing| %>
