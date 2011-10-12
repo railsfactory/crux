@@ -1003,7 +1003,7 @@ div#checkout #checkout-summary  h3 {
 }
  p.field{/* margin-top:10px;*/}
 .inner p, p.field, #payment p, #order p, #footer p, #existing-customer p, #new-customer p, .forgot_password p, #guest_checkout p { margin-left:0px;}
- #cart-detail { width: 630px; margin:0px 0 0 15px;}
+ #cart-detail { width: 730px; margin:0px 0 0 15px;}
  #shipping_method { margin-top:20px;}
 div#checkout #checkout_form_payment #payment  { float:none; display:block;}
 #payment label { line-height:210%;}
