@@ -104,6 +104,8 @@ Before register any store, the store registration payment method  should be upda
 
 DNS Subdomain Configuration
 
+At intial, update your store's Mail method.
+
 
 Example
 =======
