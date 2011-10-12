@@ -1,7 +1,20 @@
 ﻿Spree
 ====
 
-Introduction goes here.
+Spree is a complete open source commerce solution for Ruby on Rails. It was originally developed by Sean Schofield and is now maintained by a dedicated core team. You can find out more about by visiting the Spree e-commerce project page.
+
+Spree actually consists of several different gems, each of which are maintained in a single repository and documented in a single set of online documentation. By requiring the Spree gem you automatically require all of the necessary dependency gems. Those gems are as follows:
+
+spree_api
+spree_auth
+spree_core
+spree_dash
+spree_promo
+spree_sample
+
+All of the gems are designed to work together to provide a fully functional e-commerce platform. It is also possible, however, to use only the pieces you are interested in. So for example, you could use just the 
+barebones spree_core gem and perhaps combine it with your own custom authorization scheme 
+instead of using spree_auth.
 
 Clone the git repo   
 
@@ -44,11 +57,9 @@ bundle exec rake db:sample
 Crux
 ====
 
-Introduction goes here.
-
-
-Crux is the extension of spree CMS. A separate On-Line store will be created for paid registered users.Three kind of users with roles named as Super-Admin, Admin, and Normal
-User. Super Admin is the one who has ability to manage the domain. Store owners can register
+Crux is the extension of spree CMS. A separate On-Line store will be created for paid registered users.
+Three kind of users with roles named as Super-Admin, Admin, and Normal User. 
+Super Admin is the one who has ability to manage the domain. Store owners can register
 And start their own store. Each store will operate as a unique business and will have a custom
 domain name and branding. Store owner can act as admin for his domain and he can set his
 Personalised configurations for his shop.
