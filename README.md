@@ -107,11 +107,4 @@ DNS Subdomain Configuration
 At intial, update your store's Mail method.
 
 
-Example
-=======
-
-Example goes here.
-
-
-Copyright (c) 2011 [name of extension creator], released under the New BSD License
 
