@@ -57,11 +57,9 @@ bundle exec rake db:sample
 Crux
 ====
 
-Crux is the extension of spree CMS. A separate On-Line store will be created for paid registered users.
-Three kind of users with roles named as Super-Admin, Admin, and Normal User. 
-Super Admin is the one who has ability to manage the domain. Store owners can register
-And start their own store. Each store will operate as a unique business and will have a custom
-domain name and branding. Store owner can act as admin for his domain and he can set his
+Crux is the extension of spree CMS. It is mandatory that Spree has to be installed in the system. Crux enables separate On-Line store will be created for paid registered users. Three kind of users with roles named as Super-Admin, Admin, and Normal User. 
+Super Admin is the one who has ability to manage the domain. 
+Store owners can register And start their own store. Each store will operate as a unique business and will have a custom domain name and branding. Store owner can act as admin for his domain and he can set his
 Personalised configurations for his shop.
 
 Add to the following gem dependency in sandbox/Gemfile
