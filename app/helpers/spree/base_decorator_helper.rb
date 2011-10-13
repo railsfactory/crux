@@ -73,4 +73,8 @@ module Spree::BaseHelper
 				available=[]
 			end
 		end
+	def find_mail_methods(domain)
+	  @mail= MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
+		return @mail
+	end
 end

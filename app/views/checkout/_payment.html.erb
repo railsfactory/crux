@@ -1,5 +1,9 @@
 <fieldset id="payment">
   <legend><%= t("payment_information") %></legend>
+	<%domain=get_sub_domain(current_subdomain)%>
+<%mail=find_mail_methods(domain)%>
+<%if !mail.blank?%>
+<%if @order.available_payment_methods.count>0%> 
   <div data-hook="checkout_payment_step">
     <% @order.available_payment_methods.each do |method| %>
     <p>
@@ -9,7 +13,6 @@
       </label>
     </p>
     <% end %>
-
     <ul id="payment-methods">
       <% @order.available_payment_methods.each do |method| %>
         <li id="payment_method_<%= method.id %>" class="<%= 'last' if method == @order.available_payment_methods.last %>">
@@ -21,18 +24,17 @@
     </ul>
     <br style='clear:both;' />
 			<% if @order.available_payment_methods.count>0%>
-
     <%= hook :coupon_code_field, {:form => form} %>
 		<%end%>
   </div>
 </fieldset>
-
 <hr class="space" />
-	<%if @order.available_payment_methods.count>0%>
 <div class="form-buttons">
   <input type="submit" class="continue button primary" value="<%=t("save_and_continue") %>" />
-	<%else%>
-	<div style="color:red;font-size:13px;margin-top:-208px;margin-left:-203px;text-align:center;">No Payment Methods avaliable for this store</div>
-		<%end%>
-
 </div>
+<%else%>
+	<div class="flash errors" style="text-align:center;width:570px;">No Payment Methods avaliable for this store</div>
+	<%end%>
+	<%else%>
+		<div class="flash errors" style="text-align:center;width:570px;">No Mail Methods avaliable for this store</div>
+	<%end%>
