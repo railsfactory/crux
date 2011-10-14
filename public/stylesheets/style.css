@@ -214,8 +214,6 @@ label.inlined { float:left; color: #1c424c; font-size: 14px;font-weight: normal;
 div.err-msg { float:left; padding:10px 0 0 15px; color:#FF0000; font-size:12px;}
 p.err-msg { padding:10px 0 10px 0px; color:#FF0000; font-size:12px;}
 .month { float:left; margin-left:10px;}
-
-/* */
 #updatecart p { float:left; margin:45px 5px 0 0;}
 #updatecart p a { color:#fff !important; padding:6px;}
 #clear_cart_link { float:left; margin:45px 0 0 0;}

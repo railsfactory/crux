@@ -220,13 +220,12 @@ div#checkout #checkout_form_address #billing label.error {
 div#checkout #checkout_form_address #shipping label.error {
   color: red;
   float: left;
-  text-align: left;
   display: inline-block;
-  top: 0px;
   font-size: 11px;
   border: none;
   padding: 0px;
   width: auto;
+  margin-top:4px;
 }
 fieldset { margin-bottom: 1em; }
 legend {
@@ -595,7 +594,7 @@ button, a.button, input.button, .forgot_password p input.submit_btn {
   width: auto;
   height: auto;
   cursor: pointer;
-  color:#ffffff;
+  color:#ffffff !important;
 }
 button.primary, a.button.primary, input.button.primary {
   font-weight: bold;
@@ -898,7 +897,8 @@ div#checkout { position: relative;     -moz-border-radius: 10px 10px 10px 10px; 
     width: 920px;
     margin:0px auto;
     padding: 0 0 15px;
-    border: 1px solid #D5D5D3;}
+    border: 1px solid #D5D5D3;
+	overflow:hidden;}
 div#checkout .progress-steps {
   position: absolute;
   top:48px;
@@ -921,9 +921,9 @@ div#checkout #checkout_form_address #shipping label {
   width:190px;
 }
 div#checkout #checkout_form_address #billing input { width: 304px; float:left; }
-div#checkout #checkout_form_address #shipping input { width: 304px; }
+div#checkout #checkout_form_address #shipping input { width: 304px; float:left}
 div#checkout #checkout_form_address #billing select { width: 308px; float:left; }
-div#checkout #checkout_form_address #shipping select { width: 308px; }
+div#checkout #checkout_form_address #shipping select { width: 308px; float:left;}
 div#checkout #checkout_form_address #billing p.checkbox { padding-left: 200px; }
 div#checkout #checkout_form_address #shipping p.checkbox { /*padding-left: 200px;*/ }
 div#checkout #checkout_form_address .form-buttons { /*padding-left: 200px;*/ }
