@@ -61,7 +61,7 @@ module SpreeBase
     if (request.url.include?(APP_CONFIG['separate_url']))
      subdomain= domain.split(".")[0] if domain
      else
-store=StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
+       store=StoreOwner.find_by_id(find_customization_domain.store_owner_id) unless find_customization_domain.blank?
        subdomain=store.domain
        #~ custom_domain= domain.split(".") if domain
        #~ store=StoreOwner.find_by_custom_domain(domain)
