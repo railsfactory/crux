@@ -1205,3 +1205,12 @@ li.current a:hover { text-decoration:none;}
     border: 1px solid #D5D5D3;
     line-height:25px;}
 #billing { margin-top:20px;}
+#updatecart p { float:left; margin:45px 5px 0 0;}
+#updatecart p a { color:#fff !important; padding:6px;}
+#clear_cart_link { float:left; margin:45px 0 0 0;}
+#billing, #shipping { width:650px;}
+.filed-wrap label.inlined span { color:#ff0000; margin-left:5px;}
+form p.field { 
+overflow:hidden;}
+#new_review p { margin: 10px 0 0 0;}
+#new_review span.required {color:red;}
