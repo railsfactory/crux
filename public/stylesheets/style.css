@@ -121,7 +121,8 @@ h3 {color: #1B6FB6;font-weight: 400;}
 .footer ul.foo-menu li a { text-decoration:none; color:#000000;}
 
 /* Tabel */
-.table-banner { background:url(../images/table-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}
+/*.table-banner { background:url(../images/table-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}*/
+.table-banner { background:url(../images/plan-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}
 table#price-chart { border-collapse: collapse; margin: -170px 0 15px; padding: 0;}
 table#price-chart th.heading {  width: 168px;}
 table#price-chart th, table#price-chart td { border-right: 1px solid #FFFFFF;  text-align: center;}
