@@ -1,4 +1,5 @@
 class HomeController < Spree::BaseController
+   require 'will_paginate/array'
    helper :products
    respond_to :html
    include Admin::BaseHelper
