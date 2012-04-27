@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<%= hook :inside_head do %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+	<%= hook :inside_head do %>
 <%= render :partial => 'shared/head'%>
 <% end %>
 <%
@@ -12,44 +13,84 @@ else
 @body_class = 'one-col'
 end
 end
-%>
-<body class="<%= @body_class %>" id="<%= @body_id %>">
-<div id="header" class="container_bg main-header" style="float:none;">
-<div class="container">
-<div id="login-bar">
-<ul id="nav-bar">
-<%= render 'shared/nav_bar' %>
-</ul>
-<ul class="search-bar-hme">
-<li id="search-bar">
-<%= render 'shared/search' %>
-</li>
-</ul>
-</div>
-<div class="logo">
-<a href="/"><img alt="" src="/images/saas.png" /></a>
-</div>
-</div>
-</div>
-<div id="wrapper" class="container">
-<% if content_for?(:sidebar) %>
-<div id="sidebar">
-<%= hook :sidebar do %>
-<%= yield :sidebar %>
-<% end %>
-</div>
-<% end %>
-<div id="content">
-<%= breadcrumbs(@taxon) if @taxon %>
-<% if flash.notice %>
-<div class="flash notice"><%= flash.notice %></div>
-<% end %>
-<% if flash[:error] %>
-<div class="flash errors"><%= flash[:error] %></div>
-<% end %>
-<%= yield %>
-</div>
-<%= render :partial => 'shared/footer'%>
-</div>
-</body>
+%>	
+	<body class="<%= @body_class %>" id="<%= @body_id %>">
+		<div class="wrapper">			
+			<div class="mainwrapper">
+				<div class="header">
+					<div class="logo">
+						<h1>
+							<a href="#">Home</a>
+						</h1>
+					</div>
+					<div class="tophead">
+						<div class="topsection">
+							<div class="global-nav">
+								<ul>
+									<li><a href="#">Home</a></li>
+									<li><a href="#">Service</a></li>
+									<li><a href="#">About us</a></li>
+								</ul>
+							</div>
+							<div class="cartinfo">
+								<ul>
+								  <%= render 'shared/nav_bar' %>
+								</ul>
+							</div>
+						</div>
+						<div class="product-search">
+						<%=render 'shared/search'%>
+						</div>
+					</div>
+				</div><!-- header -->
+				<div class="body-container clearfix">
+					<div class="asidepanel">
+						<div class="sidenav">
+						<% if content_for?(:sidebar) %>
+			<%= hook :sidebar do %>
+			<%= yield :sidebar %>
+			<% end %>
+			<% end %>
+						
+						</div><!-- sidenav -->
+						<div class="promo-banner">
+							<img src="/images/promo-banner.png" alt="" />
+						</div>					
+					</div>
+					<div class="contpanel">						
+						<div class="slider">
+							<img src="/images/slider01.png" alt="" />
+						</div><!-- slider -->
+						<%=yield%>
+				<div class="brands">
+							<h4 class="sechead">BRANDS</h4>
+							<div class="sroll-mid">
+								<div class="brand-list">
+									<ul id="mycarousel" class="jcarousel-skin-tango">
+										<li><a href="#"><img src="/images/logo-adidas.png"></a></li>
+										<li><a href="#"><img src="/images/logo-puma.png"></a></li>
+										<li><a href="#"><img src="/images/logo-peter-ingland.png"></a></li>
+										<li><a href="#"><img src="/images/logo-levis.png"></a></li>
+										<li><a href="#"><img src="/images/logo-nike.png"></a></li>
+										<li><a href="#"><img src="/images/logo-pepe-jean.png"></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- brands -->
+					</div>
+				</div><!-- body container -->
+                <div class="footer">
+            		<p class="copy-rights">Copyright &copy; 2012 <a href="http://www.railsfactory.org" target="_blank">Railsfactory</a>. All Rights Reserved</p>
+                    <ul>
+                    	<li><a href="">Home</a></li><li>|</li>
+                        <li><a href="">About Us</a></li><li>|</li>
+                        <li><a href="">Contact Us</a></li><li>|</li>
+                        <li><a href="">Privacy</a></li><li>|</li>
+                        <li><a href="">Terms &amp; Conditions</a></li>
+                    </ul>
+            	</div>
+			</div>
+		</div>
+	</body>
 </html>

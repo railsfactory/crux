@@ -2,28 +2,34 @@
   paginated_products = @searcher.products if params.key?(:keywords)
   paginated_products ||= products
 %>
-<% if products.empty? %>
-  <%= t(:no_products_found) %>
-<% elsif params.key?(:keywords) %>
-  <h3><%= t(:search_results, :keywords => h(params[:keywords])) %></h3>
-<% end %>
 
 <% if products.any? %>
-<h2 class="title-pro">Products</h2>
-<ul id="products" class="product-listing">
-<%stock_val=find_stock_value("show_zero_stock_products")%>
- <% products.each do |product| %>
-    <% if stock_val || product.has_stock? %>
-      <li id="product_<%= product.id %>" data-hook="products_list_item">
-        <div class="pro-image"><%= link_to small_image(product), product %></div>
-				<div class="pro-name"><%= link_to product.name.capitalize, product, :class => 'info' %></div>
-				<div class="price-selling"><span class=""><%= product_price(product) %></span></div>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
-<% end %>
 
+	<div class="collections">
+							<h4 class="sechead">LATEST COLLECTIONS</h4>
+							<%stock_val=find_stock_value("show_zero_stock_products")%>
+		<div class="collection-img-wrap products">
+	<% products.each do |product| %>
+    <% if stock_val || product.has_stock? %>                                                      
+                                <div class="coll-left">
+																      <div id="product_<%= product.id %>" data-hook="products_list_item">
+
+                                    <div class="coll-img"><a href=""><%= link_to small_image(product), product %></a></div>
+                                    <div class="coll-info">
+                                        <div class="item-name"><%=product.name.capitalize%></div>
+                                        <div class="price-enlarge-buy">
+                                            <p class="price"><span></span><%= product_price(product) %></p>
+																						<%= link_to "BUY-IT", product,:class=>"buy-it"%>
+                                        </div>
+                                    </div>
+																		</div>
+                                </div>
+					<% end %>
+					<% end %>
+
+						</div><!--collection-img-wrap-->
+						</div>						
+<% end %>
 
 <% if paginated_products.respond_to?(:total_pages)
       params.delete(:search)
@@ -33,4 +39,3 @@
                     :previous_label => "&#171; #{t('previous')}",
                     :next_label => "#{t('next')} &#187;") %>
 <% end %>
-
