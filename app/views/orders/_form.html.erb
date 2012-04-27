@@ -1,0 +1,20 @@
+<%= render "shared/error_messages", :target => @order %>
+<table cellspacing="0" cellpadding="0" class="grid-table add-to-cart"  id="cart-detail">
+<thead>
+<tr>
+	<%= hook :cart_items_headers do %>
+	<th class="item">Item</th>
+	<th class="desc">Description</th>
+	<th class="price">Price</th>
+	<th class="qty">Oty</th>
+	<th class="total">Total</th>
+	<th class="delete_link"></th>
+	<% end %>
+</tr>
+</thead>
+<tbody  id="line_items">
+<%= order_form.fields_for :line_items do |item_form| %>
+<%= render 'line_item', :variant => item_form.object.variant, :line_item => item_form.object, :item_form => item_form %>
+<% end %>
+</tbody>
+</table>

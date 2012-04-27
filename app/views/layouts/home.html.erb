@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<%= hook :inside_head do %>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<%== meta_data_tags %>
+<%= csrf_meta_tag %>
+<%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.validate.min.js', 'rails', 'application', :cache => 'jquery-core' %>
+<% unless I18n.locale.to_s[0..1] == 'en' %>
+  <%= javascript_include_tag ['localization/messages_', I18n.locale.to_s[0..1], '.js'].join %>
+<% end %>
+<%= yield :head %>
+<link rel="stylesheet" href="/stylesheets/style_new.css" type="text/css" />
+<% end %>
+
+<body>
+		<div class="wrapper">			
+			<div class="mainwrapper">
+				<div class="header">
+					<div class="logo">
+						<h1>
+							<a href="#">Home</a>
+						</h1>
+					</div>
+					<div class="tophead">
+						<div class="topsection">
+							<div class="global-nav">
+								<ul>
+									<li><a href="#">Home</a></li>
+									<li><a href="#">Service</a></li>
+									<li><a href="#">About us</a></li>
+								</ul>
+							</div>
+							<div class="cartinfo">
+								<ul>
+                                	<li class="cart-detail">shopping cart <a href="#">(1 items)</a></li>
+									<li class="login"><a href="#">Log In</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div><!-- header -->
+				<div class="body-container clearfix">
+					<div class="login-container">											
+						<div class="loginbox">
+							<%=yield%>
+						</div>
+					</div>
+				</div><!-- body container -->
+                <div class="footer">
+            		<p class="copy-rights">Copyright © <a href="">Railsfactory</a>. 2012. All Rights Reserved</p>
+                    <ul>
+                    	<li><a href="">Home</a></li><li>|</li>
+                        <li><a href="">About Us</a></li><li>|</li>
+                        <li><a href="">Services</a></li><li>|</li>
+                        <li><a href="">My Account</a></li>
+                    </ul>
+            	</div>
+			</div>
+		</div>
+	</body>
+</html>
