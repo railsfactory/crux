@@ -1,0 +1,23 @@
+<%= form_for(:user, :url => user_session_path) do |f| %>          
+							            <div class="fm-elements" id='password-credentials'>
+							                <%= f.label(:email, t("email")) %>
+							                <div class="input-wrap">
+															<%= f.text_field('email', :class => 'title txt-fld') %>
+															<div class="error">Please Enter your Email</div>
+							                </div>
+							            </div>
+							            <div class="fm-elements" id='password-credentials'>
+															<%= f.label :password, t("password") %><br />
+							                <div class="input-wrap">
+							               <%= f.password_field 'password', :class => 'title txt-fld' %>
+							                    <div class="error">Please Enter your Password</div>
+							                </div>
+							            </div>
+							            <div class="fm-elements" id='password-credentials'>
+															<%= f.check_box :remember_me, :class=>"check-box" %>
+							                <p>Remember me</p>
+							            </div>
+							            <div class="fm-elements">
+															<%= submit_tag t("log_in"), :class => 'button primary'%>
+							            </div>
+							        <% end %>
