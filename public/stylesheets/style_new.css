@@ -1,4 +1,5 @@
 ﻿@import url("reset.css");
+@import url("style-1.css");
 
 .bor_bot{ border-bottom:1px dotted #808080;}
 
@@ -46,7 +47,7 @@
 .arrow-left{background:#f3f3f3; width: 30px; height: 120px; border-radius:5px 0 0 5px; -moz-border-radius:5px 0 0 5px; -webkit-border-radius:5px 0 0 5px; float:left; position:relative;}
 .arrow-right{background:#f3f3f3; height: 120px; width:30px; border-radius:0 5px 5px 0; -moz-border-radius:0 5px 5px 0; -webkit-border-radius:0 5px 5px 0; float:right;}
 .sroll-mid{background:#ffffff; padding:0; float:left; width:619px;}
-.brand-list{height:120px; position: relative; }
+.brand-list{position: relative; }
 .brand-list ul{overflow:hidden;}
 .brand-list li{text-align:center; padding:15px 10px; float:left;}
 
@@ -82,7 +83,7 @@
 .pcount{float:right;}
 .pcount .txtbox{width:80px;}
 .addtocart{margin:15px 0 0 0; overflow:hidden;}
-.btn-addcart { background: #ADD73A; color: #ffffff; float: left; padding: 5px 10px; font-weight:bold; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+.btn-addcart { background: #ADD73A; color: #ffffff; float: left; padding: 5px 10px; font-weight:bold; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;border:0;}
 .btn-addcart:hover{color: #ffffff;}
 .txtbox{border: 1px solid #DBDBDB; padding:3px; font-size:12px;}
 .pvalue{overflow:hidden; border-bottom: 1px dotted #A7A7A7;}
@@ -97,7 +98,7 @@
 .field_wrap{overflow:hidden; margin:0 0 8px 0;}
 .field_wrap label{float:left; width: 180px; display:block; margin: 2px 0 0 0; line-height:15px; font-size:12px;}
 .txtinput{border: 1px solid #B6B6B6; display: block; /*line-height: 31px;*/ padding: 3px 4px; font-size:12px;}
-.txtselect{border: 1px solid #B6B6B6; display: block; line-height: 31px; padding: 3px 4px; font-size:12px;}
+.txtselect{border: 1px solid #B6B6B6; display: block; padding: 3px 4px; font-size:12px;}
 .input_wrap{float:left;}
 .payment_address .txtinput{width:220px;}
 .payment_address .txtselect{width:230px;}
@@ -109,11 +110,8 @@
 .exp_month{float:left; margin:0 10px 0 0; width:110px;}
 .exp_year{float:left; width:110px;}
 .card_details{margin:0 0 10px 0;}
-.card_logos{margin: 0 0 0 64px;}
 .card_details .txtinput.card_no{width:220px;}
 .cvv_desc{float:left; display:block; margin:4px 0 0 10px; color: #798600; text-decoration:none;}
-.ship_method{float:left; width:220px;}
-.payment_method{float:left; width:220px;}
 
 /* Confirm Order */
 .confirm_order{margin:15px 0 15px 0;}
@@ -206,3 +204,8 @@ a.buy-it { float:right; background:#add73a; color:#ffffff; font-weight:bold; pad
 .loginbox .secinblock{padding:22px;}
 
 .pcount span { float:left; margin-top:5px; padding-bottom:2px;}
+
+
+#product-variants{ margin-top: 1em;}
+#product-variants h2{margin-bottom:10px; color: #383838; font-size:12px;}
+#product-variants li{margin:0 0 6px 0;}

@@ -66,14 +66,12 @@ end
 							<h4 class="sechead">BRANDS</h4>
 							<div class="sroll-mid">
 								<div class="brand-list">
+								 <%products=find_latest_products%>
+								 <%products.each do |product|%>
 									<ul id="mycarousel" class="jcarousel-skin-tango">
-										<li><a href="#"><img src="/images/logo-adidas.png"></a></li>
-										<li><a href="#"><img src="/images/logo-puma.png"></a></li>
-										<li><a href="#"><img src="/images/logo-peter-ingland.png"></a></li>
-										<li><a href="#"><img src="/images/logo-levis.png"></a></li>
-										<li><a href="#"><img src="/images/logo-nike.png"></a></li>
-										<li><a href="#"><img src="/images/logo-pepe-jean.png"></a></li>
-									</ul>
+										<li><%= link_to small_image(product), product %></li>
+								  </ul>
+									<%end%>
 								</div>
 							</div>
 						</div>

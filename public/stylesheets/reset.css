@@ -1,170 +1,56 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-weight: inherit;
-  font-style: inherit;
-  font-size: 100%;
-  font-family: inherit;
-  vertical-align: baseline;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-*:focus { outline: 0; }
-body {
-  line-height: 1em;
-  color: black;
-  /*background: #ffffff;*/
-}
-ol, ul { list-style: none; }
-table {
-  border-collapse:collapse;
-  border-spacing: 0;
-  vertical-align: middle;
-}
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-q, blockquote { quotes: "" ""; }
-q:before { content: ""; }
-q:after { content: ""; }
-blockquote:before { content: ""; }
-blockquote:after { content: ""; }
-img a { border: none; }
-/*hr {
-  background: #dddddd;
-  color: #dddddd;
-  clear: both;
-  float: none;
-  width: 100%;
-  height: 0.1em;
-  margin: 0 0 1.45em;
-  border: none;
-}*/
-hr.space {
-  background: #F5F5F1;
-  color: #dddddd;
-  clear: both;
-  float: none;
-  width: 100%;
-  height: 0.1em;
-  margin: 0 0 1.45em;
-  border: none;
-  color: #ffffff;
-}
-body {
-  line-height: 1.5;
-  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
-  color: #333333;
-  font-size: 90%;
-}
-h1 {
-  font-weight: normal;
-  color: #222222;
-  font-size: 28px;
-  line-height: 1;
-  margin-bottom: 0.5em;
-}
-h1 img { margin: 0; }
-h2 {
-  font-weight: bold;
-  font-size: 14px;
-  margin: 15px 15px 10px 0px;
- /* padding:2px 0 2px 10px;*/
-}
-h3 {
-  font-weight: normal;
-  color: #222222;
-  font-size: 20px;
-  margin: 10px;
-}
-h4 {
-  font-weight: normal;
-  color: #222222;
-  font-size:20px;
-}
-h5 {
-  font-weight: normal;
-  color: #222222;
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 1.5em;
-}
-h6 {
-  font-weight: normal;
-  color: #222222;
-  font-size: 1em;
-  font-weight: bold;
-}
-h2 img { margin: 0; }
-h3 img { margin: 0; }
-h4 img { margin: 0; }
-h5 img { margin: 0; }
-h6 img { margin: 0; }
-p { margin: 0 0 0 21px; }
-p img.left {
-  display: inline;
-  float: left;
-  margin: 1.5em 1.5em 1.5em 0;
-  padding: 0;
-}
-p img.right {
-  display: inline;
-  float: right;
-  margin: 1.5em 0 1.5em 1.5em;
-  padding: 0;
-}
-a {
-  text-decoration: underline;
-  color: #2e6ab1;
-}
-blockquote {
-  margin: 1.5em;
-  color: #666666;
-  font-style: italic;
-}
-strong { font-weight: bold; }
-em { font-style: italic; }
-dfn {
-  font-style: italic;
-  font-weight: bold;
-}
-sup, sub { line-height: 0; }
-abbr, acronym { border-bottom: 1px dotted #666666; }
-address {
-  margin: 0 0 1.5em;
-  font-style: italic;
-}
-del { color: #666666; }
-pre {
-  margin: 1.5em 0;
-  white-space: pre;
-}
-pre, code, tt {
-  font: 1em 'andale mono', 'lucida console', monospace;
-  line-height: 1.5;
-}
-li ul { margin: 0 1.5em; }
-li ol { margin: 0 1.5em; }
-ul {
-  list-style-type: disc;
-}
-ol {
-  list-style-type: decimal;
-}
-dl { margin: 0 0 1.5em 0; }
-dl dt { font-weight: bold; }
-dd { margin-top: -10px; }
-table {
-  margin-bottom: 1.4em;
-}
-th { font-weight: bold; }
-thead th { background: #F3F3F3;}
-/*th, td {border:1px solid #000;}*/
-th {border-bottom:1px solid #A7E8F6;}
-th, td, caption { padding: 4px 10px 4px 5px; }
-tr.even td { background: #e5ecf9; }
-tfoot { font-style: italic; }
-caption { background: #eeeeee; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none;}
+table {border-collapse: collapse; border-spacing: 0;}
 
+/* Headings */
+h1 {font-size: 25px; line-height:30px;}
+h2 {font-size: 22px; line-height:26px;}
+h3 {font-size: 18px; line-height:22px;}
+h4 {font-size: 12px; line-height:15px; font-weight:bold;}
+h5 {font-size: 12px; line-height:15px; font-weight:bold;}
+h6 {font-size: 10px; line-height:14px;}
+
+/* Spacing */
+ol {list-style: none;}
+ul {list-style: none;}
+li {}
+p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset,figure { margin: 0px;}
+
+/* customized */
+a{text-decoration:none; color:#383838;}
+a:hover{color:#8d9a00;}
+.clearfix:after {content: "."; display: block; clear: both;	visibility: hidden;	line-height: 0;	height: 0;}
+html[xmlns] .clearfix {display: block;}
+* html .clearfix {height: 1%;} /* ie7 only */
+
+/* `Basic HTML
+----------------------------------------------------------------------------------------------------*/
+body {font-family: Verdana, sans-serif; font-size:12px; color:#383838; background:transparent url("../images/main.gif") repeat-x 0 68px;}
+input, select, textarea{font-family: Tahoma, Helvetica, sans-serif;}
+pre,code {font-family: 'DejaVu Sans Mono', Menlo, Consolas, monospace;}
+hr {border: 0 #ccc solid; border-top-width: 1px; clear: both; height: 0;}
+p{line-height:15px;}

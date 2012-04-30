@@ -1,15 +1,15 @@
-<div class="forgot_password">
-<h2><%= t(:forgot_password) %></h2>
-
-<p><%= t(:instructions_to_reset_password) %></p>
-
-<%= form_for User.new, :as => :user, :url => user_password_path do |f| %>
-  <p>
-    <label><%= t(:email) %>:</label><br />
-    <%= f.email_field :email %>
-  </p>
-  <p>
-    <%= f.submit t("reset_password"), :class => 'submit_btn' %>
-  </p>
-<% end %>
-</div>
+<h4 class="sechead forgot_password"><%= t(:forgot_password) %></h4>
+						    <div class="secinblock">
+						        <%= form_for User.new, :as => :user, :url => user_password_path do |f| %>
+						            <div class="fm-elements">
+						                <label><%= t(:email) %>:</label>
+						                <div class="input-wrap">
+															<%= f.email_field :email ,:class=>"txt-fld"%>
+						                    <div class="error">Please Enter your Email</div>
+						                </div>
+						            </div>
+						            <div class="fm-elements">
+														<%= f.submit t("reset_password"), :class => 'submit_btn button primary' %>
+						            </div>
+						        <% end %>		        
+						    </div>
