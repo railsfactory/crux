@@ -2,18 +2,21 @@
 <h2><%= t("registration")%></h2>
 <div id="registration">
   <div id="account">
-    <!-- TODO: add partial with registration form -->
+    <%= render :file => 'user_sessions/new' %>
   </div>
   <% if Spree::Config[:allow_guest_checkout] %>
     <div id="guest_checkout">
       <%= render "shared/error_messages", :target => @order %>
-      <h2><%= t(:guest_user_account) %></h2>
+      <h4 class="sechead"><%= t(:guest_user_account) %></h4>
       <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"} do |f| %>
-        <p>
-          <%= f.label :email, t("email") %><br />
-          <%= f.text_field :email, :class => 'title'  %>
-        </p>
+        <div class="secinblock">
+					<p>
+						<%= f.label :email, t("email") %><br />
+						<%= f.text_field :email, :class => 'title'  %>
+					</p>
+			
         <p><%= submit_tag t("continue"), :class => 'button primary' %></p>
+					</div>
       <% end %>
     </div>
   <% end %>
