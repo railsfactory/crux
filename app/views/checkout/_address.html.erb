@@ -4,7 +4,18 @@ div.inner input[type=text], div.inner select { width: 80%; }
 </style>
 			<div class="secblock">
 <h4 class="sechead">Payment</h4>
-                            <div class="secinblock">
+    <div class="secinblock">
+		<div class="order-inof">
+
+<%= checkout_progress %>
+<%= hook :checkout_summary_box do %>
+    <% if order.state != 'confirm' %>
+      <div id="checkout-summary">
+        <%= render 'summary', :order => order %>
+      </div>
+    <% end %>
+  <% end %>
+	</div>
 <fieldset id='billing'>
 <h5 class="subhead">Billing Address</h5>                            	
 	<div class="form_block payment_address">	                            	
@@ -31,7 +42,7 @@ div.inner input[type=text], div.inner select { width: 80%; }
 						</div>
 				</div>
 		     <div class="field_wrap" id="baddress2" >
-						<label>street_address_2<span class="req">*</span></label>
+						<label>street_address (cont'd)</label>
 							<div class="input_wrap">
 								<%= bill_form.text_field :address2,:class=>'txtinput' %>
 							</div>

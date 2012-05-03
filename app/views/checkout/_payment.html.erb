@@ -1,6 +1,16 @@
 					<div class="secblock">
 	<h4 class="sechead">Payment</h4>
 		<div class="secinblock">
+					                          <div class="order-inof">
+		<%= checkout_progress %>
+													<%= hook :checkout_summary_box do %>
+    <% if order.state != 'confirm' %>
+      <div id="checkout-summary">
+        <%= render 'summary', :order => order %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 		<h5 class="subhead">Card Details</h5>	  
 <fieldset id="payment">	                            							          
 	                            <div class="payment_method">	                            	
@@ -15,7 +25,7 @@
 																		<%= t(method.name, :scope => :payment_methods, :default => method.name) %>
 		                            	</div>
 	                            	</div>
-    <% end %>	                            	
+                                <% end %>	                            	
 	                            </div>	                           
 	                            <div class="form_block card_details">
 	                            	<ul id="payment-methods">
@@ -31,11 +41,12 @@
 	                            		<label>Coupon Code <span class="req">*</span></label>
 	                            		<div class="input_wrap">
 																	<%= hook :coupon_code_field, {:form => form} %>
-																	<% end %>
 	                            		</div>
 	                            	</div>
-	                            </div>	                            
-	                            <div class="fm-elements form-buttons">
+	                            </div>	   
+															<%end%>
+	                            </fieldset>
+															<div class="fm-elements form-buttons">
 					                <input type="submit" class="continue button primary" value="<%=t("save_and_continue") %>" />
 					            </div>
                             </div>

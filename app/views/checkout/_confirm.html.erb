@@ -1,11 +1,24 @@
 <fieldset id="order_details">
   <div class="clear"></div>
-  <legend><%= t(@order.state, :scope => :order_state).titleize %></legend>
+		<div class="order-inof">
+
+<%= checkout_progress %>
+<%= hook :checkout_summary_box do %>
+    <% if order.state != 'confirm' %>
+      <div id="checkout-summary">
+        <%= render 'summary', :order => order %>
+      </div>
+    <% end %>
+  <% end %>
+	</div>
+	    <h5 class="subhead">Confirm Order</h5>
+	                            <div class="confirm_order">
   <%= render :partial => 'shared/order_details', :locals => {:order => @order} %>
+	</div>
 </fieldset>
 
 <hr />
 
-<div class="form-buttons">
-  <input type="submit" class="continue button primary" value="<%=t("place_order") %>"/>
-</div>
+ <div class="fm-elements">
+					                <input type="submit" class="button primary" name="commit" value="Place Order" />
+					            </div>
