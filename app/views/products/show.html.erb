@@ -1,35 +1,39 @@
+<div class="secblock">
 	<h4 class="sechead">Product</h4>
-                            <div class="prod-detail">
-                            	<div class="prod-info-wrap">
-	                            	<div class="img-container" id="product-images">
-																  <%= hook :product_images do %>
-	                            		<div class="img-large" id="main-image">
-	                            			   <%= render 'image' %>
-	                            		</div>
-	                            		<div class="img-thumbs" id="thumbnails" >
-	                            			 <%= render 'thumbnails', :product => @product %>
-	                            		</div>
-																	<% end %>
-	                            	</div>
-	                            	<div class="prod-info" id="product-description" >
-	                            		<h2><%= accurate_title %></h2>
-																	<%= hook :product_description do %>
-	                            		<p class="pdesc"><%= product_description(@product) rescue t("product_has_no_description") %></p>
-																	  <% end %>
-	                            		<%= hook :cart_form do %>
-																	<div class="prod-info-wrap" id="cart-form">
-	                                      <%= render 'cart_form' %>  
-	                            	  </div>
-																        <% end %>
-                            	  </div>                            	
-                            	<h5 class="subhead">Product Details</h5>
-                            	<div class="prod-detail-info">
-                               <%= hook :product_properties do %>
-															<%= render 'properties' %>
-															 <% end %>
-                                </div>
-                                <%= render 'taxons' %>
-
-                            	
-                            </div>
-
+	<div class="prod-detail">
+		<div class="prod-info-wrap">
+			<div id="product-images"  class="img-container">
+				<%= hook :product_images do %>
+					<div id="main-image" class="img-large" >
+						<%= render 'image' %>
+					</div>
+					<div id="thumbnails" class="img-thumbs" >
+						<%= render 'thumbnails', :product => @product %>
+					</div>
+				<% end %>
+			</div>
+			<div class="prod-info" id="product-description" >
+				<h2><%= accurate_title %></h2>
+					<%= hook :product_description do %>
+						<p class="pdesc"><%= product_description(@product) rescue t("product_has_no_description") %></p>
+				<% end %>
+				<%= hook :cart_form do %>
+					<div class="prod-info-wrap" id="cart-form">
+						<%= render 'cart_form' %>  
+					</div>
+				<% end %>
+			</div>                            	
+		  <h5 class="subhead">Product Details</h5>
+			<div class="prod-detail-info">
+				<%= hook :product_properties do %>
+				<%= render 'properties' %>
+				<% end %>
+			</div>
+			<div class="prod-info-wrap">
+				<h5 class="subhead">Look for similar items</h5>
+				<div class="similar-items">
+					<%= render 'taxons' %>
+				</div>
+			</div>
+	</div>
+</div>

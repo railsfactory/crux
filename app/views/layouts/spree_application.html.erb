@@ -59,19 +59,19 @@ end
 					</div>
 					<div class="contpanel">						
 						<div class="slider">
-							<img src="/images/slider01.png" alt="" />
+							<img src="images/slider01.png" alt="" />
 						</div><!-- slider -->
 						<%=yield%>
 				<div class="brands">
-							<h4 class="sechead">BRANDS</h4>
+							<h4 class="sechead">PRODUCTS</h4>
 							<div class="sroll-mid">
 								<div class="brand-list">
-								 <%products=find_latest_products%>
-								 <%products.each do |product|%>
+									<%products=find_latest_products%>
 									<ul id="mycarousel" class="jcarousel-skin-tango">
+								 <%products.each do |product|%>
 										<li><%= link_to small_image(product), product %></li>
-								  </ul>
 									<%end%>
+									</ul>
 								</div>
 							</div>
 						</div>

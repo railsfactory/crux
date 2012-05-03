@@ -1,15 +1,14 @@
 <% if !@product.taxons.blank? %>
 <div class="prod-info-wrap">
-<h5 class="subhead"><%= t('look_for_similar_items') %></h5>
-<%= hook :product_taxons do %>
-                            		<div class="similar-items">
-                            			<ul id='similar_items_by_taxon'>
-																	<% @product.taxons.each do |taxon| %>
-                            				<li><%= link_to taxon.name, "/t/#{taxon.permalink}" %></li>
-																		<% end %>
-																	</ul>
-                            		</div>
-																  <% end %>
-																	</div>
-																	<% end %>
+		<%= hook :product_taxons do %>
+		<div class="similar-items">
+			<ul id='similar_items_by_taxon'>
+				<% @product.taxons.each do |taxon| %>
+				<li><%= link_to taxon.name, "/t/#{taxon.permalink}" %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+</div>
+<% end %>
 
