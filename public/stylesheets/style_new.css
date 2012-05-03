@@ -143,7 +143,7 @@ a.close-btn { position:absolute; background:url(../images/close-btn.png) no-repe
 .sing-in-bottom a { display:block; margin-bottom:7px; color:#798600;}
 input.button { cursor:pointer; font-family:12px; padding:3px 5px; font-family:Verdana, Arial, Helvetica, sans-serif; border:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#FFFFFF; overflow:visible;}
 input.primary { background:#ADD73A; font-weight:bold;}
-div.error { float:left; margin-top:5px; color:#FF0000; display:none;}
+div.error { float:left; margin-top:5px; color:#FF0000;  }
 .sing-in-bottom ul{overflow:hidden;}
 .sing-in-bottom li{float:left; font-size:11px; margin:0 10px 0 0;}
 
@@ -209,3 +209,68 @@ a.buy-it { float:right; background:#add73a; color:#ffffff; font-weight:bold; pad
 #product-variants{ margin-top: 1em;}
 #product-variants h2{margin-bottom:10px; color: #383838; font-size:12px;}
 #product-variants li{margin:0 0 6px 0;}
+
+/*for order summary*/
+.order-inof{
+	overflow:hidden;
+	margin:0 0 10px 0;
+}
+ol.progress-steps{
+	float:left;
+}
+ol.progress-steps li {
+    background-position: left top;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    background: #F3F3F3;
+}
+ol.progress-steps li span {
+    background-position: right top;
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+    padding: 5px 14px 7px 24px;
+}
+ol.progress-steps li.current-first {
+    color: #FFFFFF;
+    background: #add73a;
+    font-weight:bold;
+}
+ol.progress-steps li.current{
+    color: #FFFFFF;
+    background: #add73a;
+    font-weight:bold;
+}
+ol.progress-steps li.completed-first{
+    background: #e2dfdf;
+}
+ol.progress-steps li.completed{
+    background: #e2dfdf;
+}
+ol.progress-steps li.next {
+    background: #F3F3F3;
+}
+ol.progress-steps li a {
+    color: #333333;
+    text-decoration: none;
+}
+#checkout-summary{
+	float:right;
+}
+#checkout-summary table{
+	border:1px solid #B6B6B6;
+}
+#checkout-summary table td {
+    padding: 8px 6px;
+}
+#checkout-summary table th {
+    background: #F3F3F3;
+    font-weight:bold;
+    padding: 8px 6px;
+    text-align:left;
+    font-size:15px;
+}

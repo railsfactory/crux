@@ -77,4 +77,7 @@ module Spree::BaseHelper
 	  @mail= MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
 		return @mail
 	end
+	def find_latest_products
+		Product.find(:all,:order=>"id desc",:limit=>10)
+	end
 end
