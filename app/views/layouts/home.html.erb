@@ -33,8 +33,7 @@
 							</div>
 							<div class="cartinfo">
 								<ul>
-                                	<li class="cart-detail">shopping cart <a href="">(1 items)</a></li>
-									<li class="login"><a href="/login">Log In</a></li>
+									<li class="login"><a href="/login"> Log In </a></li>
 								</ul>
 							</div>
 						</div>
@@ -43,6 +42,17 @@
 				<div class="body-container clearfix">
 					<div class="login-container">											
 						<div class="loginbox">
+						  <% if flash.notice %>
+      <div class="flash notice"><div class="errorwrapper">
+<ul><li><%= flash.notice %></li></ul></div></div>
+      <% end %>
+      <% if flash[:error] %>
+      <div class="flash errors">
+				<div class="errorwrapper">
+					<ul><li><%= flash[:error] %></li></ul>
+				</div>
+			</div>
+      <% end %>
 							<%=yield%>
 						</div>
 					</div>
