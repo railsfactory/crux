@@ -10,7 +10,7 @@
 <% if @product.has_variants?
   has_checked = false %>
   <h4 id="variant-images">
-    <span><%= @selected_variant.options_text %></span>
+     <span><%= @selected_variant.options_text %></span>
   </h4>
   <ul id="variant-thumbnails" class="thumbnails">
     <% @variants.each do |v|
@@ -19,7 +19,7 @@
         
         if checked 
           v.images.each do |i| %>  
-            <li><%= link_to(image_tag(i.attachment.url(:mini)), i.attachment.url(:product)) %></li>
+            <li><%= link_to(image_tag(i.attachment.url(:mini)), i.attachment.url(:product),:border=>0,:width=>'240px',:height=>'240px') %></li>
           <% end %>
         <% end %>
       <% end %>

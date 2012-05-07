@@ -143,8 +143,7 @@ a.close-btn { position:absolute; background:url(../images/close-btn.png) no-repe
 .sing-in-bottom a { display:block; margin-bottom:7px; color:#798600;}
 input.button { cursor:pointer; font-family:12px; padding:3px 5px; font-family:Verdana, Arial, Helvetica, sans-serif; border:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#FFFFFF; overflow:visible;}
 input.primary { background:#ADD73A; font-weight:bold;}
-div.error { float:left; margin-top:5px; color:#FF0000;  }
-label.error { float:left; margin-top:5px; color:#FF0000;  }
+label.error { float:left; margin-top:5px; color:#FF0000;}
 .sing-in-bottom ul{overflow:hidden;}
 .sing-in-bottom li{float:left; font-size:11px; margin:0 10px 0 0;}
 
@@ -210,7 +209,6 @@ a.buy-it { float:right; background:#add73a; color:#ffffff; font-weight:bold; pad
 #product-variants{ margin-top: 1em;}
 #product-variants h2{margin-bottom:10px; color: #383838; font-size:12px;}
 #product-variants li{margin:0 0 6px 0;}
-
 /*for order summary*/
 .order-inof{
 	overflow:hidden;
@@ -275,3 +273,6 @@ ol.progress-steps li a {
     text-align:left;
     font-size:15px;
 }
+
+/*product thumnail*/
+#main-image{width:240px;height:240px}
