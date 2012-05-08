@@ -41,13 +41,13 @@ class User < ActiveRecord::Base
   end
 
  #validation for crux
-  validates_presence_of   :email, :if => :email_required?
-  validates_uniqueness_of :email, :scope => :domain_url
-    with_options :if => :password_required? do |v|
-      v.validates_presence_of     :password
-      v.validates_confirmation_of :password
-      v.validates_length_of       :password, :within => 6...20, :allow_blank => true
-    end
+  #~ validates_presence_of   :email, :if => :email_required?
+  #~ validates_uniqueness_of :email, :scope => :domain_url
+    #~ with_options :if => :password_required? do |v|
+      #~ v.validates_presence_of     :password
+      #~ v.validates_confirmation_of :password
+      #~ v.validates_length_of       :password, :within => 6...20, :allow_blank => true
+    #~ end
 protected
 
    def email_required?

@@ -2,7 +2,7 @@ Admin::UsersController.class_eval do
   helper :users
 	def collection
 		return @collection if @collection.present?
-		unless request.xhr?
+		unless request.xhr?|| !current_user.nil?
 			@search = User.registered.metasearch(params[:search])
 			@collection = refine_list(@search).paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
 		else
