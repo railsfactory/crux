@@ -78,6 +78,6 @@ module Spree::BaseHelper
 		return @mail
 	end
 	def find_latest_products
-		Product.find(:all,:order=>"id desc",:limit=>10)
+   Product.find(:all,:conditions=>["domain_url=?",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
 	end
 end

@@ -2,9 +2,13 @@ Admin::UsersController.class_eval do
   helper :users
 	def collection
 		return @collection if @collection.present?
-		unless request.xhr?|| !current_user.nil?
+		unless request.xhr?
+		if current_user.nil?
+			@collection=[]
+		else
 			@search = User.registered.metasearch(params[:search])
 			@collection = refine_list(@search).paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
+		end
 		else
 			@collection = User.includes(:bill_address => [:state, :country], :ship_address => [:state, :country]).where("users.email like :search
 													 OR addresses.firstname like :search
