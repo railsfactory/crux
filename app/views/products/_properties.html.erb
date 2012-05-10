@@ -1,4 +1,4 @@
-<% unless @product_properties.empty? %>
+<% if !@product_properties.empty? %>
 <div class="table-display" id="product-properties">
 <% for product_property in @product_properties %>
   <div class="pvalue">
@@ -6,4 +6,6 @@
 	</div>
  <% end %>
 </div>
+<%else%>
+<p>There is no product details</p>
 <% end %>

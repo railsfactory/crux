@@ -7,8 +7,14 @@
 
 	<div class="collections">
 							<h4 class="sechead">LATEST COLLECTIONS</h4>
+							
 							<%stock_val=find_stock_value("show_zero_stock_products")%>
 		<div class="collection-img-wrap products">
+		<% if products.empty? %>
+  <%= t(:no_products_found) %>
+<% elsif params.key?(:keywords) %>
+  <h3><div class="box-content"><%= t(:search_results, :keywords => h(params[:keywords])) %></div></h3>
+<% end %>
 	<% products.each do |product| %>
     <% if stock_val || product.has_stock? %>                                                      
                                 <div class="coll-left">
