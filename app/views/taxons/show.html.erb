@@ -4,9 +4,10 @@
   <div data-hook="taxon_sidebar_navigation">
 
     <%= render :partial => "shared/taxonomies" %>
+    <%= render(:partial => "shared/filters") if @taxon.children.empty? %>
+
   </div>
 <% end %>
-      <%= render(:partial => "shared/filters") if @taxon.children.empty? %>
 
 <% if @taxon.children.empty? || !params[:keywords].blank? %>
   <div data-hook="taxon_products">
