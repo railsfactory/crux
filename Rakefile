@@ -47,6 +47,7 @@ task :test_app do
     def install_gems
       inside "test_app" do
         run 'bundle exec rake spree_core:install'
+        run 'bundle exec rake spree_auth:install'
         run 'bundle exec rake crux:install'
       end
     end
@@ -59,6 +60,7 @@ task :test_app do
     def full_path_for_local_gems
       <<-gems
 gem 'spree_core', :path => \'#{File.join(File.dirname(__FILE__), "../spree/", "core")}\'
+gem 'spree_auth', :path => \'#{File.join(File.dirname(__FILE__), "../spree/", "auth")}\'
 gem 'crux', :path => \'#{File.dirname(__FILE__)}\'
       gems
     end
