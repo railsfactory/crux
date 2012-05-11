@@ -17,7 +17,7 @@
 .global-nav ul{overflow:hidden; font-size:11px;}
 .global-nav li{float:left;line-height: 22px; margin: 0 12px 0 0; padding:0 0 0 8px; background:url("../images/blt-globalnav.gif") no-repeat scroll 0 center;}
 .cartinfo{float:right;}
-.cartinfo li{float:left; line-height:20px; font-size:11px;}
+.cartinfo li{float:left; line-height:20px; font-size:11px;margin:0 20px 0 0;}
 .cartinfo li.cart-detail{margin:0 20px 0 0; background:url("../images/icon-cart.png") no-repeat scroll 0 0; padding:0 0 0 22px;}
 .cartinfo li.login a {background:url("../images/icon-login.png") no-repeat scroll 0 0px; padding:1px 0 0 22px;}
 .cartinfo li.logout{background:url("../images/icon-logout.png") no-repeat scroll 0 2px; padding:0 0 0 22px;}
@@ -283,3 +283,5 @@ ol.progress-steps li a {
 .sublevel a:hover{color:#4B82B7;}
 .submenu{margin-top:4px;padding:0;}
 .submenu li{border-bottom:0; background: url("../images/blt-globalnav.gif") no-repeat scroll 0px 11px transparent; padding-left:10px}
+input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; /*height: 23px; line-height: 31px;*/ padding: 6px 8px; width: 330px;}
+#user_submit{ background:#ADD73A; font-weight:bold; cursor:pointer; font-family:12px; padding:3px 5px; font-family:Verdana, Arial, Helvetica, sans-serif; border:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#FFFFFF; overflow:visible;margin-top:18px;}

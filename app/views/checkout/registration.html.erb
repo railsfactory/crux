@@ -10,13 +10,14 @@
       <h4 class="sechead"><%= t(:guest_user_account) %></h4>
       <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"} do |f| %>
         <div class="secinblock">
-					<p>
+					<div class="fm-elements">
 						<%= f.label :email, t("email") %><br />
-						<%= f.text_field :email, :class => 'title'  %>
-					</p>
-			
-        <p><%= submit_tag t("continue"), :class => 'button primary' %></p>
+						<%= f.text_field :email, :class => 'txtinput'  %>
 					</div>
+			 <div class="fm-elements">
+													<%= submit_tag t("continue"), :class => 'button primary' %>
+					            </div>
+				</div>
       <% end %>
     </div>
   <% end %>
