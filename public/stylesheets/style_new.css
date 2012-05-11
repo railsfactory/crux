@@ -298,3 +298,7 @@ input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; 
 .pagination em{display: block; float:left;background:#ADD73A; padding: 3px 8px; color:#fff; margin: 0 3px 0 0;  border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;font-weight:bold; }
 .pagination .previous_page.disabled, .pagination .next_page.disabled{color:#a0a0a0; background:#ffffff;}
 .pagination em{font-style:normal; font-weight:bold;}
+
+.btns-left{overflow:hidden;}
+.btns-left .btn-continue-shop{float:left;}
+.empty-cart{float:left; margin:0 0 0 5px;}
