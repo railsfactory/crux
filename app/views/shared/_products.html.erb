@@ -13,8 +13,8 @@
 		<% if products.empty? %>
   <%= t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
-  <h3><div class="box-content"><%= t(:search_results, :keywords => h(params[:keywords])) %></div></h3>
-<% end %>
+  <h4><%= t(:search_results, :keywords => h(params[:keywords])) %></h4>
+	<% end %>
 	<% products.each do |product| %>
     <% if stock_val || product.has_stock? %>                                                      
                                 <div class="coll-left">
@@ -37,11 +37,11 @@
 						</div>						
 <% end %>
 
-<% if paginated_products.respond_to?(:total_pages)
+<div class="pagination-wrap"><% if paginated_products.respond_to?(:total_pages)
       params.delete(:search)
       params.delete(:taxon)
 
 %><%= will_paginate(paginated_products,
                     :previous_label => "&#171; #{t('previous')}",
                     :next_label => "#{t('next')} &#187;") %>
-<% end %>
+<% end %></div>

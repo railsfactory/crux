@@ -285,3 +285,16 @@ ol.progress-steps li a {
 .submenu li{border-bottom:0; background: url("../images/blt-globalnav.gif") no-repeat scroll 0px 11px transparent; padding-left:10px}
 input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; /*height: 23px; line-height: 31px;*/ padding: 6px 8px; width: 330px;}
 #user_submit{ background:#ADD73A; font-weight:bold; cursor:pointer; font-family:12px; padding:3px 5px; font-family:Verdana, Arial, Helvetica, sans-serif; border:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#FFFFFF; overflow:visible;margin-top:18px;}
+
+.products h4{margin:0 0 10px 10px; font-size:14px;}
+
+/*pagination*/
+
+.pagination-wrap{overflow:hidden; margin: 10px 0;}
+.pagination{float:right; overflow:hidden;}
+.pagination a{color: #383838; margin: 0 3px 0 0; padding: 3px 8px; display: block;  float:left;}
+.pagination a:hover{background:#eeeeee; color:#383838;  border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;}
+.pagination span{display: block; float:left;padding: 3px 8px; margin: 0 3px 0 0;}
+.pagination em{display: block; float:left;background:#ADD73A; padding: 3px 8px; color:#fff; margin: 0 3px 0 0;  border-radius:2px; -moz-border-radius:2px; -webkit-border-radius:2px;font-weight:bold; }
+.pagination .previous_page.disabled, .pagination .next_page.disabled{color:#a0a0a0; background:#ffffff;}
+.pagination em{font-style:normal; font-weight:bold;}
