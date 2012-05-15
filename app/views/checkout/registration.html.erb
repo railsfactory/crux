@@ -12,7 +12,7 @@
         <div class="secinblock">
 					<div class="fm-elements">
 						<%= f.label :email, t("email") %><br />
-						<%= f.text_field :email, :class => 'txtinput'  %>
+						<%= f.text_field :email, :class => 'txtinput required'  %>
 					</div>
 			 <div class="fm-elements">
 													<%= submit_tag t("continue"), :class => 'button primary' %>
@@ -22,3 +22,8 @@
     </div>
   <% end %>
 </div>
+<script>
+$(function(){
+jQuery("#checkout_form_registration").validate();
+});
+</script>
