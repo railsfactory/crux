@@ -31,7 +31,7 @@
 .sfield{float:left; margin:0 10px 0 0;}
 .product-select{width:215px; border:1px solid #808080; font-size:11px; padding:2px; margin:0px;}
 .search_input{border:1px solid #808080; padding:3px 2px; width:215px; font-size:11px;}
-.sbtn-submit{background:#ADD73A; color:#ffffff; font-size:12px; font-weight:bold; border:0; cursor:pointer; display:block; padding:2px 8px;  border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; overflow:visible;}
+.sbtn-submit{background:#ADD73A; color:#ffffff; font-size:12px; font-weight:bold; border:0; cursor:pointer; display:block; padding:2px 8px;  border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; overflow:visible;margin-top:1px;}
 .sbutton{float:left;}
 
 /* sidenav */
@@ -80,8 +80,8 @@
 .img-thumbs li.active{border: 1px solid #DBDBDB;}
 .img-thumbs li img {padding:2px 1px;}
 .prices {color: #C90000; font-weight: bold; margin-top: 3px; font-size:18px;}
-.pcount{float:right;}
-.pcount .txtbox{width:80px;}
+.pcount{float:right; margin:4px 0 0 0;}
+.pcount .txtbox{width:80px; float:left;}
 .addtocart{margin:15px 0 0 0; overflow:hidden;}
 .btn-addcart { background: #ADD73A; color: #ffffff; float: left; padding: 5px 10px; font-weight:bold; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;border:0;}
 .btn-addcart:hover{color: #ffffff;}
@@ -203,7 +203,7 @@ a.buy-it { float:right; background:#add73a; color:#ffffff; font-weight:bold; pad
 .loginbox{width:400px; margin:0 auto;}
 .loginbox .secinblock{padding:22px;}
 
-.pcount span { float:left; margin-top:5px; padding-bottom:2px;}
+.pcount span { float:left; margin:5px 10px 0 0; padding-bottom:2px;}
 
 
 #product-variants{ margin-top: 1em;}
@@ -302,3 +302,6 @@ input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; 
 .btns-left{overflow:hidden;}
 .btns-left .btn-continue-shop{float:left;}
 .empty-cart{float:left; margin:0 0 0 5px;}
+
+
+.guest{background: none repeat scroll 0 0 #DF5321;border-radius: 5px 5px 0 0;color: #FFFFFF;line-height: 16px;margin-top: 10px;padding: 6px 10px;text-transform: uppercase;}

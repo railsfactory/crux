@@ -7,7 +7,7 @@
   <% if Spree::Config[:allow_guest_checkout] %>
     <div id="guest_checkout">
       <%= render "shared/error_messages", :target => @order %>
-      <h4 class="sechead"><%= t(:guest_user_account) %></h4>
+      <h4 class="guest"><%= t(:guest_user_account) %></h4>
       <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"} do |f| %>
         <div class="secinblock">
 					<div class="fm-elements">

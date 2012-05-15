@@ -6,7 +6,7 @@
 									<div class="search-head">Product Search</div>
 									<div class="sfield">
 									<%= select_tag :taxon,
-        options_for_select([[t(:categories), '']] +
+        options_for_select([[t(:all_categories), '']] +
                               @taxons.map {|t| [t.name, t.id]},
                             @taxon ? @taxon.id : params[:taxon]) ,:class=>"product-select"%>
 								
@@ -15,7 +15,7 @@
 									  <%= text_field_tag :keywords, params[:keywords],:class=>"search_input",:html=>{:class=>"search_input "} %>
 									</div>
 									<div class="sbutton">
-									<%= submit_tag "ok",:class=>"sbtn-submit" ,:name => nil %>
+									<%= submit_tag "Ok",:class=>"sbtn-submit" ,:name => nil %>
 									</div>								
 								</div>
 

@@ -35,11 +35,9 @@
     </div>
   <% end%>
   <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
-    			<div class="pcount">
-			<span>Qty:</span> &nbsp;
-			<%= text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
-      1, :class => "title txtbox", :size => 3 %>
-			</div>&nbsp;
+		<div class="pcount">
+			<span>Qty:</span><%= text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),1, :class => "title txtbox", :size => 3 %>
+		</div>
     <div class="addtocart">
 					  <input type="submit" class="continue button primary" value="Add to cart" />
 		</div>
