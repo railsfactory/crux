@@ -11,6 +11,7 @@
 							               <%= f.password_field 'password', :class => 'title txt-fld required' %>
 							                </div>
 							            </div>
+													<input type="hidden" value=<%=request.request_uri%> name="login_form_path">
 							            <div class="fm-elements" id='password-credentials'>
 															<%= f.check_box :remember_me, :class=>"check-box" %>
 							                <p>Remember me</p>
