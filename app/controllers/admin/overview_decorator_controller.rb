@@ -122,9 +122,13 @@ class Admin::OverviewController < Admin::BaseController
 
   def best_selling_taxons
     taxonomy = Taxonomy.where(:domain_url=>current_user.domain_url)
+		unless taxonomy.empty?
     taxons =  Taxon.connection.select_rows("select t.name, count(li.quantity) from line_items li inner join variants v on
            li.variant_id = v.id inner join products p on v.product_id = p.id inner join products_taxons pt on p.id = pt.product_id
            inner join taxons t on pt.taxon_id = t.id where t.taxonomy_id = #{taxonomy.id} group by t.name order by count(li.quantity) desc limit 5;")
+		else
+			taxons=[]
+		end
   end
 
   def last_five_orders
