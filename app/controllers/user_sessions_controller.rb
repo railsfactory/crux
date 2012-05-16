@@ -37,7 +37,11 @@ class UserSessionsController < Devise::SessionsController
       end
     else
       flash[:error] = I18n.t("devise.failure.invalid")
+     	if params[:login_form_path] && params[:login_form_path]=="/checkout/registration"
+				redirect_to"/checkout/registration",:error=>flash[:error]
+				else
       render :new
+		end
     end
   end
   
