@@ -21,25 +21,6 @@
 										     <input type="hidden" name="user[domain_url]" value="<%=get_sub_domain(current_subdomain)%>">
 		                 </div>
 
-<!--<% if current_user && !request.url.include?("signup")%>
-	 <% unless current_user.has_role? "admin"%>
-			<%#= fields_for @store_owner do |s| %>
-			
-			<div class="fm-elements">
-							                <label for="user_email">Card Number</label>
-							                <div class="input-wrap">
-															    <%#= s.text_field :card_number, :class => 'title txtinput '  %>
-							                </div>
-		                 </div>
-										 		<div class="fm-elements">
-							                <label for="user_email">cvv</label>
-							                <div class="input-wrap">
-															<%#= s.password_field :cvv, :class => 'title txtinput'  %>
-							                </div>
-		                 </div>
-				<%end%>
-	 <%end%>
- <%end%>-->
 <div data-hook="signup_below_password_fields"></div>
 
 
