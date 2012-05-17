@@ -20,20 +20,17 @@ class UsersController < Spree::BaseController
     end
 
     def update
-      @store_owner=@user.store_owner
-      if  @user.update_attributes(params[:user])
-        @store_owner.update_attribute(:card_number,params[:store_owner][:card_number]) unless params[:store_owner][:card_number].blank?
-        @store_owner.update_attribute(:cvv,params[:store_owner][:cvv]) unless params[:store_owner][:cvv].blank?
-        if params[:user][:password].present?
-          # this logic needed b/c devise wants to log us out after password changes
-          user = User.reset_password_by_token(params[:user])
-          sign_in(@user, :event => :authentication, :bypass => !Spree::Auth::Config[:signout_after_password_change])
-        end
-        flash.notice = I18n.t("account_updated")
-        redirect_to account_url
-      else
-        render 'edit'
+           if @user.update_attributes(params[:user])
+      if params[:user][:password].present?
+        # this logic needed b/c devise wants to log us out after password changes
+        user = User.reset_password_by_token(params[:user])
+        sign_in(@user, :event => :authentication, :bypass => !Spree::Auth::Config[:signout_after_password_change])
       end
+      flash.notice = I18n.t("account_updated")
+      redirect_to account_url
+    else
+      render 'edit'
+    end
     end
 
     private
