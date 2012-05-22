@@ -1,17 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<%= hook :inside_head do %>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<%== meta_data_tags %>
-<%= csrf_meta_tag %>
-<%= javascript_include_tag 'jquery-1.4.2.min', 'jquery.validate.min.js', 'rails', 'application', :cache => 'jquery-core' %>
-<% unless I18n.locale.to_s[0..1] == 'en' %>
-  <%= javascript_include_tag ['localization/messages_', I18n.locale.to_s[0..1], '.js'].join %>
-<% end %>
-<%= yield :head %>
+
 <link rel="stylesheet" href="/stylesheets/style_new.css" type="text/css" />
-<% end %>
 
 <body>
 		<div class="wrapper">			
@@ -25,11 +17,6 @@
 					<div class="tophead">
 						<div class="topsection">
 							<div class="global-nav">
-								<ul>
-									<li><a href="/">Home</a></li>
-									<li><a >Service</a></li>
-									<li><a >About us</a></li>
-								</ul>
 							</div>
 							<div class="cartinfo">
 								<ul>
@@ -40,8 +27,6 @@
 					</div>
 				</div><!-- header -->
 				<div class="body-container clearfix">
-					<div class="login-container">											
-						<div class="loginbox">
 						  <% if flash.notice %>
       <div class="flash notice"><div class="errorwrapper">
 <ul><li><%= flash.notice %></li></ul></div></div>
@@ -50,8 +35,6 @@
       <div class="flash errors">
 				<div class="errorwrapper">
 					<ul><li><%= flash[:error] %></li></ul>
-				</div>
-			</div>
       <% end %>
 							<%=yield%>
 						</div>
@@ -62,7 +45,9 @@
                     <ul>
                     	<li><a href="/">Home</a></li><li>|</li>
                         <li><a href="/static_pages/aboutus" >About Us</a></li><li>|</li>
-												<li><a href="/static_pages/terms">Terms &amp; Conditions</a></li>
+												<li><a href="/static_pages/contactus">Contact Us</a></li><li>|</li>
+                        <li><a href="/static_pages/privacy">Privacy</a></li><li>|</li>
+                        <li><a href="/static_pages/terms">Terms &amp; Conditions</a></li>
                     </ul>
             	</div>
 			</div>

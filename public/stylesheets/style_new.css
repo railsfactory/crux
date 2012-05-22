@@ -305,3 +305,9 @@ input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; 
 
 
 .guest{background: none repeat scroll 0 0 #DF5321;border-radius: 5px 5px 0 0;color: #FFFFFF;line-height: 16px;margin-top: 10px;padding: 6px 10px;text-transform: uppercase;}
+
+/* static pages */
+.secinblock p{margin-bottom: 15px;line-height:20px;text-indent:50px;}
+.static ul{margin:0 0 0 15px;}
+.static li{margin:4px 0; line-height:15px; font-size:12px; list-style-type:disc;}
+
