@@ -5,5 +5,6 @@ if RUBY_VERSION < '1.9'
 else
   gem 'ruby-debug19'
 end
-gem 'mysql'
+
 gemspec
+
