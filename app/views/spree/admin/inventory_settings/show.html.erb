@@ -1,0 +1,16 @@
+<%= render :partial => 'admin/shared/configuration_menu' %>
+
+<h1><%= t("inventory_settings") %></h1>
+  <%preference=find_domain_preference("Default configuration")%>
+	<%if preference.blank?%>
+
+<h4><%= t("products_with_zero_inventory_display", :not => show_not(Spree::Config[:show_zero_stock_products])) %> </h4>
+<h4><%= t("backordering_is_allowed", :not => show_not(Spree::Config[:allow_backorders])) %></h4>
+<%else%>
+<h4><%= t("products_with_zero_inventory_display", :not => show_not(preference.select{|x|x.name=="show_zero_stock_products"}.map(&:value)[0]))%> </h4>
+<h4><%= t("backordering_is_allowed", :not => show_not(preference.select{|x|x.name=="allow_backorders"}.map(&:value)[0])) %></h4>
+
+<%end%>
+
+<%= link_to_with_icon 'edit', t("edit"), edit_admin_inventory_settings_path, :id => 'admin_inventory_settings_link' %>
+

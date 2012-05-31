@@ -1,0 +1,47 @@
+ <%=p 1111111111111111111111111111%>
+ <%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
+<% content_for :sidebar do %>
+  <div data-hook="homepage_sidebar_navigation">
+    <%= render "spree/shared/taxonomies" %>
+  </div>
+<% end %>
+<div data-hook="homepage_products">
+  <%= render "spree/shared/products", :products => @products %>
+</div>
+<%else%>
+
+
+<div class="main-wrapper page">
+	<div class="banner"><img src="images/banner.png" alt="banner" /></div>
+	<div class="login-btn" style="margin: -93px 0 0 20px;position: absolute;width: 200px;">
+     <a href="/stores_registration"><img alt="login-btn" src="/images/login-btn-blue.png"></a>
+    </div>
+</div>
+<div class="content main-wrapper rc8">
+	<div class="third_column r_dots">
+        <div class="hp_pad">
+            <h3 class="r1_title">Free, ready-to-go templates</h3>
+            <div class="hp_icon"></div>
+            	<p>Give your site a design that's sure to impress. Simply apply your favorite template <br>with just a click of <br>the mouse.</p>
+                <a class="sq" href=""> View free templates</a>
+      	</div>
+   	</div>
+    <div class="third_column r_dots">
+        <div class="hp_pad">
+            <h3 class="r1_title">Everything you need to succeed</h3>
+            <div class="hp_icon sucess"></div>
+            	<p>Give your site a design that's sure to impress. Simply apply your favorite template <br>with just a click of <br>the mouse.</p>
+                <a class="sq" href=""> Take feature tour</a>
+    	</div>
+   	</div>
+    <div class="third_column">
+        <div class="hp_pad">
+            <h3 class="r1_title">Unlimited 24x7x365 support</h3>
+            <div class="hp_icon support"></div>
+            	<p>Give your site a design that's sure to impress. Simply apply your favorite template <br>with just a click of <br>the mouse.</p>
+                <a class="sq" href=""> See our promise to you</a>
+      	</div>
+   	</div>
+</div>
+
+<%end%>

@@ -1,4 +1,5 @@
-module Spree::BaseHelper
+module Spree
+    module BaseDecoratorHelper
 		def find_stock_value(attr)
 			pref=find_domain_preference("Default configuration")
 			if  pref.blank?
@@ -15,23 +16,23 @@ module Spree::BaseHelper
 
 		def get_taxons(domain)
 			subdomain= get_sub_domain(domain)
-			taxon=Taxon.roots.where('domain_url= ?',subdomain)
+			taxon=Spree::Taxon.roots.where('domain_url= ?',subdomain)
 		end
 
 		def find_storeowner_email(order)
 			domain=find_mail_domain(order)
-			store_owner=StoreOwner.find_by_domain(domain)
+			store_owner=Spree::StoreOwner.find_by_domain(domain)
 			store_owner=store_owner.user.email
 		end
 
 
 		def find_mail_domain(order)
-			store=StoreownerOrder.find_by_order_id(order.id)
+			store=Spree::StoreownerOrder.find_by_order_id(order.id)
 			mail_domain=store.store_owner.domain
 		end
 
 		def mail_settings(domain)
-				mail_methods=MailMethod.find_all_by_domain_url(domain)
+				mail_methods=Spree::MailMethod.find_all_by_domain_url(domain)
 			unless mail_methods.blank?
 				Spree::MailSettings.init(domain)
 				Mail.register_interceptor(MailDomainInterceptor)
@@ -45,7 +46,7 @@ module Spree::BaseHelper
 			if (request.url.include?(APP_CONFIG['separate_url']))
 				subdomain= domain.split(".")[0] if domain
 			else
-				store=StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
+				store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
 				subdomain=store.domain
 			end
 			return subdomain
@@ -53,11 +54,11 @@ module Spree::BaseHelper
 
 		def find_customization_domain
 			customdomain=(request.url).split("/")[2]
-			custom=DomainCustomize.find_by_custom_domain(customdomain)
+			custom=Spree::DomainCustomize.find_by_custom_domain(customdomain)
 		end
 
 		def find_digital_domain(order)
-			store=StoreownerOrder.find_by_order_id(order.id)
+			store=Spree::StoreownerOrder.find_by_order_id(order.id)
 			if store.is_custom?
 				return store.store_owner.domain_customize.custom_domain
 			else
@@ -66,7 +67,7 @@ module Spree::BaseHelper
 		end
 
 		def find_domain_preference(type)
-			config=Configuration.find_by_name(type)
+			config=Spree::Configuration.find_by_name(type)
 			if config
 				available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])        
 			else
@@ -74,10 +75,11 @@ module Spree::BaseHelper
 			end
 		end
 	def find_mail_methods(domain)
-	  @mail= MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
+	  @mail= Spree::MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
 		return @mail
 	end
 	def find_latest_products
-   Product.find(:all,:conditions=>["domain_url=?",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
+   Spree::Product.find(:all,:conditions=>["domain_url=?",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
 	end
+end
 end

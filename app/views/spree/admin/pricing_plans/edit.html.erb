@@ -1,0 +1,11 @@
+<%= render 'spree/shared/error_messages', :target => @pricing_plan %>
+<h1>Editing Plan</h1>
+
+<%= form_for @pricing_plan, :url=>{:controller=>:pricing_plans,:action=>:update} do |f| %>
+    <%= render :partial => "form", :locals => { :f => f } %>
+    <%= render :partial => "spree/admin/shared/edit_resource_links" %>
+<% end %>
+
+
+<%= link_to 'Show', admin_pricing_plan_path(@pricing_plan) %> |
+<%= link_to 'Back', admin_pricing_plans_path %>

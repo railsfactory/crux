@@ -9,7 +9,7 @@ class StoreRegisterMailer < ActionMailer::Base
 
 	def mail_initialize(domain)
 		Spree::MailSettings.init(domain)
-		Mail.register_interceptor(MailDomainInterceptor)
+		Mail.register_interceptor(Spree::Core::MailInterceptor)
 	end
 
 end

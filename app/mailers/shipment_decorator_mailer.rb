@@ -1,6 +1,6 @@
 class ShipmentMailer < ActionMailer::Base
   helper "spree/base"
-  require "mail_domain_interceptor"
+  require "spree/core/mail_interceptor"
   include Spree::BaseHelper
   def shipped_email(shipment, resend=false)
     @domain=find_mail_domain(shipment.order)

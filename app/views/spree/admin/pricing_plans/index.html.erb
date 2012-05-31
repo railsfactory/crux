@@ -1,0 +1,60 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <p><%= button_link_to t("new_plan"), new_admin_pricing_plan_path, :icon => 'add', :id => 'admin_new_pricing_plan_link' %></p>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= t("listing_plans") %></h1>
+
+<table class="index" id='listing_plans'>
+
+  <thead>
+  <tr>
+	<div data-hook="admin_plans_index_headers">
+
+      <th><%= sort_link @search,:plan_name,t("plan") %></th>
+      <th><%= sort_link @search,:amount,t("amount") %></th>
+      <th><%= sort_link @search,:transaction_fee,t("transaction_fee") %></th>
+      <th><%= sort_link @search,:no_of_products,t("no_of_products") %></th>
+      <th><%= t("payment_period") %></th>
+      <th><%= t("payment_status") %></th>
+      <th>
+				<div data-hook="admin_plans_index_header_actions"></div>
+<th>
+				<div data-hook="admin_plans_index_header_actions"></div>
+      </th>
+      </th>
+</div>
+</tr>
+  </thead>
+  <tbody>
+<% @pricing_plans.each do |pricing_plan| %>
+   <%- locals = {:pricing_plan => pricing_plan} %>
+
+  <tr id="pricing_plan_<%=pricing_plan.id%>">
+    <td class='user_email'><%=link_to pricing_plan.plan_name, :action=>"edit",:id=>pricing_plan.id  %></td>
+    <td><%= number_to_currency pricing_plan.amount %></td>
+    <td><%= pricing_plan.transaction_fee %> %</td>
+    <td><%= pricing_plan.no_of_products %></td>
+    <td><%= pricing_plan.payment_period %></td>
+    <td><%= (pricing_plan.is_active?) ? "Active" : "Inactive" %></td>
+
+		<td>
+        <%= link_to "edit",:action=>"edit",:id=>pricing_plan.id %> &nbsp;
+        <td>
+        <%= link_to "delete",admin_pricing_plan_path(pricing_plan),:method=>"delete" %> &nbsp;
+		
+		</td>
+		</td>
+		
+  </tr>
+<% end %>
+
+</tbody>
+</table>
+
+
+

@@ -1,0 +1,126 @@
+<div id=billing>
+<% unless current_user.has_role? "admin" %>
+<h1><%= t("listing_users") %></h1>
+<%else%>
+<h1><%= t("listing_owners") %></h1>
+<%end%>
+<table class="index" id='listing_users'>
+  <thead>
+  <tr>
+		<div data-hook="admin_users_index_headers">
+		<% unless current_user.has_role? "admin" %>
+      <th><%= sort_link @search,:email,t("user"),{}, {:title => 'users_email_title'} %></th>
+      <th>
+        <%= hook :admin_users_index_header_actions %>
+      </th>
+			<%else%>
+			<th><%= t("store_name") %></th>
+		 <th><%= t("owner_name") %></th>
+		 <th><%= t("custom_domain")%>
+			<th><%= t("status") %></th>
+			<th><%= t("view_details") %></th>
+    <% end %>
+		</div>
+  </tr>
+  </thead>
+  <tbody>
+	<% unless current_user.has_role? "admin" %>
+    <% @users && @users.each do |user|%>
+      <tr id="<%= dom_id user %>">
+        <%- locals = {:user => user} %>
+        <%= hook :admin_users_index_rows, locals do %>
+          <td width="350px" class='user_email'><%=link_to user.email, object_url(user) %></td>
+        <% end %>
+        <td>
+						<div data-hook="admin_users_index_row_actions">
+            <%= link_to_edit user, :class => "edit" %> &nbsp;
+            <%= link_to_delete user %>
+						</div>
+        </td>
+      </tr>
+    <% end %>
+		<%else%>
+    <%@users && @users.each do |user|%>
+    <% store= store_owner=Spree::StoreOwner.find_by_user_id(user.id) %>
+      <tr id="<%= dom_id user %>">
+        <%- locals = {:user => user} %>
+					<div data-hook="admin_users_index_rows">
+       <%if store%>
+				<% link_path=store.domain+"."+APP_CONFIG['domain_url'].split("//")[1]%>
+					<td width="200px" class='user_email'><%=link_to link_path,"http://#{link_path}",:target=>"_blank"%></td>
+          <td width="200px" class='user_email'><%=store.first_name%></td>
+					<%store.domain_customize%>
+							<% if store.domain_customize%>
+							<%domain_url=store.domain_customize.custom_domain%>
+						<td width="200px" class='user_email'><%=link_to domain_url,"http://#{domain_url}",:target=>"_blank"%></td>
+						<% else %>
+										<td width="200px" class='user_email'><%="Unavailable"%></td>
+
+							<%end%>
+
+				<td width="200px" class='user_email'><%= link_to (store.is_active?) ? "Active" : "Inactive",'#',:onclick => "check_status(#{store.id});"%></td>
+				
+        <td>
+	<div data-hook="admin_users_index_row_actions">
+ <%= link_to "View details",'#',:onclick => "viewdetails(#{store.id});"%>					<%#= link_to_delete user %>
+ </div>
+        </td>
+      </tr>
+								<%end%>
+								<%end%>
+
+			</div>
+  </tbody>
+</table>
+
+<% end %>
+<% unless current_user.has_role? "admin" %>
+	 </tbody>
+</table>
+
+
+<% content_for :sidebar do %>
+  <div class="box">
+    <h3><%= t(:search) %></h3>
+    <% @search = User.search %>
+    <%= form_for [:admin, @search] do |f| %>
+      <%- locals = {:f => f} %>
+				<div data-hook="admin_users_index_search">
+
+        <p>
+          <%= t("email") %><br />
+          <%= f.text_field :email_contains, :size=>18 %>
+        </p>
+				</div>
+								<div data-hook="admin_users_index_search_buttons">
+
+        <p><%= button t("search") %></p>
+				</div>
+    <% end %>
+  </div>
+<% end %>
+
+<%end%>
+</div>
+
+<script>
+function viewdetails(id){
+{
+$.ajax({
+                        url:"/admin/store_details/billing_history",
+                        data: "store="+id,
+												success: function(data) {
+			$('#status').html(data);
+			}
+                        });
+}
+}
+function check_status(store)
+{
+$.ajax({
+			url: "/admin/users/store_status",
+			data: "userid="+store,
+			
+});
+		}
+</script>

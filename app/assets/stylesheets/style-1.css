@@ -1,0 +1,12 @@
+/* For Additional Pages */
+.errorwrapper {background: #F7F3F3; border: 1px solid #B6B6B6; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; -o-border-radius: 5px; padding: 14px; color:#DF5321; margin:0 0 10px 0;}
+.errorwrapper ul{margin:0 0 0 15px;}
+.errorwrapper li{margin:4px 0; line-height:15px; font-size:11px; list-style-type:disc;}
+
+.card_logos{float:right;}
+.payment_method{overflow:hidden;}
+.card_details #txt_card_code{width:100px;}
+.card_details #txt_coupon_code{width:100px;}
+.paymode {float: left; width: 181px;}
+.payoptions{float:left;}
+.subhead{color:#75A1CB !important; line-height:16px; margin:0 0 12px; border-bottom: 1px dotted #A9A9A9; padding:0 0 4px 0;}

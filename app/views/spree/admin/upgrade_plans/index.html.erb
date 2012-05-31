@@ -1,0 +1,70 @@
+<%current_plan=current_user.store_owner.pricing_plan%>
+	<h1 class="sign-up-title"><%=t(:Current_Plan)%></h1>
+	
+<div class="main-wrapper page">
+</div>
+<div class="main-wrapper page plan">
+	<div class="table-wrap">
+        <table  class="index">
+					<thead>
+           <tr>
+       <th><%=t(:Name)%></th>
+                <th><%=t(:Fee)%></th>
+                <th><%=t(:Transaction_Fee)%></th>
+                <th><%=t(:No_of_Products)%></th>
+                <th><%=t(:Payment_Period)%></th>
+            </tr>
+				</thead>
+			<tbody>
+        <tr class="bg-bl">
+						<td><%= current_plan.plan_name%></td>
+						<td><%= number_to_currency current_plan.amount%></td>
+						<td><%= current_plan.transaction_fee%> %</td>
+						<td><%= current_plan.no_of_products%></td>                	
+						<td><%= current_plan.payment_period%></td>                	
+            </tr>
+     </tbody>						
+        </table>
+   	</div>
+</div>
+
+
+<div class="main-wrapper page">
+	<h1 class="sign-up-title"><%=t(:Listing_of_Plans)%></h1>
+</div>
+<div class="main-wrapper page plan">
+	<div class="table-wrap">
+        <table  class="index">
+										</thead>
+
+            <tr>
+								<th><%=t(:Name)%></th>
+                <th><%=t(:Fee)%></th>
+                <th><%=t(:Transaction_Fee)%></th>
+                <th><%=t(:No_of_Products)%></th>
+                <th><%=t(:Payment_Period)%></th>
+            </tr>
+						</thead>
+			<tbody>
+						<%@pricing_plans && @pricing_plans.each do |plan|%>
+            <tr class="bg-bl">
+                <td><%= plan.plan_name%></td>
+							<td><%=number_to_currency  plan.amount%></td>
+						<td><%= plan.transaction_fee%> %</td>
+						<td><%= plan.no_of_products%></td>
+               	<td>
+                	<div class="tabel-td">
+									<%if current_plan.amount>plan.amount%>
+										<div class="month"><%= plan.payment_period%><span style="margin-left:15px;"><%=link_to "Downgrade",:action=>"user_update_plan",:plan_id=>plan.id%></span></div>
+										<%else%>
+										<div class="month"><%= plan.payment_period%><span style="margin-left:15px;"><%=link_to "Upgrade",:action=>"user_update_plan",:plan_id=>plan.id%></span></div>
+										<%end%>
+                    </div>
+            	</td>
+            </tr>    
+	<%end%>
+				<tbody>
+
+        </table>
+   	</div>
+</div>

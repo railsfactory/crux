@@ -1,7 +1,7 @@
 class OrderMailer < ActionMailer::Base
   helper "spree/base"
   include Spree::BaseHelper
-  require "mail_domain_interceptor"
+  require "spree/core/mail_interceptor"
   def confirm_email(order,resend=false)
     @order = order
     @domain=find_mail_domain(order)

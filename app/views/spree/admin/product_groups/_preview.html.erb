@@ -1,0 +1,36 @@
+<% count, preview = @product_group.generate_preview(Spree::Config[:admin_pgroup_preview_size]) %>
+	<%preview=preview.where("domain_url = ? and deleted_at IS NULL",current_user.domain_url)%>
+	<%count=preview.count%>
+
+<h2><%= ProductGroup.human_attribute_name(:products) %> (<%= count %>)</h2>
+	
+<% if count == 0 %>
+  <p><%= t('no_match_found') %></p>
+<% else %>
+
+  <% if count > Spree::Config[:admin_pgroup_preview_size] %>
+    <p><%= t('showing_first_n', :n => Spree::Config[:admin_pgroup_preview_size]) %></p>
+  <% end %>
+
+  <table class="index">
+    <thead>
+    <tr>
+      <th><%= Product.human_attribute_name(:name) %></th>
+      <th><%= t(:action) %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%preview &&  preview.each do |product| %>
+      <tr>
+        <td>
+          <%= link_to product.name, product_url(product) %>
+        </td>
+        <td>
+          <%= link_to t(:edit), edit_admin_product_path(product) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+

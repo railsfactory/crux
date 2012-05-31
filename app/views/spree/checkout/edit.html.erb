@@ -1,0 +1,13 @@
+<% content_for :head do %>
+  <%= javascript_include_tag  'checkout', '/states' %>
+<% end %>
+<div id="checkout">
+  <h1><%= t("checkout")%></h1>
+  <br clear="left" />
+  <%= render "shared/error_messages", :target => @order %>
+  
+  <%= form_for @order, :url => update_checkout_path(@order.state), :html => { :id => "checkout_form_#{@order.state}" } do |form| %>
+    <%= render @order.state, :form => form,:order=>@order %>
+    <input id="post-final" type="submit" style="display:none"/>
+  <% end %>
+</div>

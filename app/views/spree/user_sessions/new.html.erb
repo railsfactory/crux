@@ -1,0 +1,20 @@
+	<% if flash[:alert] %>
+  <div class="flash errors"><%= flash[:alert] %></div>
+<% end %>
+
+							<h4 class="sechead"><%= t("login_as_existing") %></h4>
+  <div data-hook="login">
+							    <div class="secinblock">
+							      <%= render :partial => 'spree/shared/login' %>
+							        <div class="sing-in-bottom">
+							            <ul>
+								            <li> <%= link_to t("create_a_new_account"), signup_path %></li>
+								            <li>|</li>
+								            <li><%= link_to t("forgot_password"), new_user_password_path %></li>
+							            </ul>
+							        </div>	
+							        </div>	
+
+							    </div>						
+				
+<div data-hook="login_extras"></div>
