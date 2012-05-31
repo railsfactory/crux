@@ -7,7 +7,7 @@ class Spree::UsersController < Spree::BaseController
     end
 
     def create
-      @user = User.new(params[:user])
+      @user = Spree::User.new(params[:user])
       if @user.save 
         if current_order
           current_order.associate_user!(@user)
@@ -26,7 +26,7 @@ class Spree::UsersController < Spree::BaseController
         @store_owner.update_attribute(:cvv,params[:store_owner][:cvv]) unless params[:store_owner][:cvv].blank?
         if params[:user][:password].present?
           # this logic needed b/c devise wants to log us out after password changes
-          user = User.reset_password_by_token(params[:user])
+          user = Spree::User.reset_password_by_token(params[:user])
           sign_in(@user, :event => :authentication, :bypass => !Spree::Auth::Config[:signout_after_password_change])
         end
         flash.notice = I18n.t("account_updated")
@@ -44,7 +44,7 @@ class Spree::UsersController < Spree::BaseController
     end
 
     def authorize_actions
-      authorize! params[:action].to_sym, User
+      authorize! params[:action].to_sym,Spree::User
     end
 
     def accurate_title

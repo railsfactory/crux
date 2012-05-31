@@ -8,7 +8,7 @@
 .body-container{}
 .header{overflow:hidden; margin:17px 0;}
 .logo{float:left; width:215px; margin:0 17px 0 0;}
-.logo h1 a{display:block; width:215px; height: 94px; background:url("../images/logo.png") no-repeat scroll 0 0; text-indent:-9999px;}
+.logo h1 a{display:block; width:215px; height: 94px; background:url("logo.png") no-repeat scroll 0 0; text-indent:-9999px;}
 .asidepanel{float:left; width:214px; margin:0 17px 0 0;}
 .contpanel{float:left; width:679px;}
 .tophead{overflow:hidden;}
@@ -31,7 +31,19 @@
 .sfield{float:left; margin:0 10px 0 0;}
 .product-select{width:215px; border:1px solid #808080; font-size:11px; padding:2px; margin:0px;}
 .search_input{border:1px solid #808080; padding:3px 2px; width:215px; font-size:11px;}
-.sbtn-submit{background:#ADD73A; color:#ffffff; font-size:12px; font-weight:bold; border:0; cursor:pointer; display:block; padding:2px 8px;  border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; overflow:visible;}
+.sbtn-submit {
+    background: none repeat scroll 0 0 #ADD73A;
+    border: 0 none;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 1px;
+    overflow: visible;
+    padding: 2px 8px;
+}
 .sbutton{float:left;}
 
 /* sidenav */

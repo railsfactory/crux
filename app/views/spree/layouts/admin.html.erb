@@ -15,14 +15,15 @@
 <h1><%= link_to t("administration"), admin_path %></h1>
 <div id="progress"><%= image_tag '/admin/images/progress.gif' %> <%= t('loading') %>...</div>
 </div>
-  <div id="admin-menu" data-hook>
+  <div id="admin-menu" >
 <ul>
-    <ul data-hook="admin_tabs">
+   
       <%= render :partial => 'spree/admin/shared/tabs' %>
+
+    </ul><br class="clear">  
 </div>
-</ul>
-<br class="clear" />
-</div>
+
+
   <div id="sub-menu" data-hook>
 <%= yield :sub_menu %>
 <br class="clear" />

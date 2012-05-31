@@ -10,12 +10,12 @@
 <li<%== ' class="selected"' if controller.controller_name == 'store_details' %>><%= link_to t("payment_details"), admin_store_details_store_billing_path %></li>
 
 <%else%>
-<%#= tab :store_owners,:route=>:admin_users %>
 <li<%== ' class="selected"' if controller.controller_name == 'users' %>><%= link_to t("store_owners"), admin_users_path %></li>
 <%=tab :store_details %>
 <%= tab :reports %>
 <%= tab :configurations, :general_settings, :mail_settings, :tax_categories, :zones, :states, :gateway_configurations, :inventory_settings, :taxonomies, :label => 'configuration' %>
 <%= tab :pricing_plans %>
+<%= tab :promotions %>
 <%end%>
 
 

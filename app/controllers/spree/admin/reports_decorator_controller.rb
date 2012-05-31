@@ -15,8 +15,8 @@ Spree::Admin::ReportsController.class_eval do
       params[:search][:completed_at_is_not_null] = false
     end
     params[:search][:meta_sort] ||= "created_at.desc"
-    @search = Order.metasearch(params[:search])
-    @orders = @search
+    @search = Spree::Order.search(params[:search])
+    @orders = @search.result(:distinct => true)
     unless current_user.has_role?"admin"
       store=current_user.store_owner
       orders=store.storeowner_orders.map(&:order_id)

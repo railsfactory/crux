@@ -5,8 +5,8 @@ Spree::Admin::PaymentMethodsController.class_eval do
     @object = @payment_method
     invoke_callbacks(:create, :before)
     if @payment_method.save
-		  	 @payment_method.update_attributes(:domain_url=>find_user_domain)
-			   invoke_callbacks(:create, :after)
+      @payment_method.update_attributes(:domain_url=>find_user_domain)
+      invoke_callbacks(:create, :after)
       flash[:notice] = I18n.t(:successfully_created, :resource => I18n.t(:payment_method))
       respond_with(@payment_method, :location => edit_admin_payment_method_path(@payment_method))
     else
@@ -14,21 +14,21 @@ Spree::Admin::PaymentMethodsController.class_eval do
       respond_with(@payment_method)
     end
   end
-	
-	def store_registration_payment_method
-		if Spree::StoreRegPaymentMethod && Spree::StoreRegPaymentMethod.first
-			@payment=Spree::StoreRegPaymentMethod.first
-		else
-			@payment=Spree::StoreRegPaymentMethod.new()
-		end
-		value=params[:store_reg_payment_method]
-		if value && !value.blank?
-			@payment.update_attributes(value)
-			if @payment.save
-				flash.now[:notice]="Payment Method has been updated successfully"
-		  else
-				render "store_registration_payment_method"
-			end
-		end
-	end
+  
+  def store_registration_payment_method
+    if Spree::StoreRegPaymentMethod && Spree::StoreRegPaymentMethod.first
+      @payment=Spree::StoreRegPaymentMethod.first
+    else
+      @payment=Spree::StoreRegPaymentMethod.new()
+    end	
+    value=params[:store_reg_payment_method]
+    if value && !value.blank?
+      @payment.update_attributes(value)
+      if @payment.save
+        flash.now[:notice]="Payment Method has been updated successfully"
+      else
+        render "store_registration_payment_method"
+      end
+    end
+  end
 end
