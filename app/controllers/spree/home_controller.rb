@@ -1,4 +1,4 @@
-class Spree::HomeController < Spree::BaseController
+class Spree::HomeControllerDecorator < Spree::BaseController
    require 'will_paginate/array'
     helper 'spree/products'
 		helper :all
