@@ -49,7 +49,7 @@ html[xmlns] .clearfix {display: block;}
 
 /* `Basic HTML
 ----------------------------------------------------------------------------------------------------*/
-body {font-family: Verdana, sans-serif; font-size:12px; color:#383838; background:transparent url("../images/main.gif") repeat-x 0 68px;}
+body {font-family: Verdana, sans-serif; font-size:12px; color:#383838; background:transparent url("main.gif") repeat-x 0 68px;}
 input, select, textarea{font-family: Tahoma, Helvetica, sans-serif;}
 pre,code {font-family: 'DejaVu Sans Mono', Menlo, Consolas, monospace;}
 hr {border: 0 #ccc solid; border-top-width: 1px; clear: both; height: 0;}
