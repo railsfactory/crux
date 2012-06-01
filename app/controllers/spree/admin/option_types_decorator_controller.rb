@@ -2,7 +2,7 @@ Spree::Admin::OptionTypesController.class_eval do
 
   def set_available_option_types
     domain=find_user_domain
-    @available_option_types = OptionType.find_all_by_domain_url(domain)
+    @available_option_types = Spree::OptionType.find_all_by_domain_url(domain)
     selected_option_types = []
     @product.options.each do |option|
       selected_option_types << option.option_type

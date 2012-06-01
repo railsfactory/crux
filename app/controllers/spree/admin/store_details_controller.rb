@@ -31,7 +31,7 @@ class Spree::Admin::StoreDetailsController <Spree::Admin::ResourceController
   end
   def billing_history
    if request.xhr?
-    store_owner=Spre::StoreOwner.find_by_id(params[:store], :include => :billing_histories)
+    store_owner=Spree::StoreOwner.find_by_id(params[:store], :include => :billing_histories)
     billing_histories=store_owner.billing_histories
     render :partial=>"billing_history", :locals => { :owner => store_owner,:billings=>billing_histories}
    end

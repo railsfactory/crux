@@ -46,7 +46,7 @@ module Spree
   private
   
   def show_dashboard
-    Order.count > 50
+    Spree::Order.count > 50
   end
 
   def conditions(params)
@@ -67,12 +67,12 @@ module Spree
 
   def orders_by_day(params)
     if params[:value] == "Count"
-      orders = Order.select(:created_at).where(conditions(params))
+      orders = Spree::Order.select(:created_at).where(conditions(params))
       orders = orders.group_by { |o| o.created_at.to_date }
       fill_empty_entries(orders, params)
       orders.keys.sort.map {|key| [key.strftime('%Y-%m-%d'), orders[key].size ]}
     else
-      orders = Order.select([:created_at, :total]).where(conditions(params))
+      orders = Spree::Order.select([:created_at, :total]).where(conditions(params))
       orders = orders.group_by { |o| o.created_at.to_date }
       fill_empty_entries(orders, params)
       orders.keys.sort.map {|key| [key.strftime('%Y-%m-%d'), orders[key].inject(0){|s,o| s += o.total} ]}
@@ -80,42 +80,42 @@ module Spree
   end
 
   def orders_line_total(params)
-    Order.sum(:item_total, :conditions => conditions(params))
+    Spree::Order.sum(:item_total, :conditions => conditions(params))
   end
 
   def orders_total(params)
-    Order.sum(:total, :conditions => conditions(params))
+    Spree::Order.sum(:total, :conditions => conditions(params))
   end
 
   def orders_adjustment_total(params)
-    Order.sum(:adjustment_total, :conditions => conditions(params))
+    Spree::Order.sum(:adjustment_total, :conditions => conditions(params))
   end
 
   def orders_credit_total(params)
-    Order.sum(:credit_total, :conditions => conditions(params))
+    Spree::Order.sum(:credit_total, :conditions => conditions(params))
   end
 
   def best_selling_variants
     cond=["order_id in (?)",store_orders]
-    li= LineItem.sum(:quantity, :group => :variant_id,:limit=>5,:conditions=>cond)
+    li= Spree::LineItem.sum(:quantity, :group => :variant_id,:limit=>5,:conditions=>cond)
     variants = li.map do |v|
-      variant = Variant.find(v[0])
+      variant = Spree::Variant.find(v[0])
       [variant.name, v[1] ]
     end
     variants.sort { |x,y| y[1] <=> x[1] }
   end
 
   def store_orders
-    owner_orders=StoreownerOrder.find_all_by_store_owner_id(current_user.store_owner).map(&:order_id)
+    owner_orders=Spree::StoreownerOrder.find_all_by_store_owner_id(current_user.store_owner).map(&:order_id)
     return owner_orders
   end
 
  def top_grossing_variants
     cond=["order_id in (?)",store_orders]
-    quantity = LineItem.sum(:quantity, :group => :variant_id, :limit => 5,:conditions=>cond)
-    prices = LineItem.sum(:price, :group => :variant_id, :limit => 5,:conditions=>cond)
+    quantity = Spree::LineItem.sum(:quantity, :group => :variant_id, :limit => 5,:conditions=>cond)
+    prices = Spree::LineItem.sum(:price, :group => :variant_id, :limit => 5,:conditions=>cond)
     variants = quantity.map do |v|
-      variant = Variant.find(v[0])
+      variant = Spree::Variant.find(v[0])
       [variant.name, v[1] * prices[v[0]]]
     end
     variants=variants.compact
@@ -123,14 +123,14 @@ module Spree
   end
 
   def best_selling_taxons
-    taxonomy = Taxonomy.where(:domain_url=>current_user.domain_url)
-    taxons =  Taxon.connection.select_rows("select t.name, count(li.quantity) from line_items li inner join variants v on
+    taxonomy = Spree::Taxonomy.where(:domain_url=>current_user.domain_url)
+    taxons =  Spree::Taxon.connection.select_rows("select t.name, count(li.quantity) from line_items li inner join variants v on
            li.variant_id = v.id inner join products p on v.product_id = p.id inner join products_taxons pt on p.id = pt.product_id
-           inner join taxons t on pt.taxon_id = t.id where t.taxonomy_id = #{taxonomy.id} group by t.name order by count(li.quantity) desc limit 5;")
+           inner join taxons t on pt.taxon_id = t.id where t.taxonomy_id = #{taxonomy.id} group by t.name order by count(li.quantity) desc limit 5;") if taxonomy.present?
   end
 
   def last_five_orders
-    order = Order.includes(:line_items).where("completed_at IS NOT NULL").order("completed_at DESC").limit(5)
+    order = Spree::Order.includes(:line_items).where("completed_at IS NOT NULL").order("completed_at DESC").limit(5)
     orders=order.where('id in (?)',store_orders )
     orders.map do |o|
       qty = o.line_items.inject(0) {|sum,li| sum + li.quantity}
@@ -139,9 +139,9 @@ module Spree
   end
 
   def biggest_spenders
-    spenders = Order.sum(:total, :group => :user_id, :limit => 5, :order => "sum(total) desc", :conditions =>["completed_at is not null AND user_id is not null AND id in (?)",store_orders])
+    spenders = Spree::Order.sum(:total, :group => :user_id, :limit => 5, :order => "sum(total) desc", :conditions =>["completed_at is not null AND user_id is not null AND id in (?)",store_orders])
     spenders = spenders.map do |o|
-      orders = User.find(o[0]).orders
+      orders = Spree::User.find(o[0]).orders
       qty = orders.size
       [orders.first.email, qty, o[1]]
     end
@@ -149,7 +149,7 @@ module Spree
   end
 
   def out_of_stock_products
-    Product.where(:count_on_hand => 0,:domain_url=>current_user.domain_url).limit(5)
+    Spree::Product.where(:count_on_hand => 0,:domain_url=>current_user.domain_url).limit(5)
   end
   
   def verify_user

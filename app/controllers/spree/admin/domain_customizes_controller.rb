@@ -3,15 +3,15 @@ class Spree::Admin::DomainCustomizesController  < Spree::Admin::ResourceControll
   before_filter :find_domain_customize, :only => [:edit, :update]
   
   def index
-    @domain_customize=DomainCustomize.find_by_store_owner_id(current_user.store_owner.id)
+    @domain_customize=Spree::DomainCustomize.find_by_store_owner_id(current_user.store_owner.id)
   end
 
   def new
-    @domain_customize=DomainCustomize.new
+    @domain_customize=Spree::DomainCustomize.new
   end
 
   def create
-    @domain_customize=DomainCustomize.new(params[:domain_customize])
+    @domain_customize=Spree::DomainCustomize.new(params[:domain_customize])
     @domain_customize.store_owner_id=current_user.store_owner.id
     if @domain_customize.save
       redirect_to(admin_domain_customizes_path(@domain_customize), :notice => 'domain was successfully created.')
@@ -36,7 +36,7 @@ class Spree::Admin::DomainCustomizesController  < Spree::Admin::ResourceControll
   end
   
   def find_domain_customize
-    @domain_customize=DomainCustomize.find(params[:id])
+    @domain_customize=Spree::DomainCustomize.find(params[:id])
   end
   
 end
