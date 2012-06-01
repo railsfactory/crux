@@ -16,7 +16,7 @@ Spree::Admin::Orders::CustomerDetailsController.class_eval do
       params[:search][:completed_at_greater_than] = params[:search].delete(:created_at_greater_than)
       params[:search][:completed_at_less_than] = params[:search].delete(:created_at_less_than)
     end
-    @orders = Order.metasearch(params[:search])
+    @orders = Spree::Order.metasearch(params[:search])
 				@orders = refine_list(@orders).paginate(
                      :include  => [:user, :shipments, :payments],
                      :per_page => Spree::Config[:orders_per_page],
@@ -25,7 +25,7 @@ Spree::Admin::Orders::CustomerDetailsController.class_eval do
   end
 
  def refine_list(orders)
-    orders_arr = StoreownerOrder.find(:all,:conditions=>["store_owner_id = ?",current_user.store_owner.id]).map(&:order_id)
+    orders_arr = Spree::StoreownerOrder.find(:all,:conditions=>["store_owner_id = ?",current_user.store_owner.id]).map(&:order_id)
     order_collection=orders.where("id in (?)",orders_arr)
     return order_collection
  end

@@ -10,7 +10,7 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
     a=@search.object
     p a
     @pricing_plans = a
-    p 4444444444444444444444444444
+    
     #~ p @pricing_plans
     #~ p @pricing_plans.object
     respond_to do |format|

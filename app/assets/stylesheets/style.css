@@ -30,13 +30,13 @@ blockquote:before, blockquote:after,
 q:before, q:after {content: '';content: none;}
 table {border-collapse: collapse;border-spacing: 0;}
 
-body { background:url(../images/bg_02.png) repeat-y scroll center 0 #D6F7FF !important; color: #666666; font-family: "Trebuchet MS", Arial,Helvetica,sans-serif; font-size: 11px;}
+body { background:url(bg_02.png) repeat-y scroll center 0 #D6F7FF !important; color: #666666; font-family: "Trebuchet MS", Arial,Helvetica,sans-serif; font-size: 11px;}
 .main-header { /*color: #FFFFFF; float: left; width:100%; height:105px; background:#FEFEFE;*/ width:961px; margin:0 auto;}
 .header { margin:0 auto; width:960px;}
 .logo {float: left;}
 .top_navi {float: right; padding:5px 10px; background:#333333; -moz-border-radius:0 0 5px 5px; -webkit-border-radius:0 0 5px 5px;}
 .top_navi ul {list-style: none outside none;}
-.top_navi ul li { background-image: url("../images/sep.gif"); background-position: right center; background-repeat: no-repeat; float: left; padding: 0 7px;}
+.top_navi ul li { background-image: url("sep.gif"); background-position: right center; background-repeat: no-repeat; float: left; padding: 0 7px;}
 .top_navi ul li a { color: #FFFFFF; font-size:14px; text-decoration:none;}
 .top_navi ul li.last { background-image: none; padding-right: 0;}
 
@@ -57,9 +57,9 @@ h1 { color:#000; font-size:18px;}
 .client a { float: right; font-size: 11px;}
 .client span { color: #999999; font-size: 11px;}
 .client .sprites { float: left; margin: 4px 10px 0; background:#0066FF;}
-h1.cli-icon { background:url(../images/clients.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
-h1.wedo-icon { background: url(../images/whatwedo.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
-h1.abt-iocn { background: url(../images/Company.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
+h1.cli-icon { background:url(clients.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
+h1.wedo-icon { background: url(whatwedo.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
+h1.abt-iocn { background: url(Company.png) no-repeat 0 0 scroll; padding: 4px 0 4px 40px;}
 
 /*.sign-up-form, .plan {background:#74a7c1;}*/
 .sign-up-title { color:#FFFFFF; font-size:24px;}
@@ -105,10 +105,10 @@ ul#nav-primary li a:hover, ul#nav-primary li.active a {color: #fff;background:#0
 .hp_pad { padding: 20px 20px 20px 30px;}
 .r1_title {font-size: 19px;letter-spacing: -0.5px; padding-bottom: 10px;}
 h3 {color: #1B6FB6;font-weight: 400;}
-.hp_icon {background:url(../images/templates.png) no-repeat scroll right 0px transparent; float: right; height: 120px; margin-top: 20px; width: 120px;}
-.support {background:url(../images/telephone_blue.png) no-repeat scroll right 0px transparent;}
-.sucess {background:url(../images/success.png) no-repeat scroll right 0px transparent;}
-.sq {padding-left: 30px; color:#FC6003; text-decoration:none; font-size:13px; background: url(../images/more.png) no-repeat 0 -2px scroll;}
+.hp_icon {background:url(templates.png) no-repeat scroll right 0px transparent; float: right; height: 120px; margin-top: 20px; width: 120px;}
+.support {background:url(telephone_blue.png) no-repeat scroll right 0px transparent;}
+.sucess {background:url(success.png) no-repeat scroll right 0px transparent;}
+.sq {padding-left: 30px; color:#FC6003; text-decoration:none; font-size:13px; background: url(more.png) no-repeat 0 -2px scroll;}
 .sq:hover { text-decoration:underline;}
 .third_column {width: 312px; float:left; margin:15px 0 15px;}
 .r_dots { border-right:1px dashed #999999;}
@@ -121,15 +121,15 @@ h3 {color: #1B6FB6;font-weight: 400;}
 .footer ul.foo-menu li a { text-decoration:none; color:#000000;}
 
 /* Tabel */
-/*.table-banner { background:url(../images/table-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}*/
-.table-banner { background:url(../images/plan-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}
+/*.table-banner { background:url(table-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}*/
+.table-banner { background:url(plan-banner.png) no-repeat 0 0 scroll; height:330px; width:961px;}
 table#price-chart { border-collapse: collapse; margin: -170px 0 15px; padding: 0;}
 table#price-chart th.heading {  width: 168px;}
 table#price-chart th, table#price-chart td { border-right: 1px solid #FFFFFF;  text-align: center;}
-table#price-chart th.gold { background:url(../images/gold.png) no-repeat scroll 0 0 transparent; height: 160px; width: 198px;}
-table#price-chart th.silver { background:url(../images/silver.png) no-repeat scroll 0 0 transparent; height: 160px; width: 198px;}
-table#price-chart th.platinum { background:url(../images/platinum.png) no-repeat scroll 0 0 transparent; height: 170px; width: 198px; border-right:none;}
-table#price-chart th.basic { background:url(../images/basic.png) no-repeat scroll 0 0 transparent; height: 170px; width: 198px;}
+table#price-chart th.gold { background:url(gold.png) no-repeat scroll 0 0 transparent; height: 160px; width: 198px;}
+table#price-chart th.silver { background:url(silver.png) no-repeat scroll 0 0 transparent; height: 160px; width: 198px;}
+table#price-chart th.platinum { background:url(platinum.png) no-repeat scroll 0 0 transparent; height: 170px; width: 198px; border-right:none;}
+table#price-chart th.basic { background:url(basic.png) no-repeat scroll 0 0 transparent; height: 170px; width: 198px;}
 
 table#price-chart .even td {background: none repeat scroll 0 0 #E6E6E6;}
 table#price-chart td {padding: 10px;  font:13px Verdana, Arial, Helvetica, sans-serif; color:#000000;}
@@ -148,10 +148,10 @@ table#price-chart th.sign-up-btn a { /*width:88px; height:28px; left:1012px; top
 .basic-btn, .sil-btn, .gold-btn, .platinum { position:relative; width:198px; height:160px;} 
 .basic-btn a, .sil-btn a, .gold-btn a, .platinum a { position:absolute;}
 .sil-btn a, .gold-btn a, .platinum a { position:absolute; top:131px; left:55px;}
-table#price-chart th .sil-btn a { background:url(../images/sign-up-sil.png) no-repeat 0 0 scroll; width:89px; height:30px; }
-table#price-chart th .gold-btn a { background:url(../images/sign-up-gd.png) no-repeat 0 0 scroll; width:89px; height:30px;  }
-table#price-chart th .platinum a { background:url(../images/sign-up-pl.png) no-repeat 0 0 scroll;  width:89px; height:30px;  }
-table#price-chart th .basic-btn a { background:url(../images/sign-up-basic.png) no-repeat 0 0 scroll; top:132px; left:55px; width:87px; height:28px; }
+table#price-chart th .sil-btn a { background:url(sign-up-sil.png) no-repeat 0 0 scroll;top:126.9px; left:55px;  width:89px; height:30px; }
+table#price-chart th .gold-btn a { background:url(sign-up-gd.png) no-repeat 0 0 scroll; top:126.9px; left:55px; width:89px; height:30px;  }
+table#price-chart th .platinum a { background:url(sign-up-pl.png) no-repeat 0 0 scroll; top:126.9px; left:55px;  width:89px; height:30px;  }
+table#price-chart th .basic-btn a { background:url(sign-up-basic.png) no-repeat 0 0 scroll; top:126.9px; left:55px; width:87px; height:28px; }
 
 .highlight-box-wrapper {padding: 15px;}
 .highlight-box {background: none repeat scroll 0 0 #94dff2;border: 1px solid #165363; -moz-border-radius:5px; -webkit-border-radius:5px; box-shadow:0 0 5px #999; -webkit-box-shadow:0 0 5px #999;}
@@ -162,7 +162,7 @@ table#price-chart th .basic-btn a { background:url(../images/sign-up-basic.png) 
 .highlight-box p.notes {font-size: 11px;margin-top:10px;}
 
 /* sign up*/
-.sign-up-banner { background:url(../images/sign-up-banner.png) no-repeat 0 0 scroll; height:176px; width:961px;}
+.sign-up-banner { background:url(sign-up-banner.png) no-repeat 0 0 scroll; height:176px; width:961px;}
 .sign-up { width:945px; background:#FFFFFF; margin:-50px auto 0; background: none repeat scroll 0 0 #FFFFFF;border: 1px solid transparent;box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);padding:30px 0 30px 0;overflow:hidden;}
 .sign-up .form-ele-wrap { width:400px; margin-left:20px;}
 .sign-up .form-ele-wrap label, .abt-u h3 { font:22px "Myriad Pro"; margin-bottom:6px; display:block; color:#000;}

@@ -8,18 +8,18 @@
 .body-container{}
 .header{overflow:hidden; margin:17px 0;}
 .logo{float:left; width:215px; margin:0 17px 0 0;}
-.logo h1 a{display:block; width:215px; height: 94px; background:url("../images/logo.png") no-repeat scroll 0 0; text-indent:-9999px;}
+.logo h1 a{display:block; width:215px; height: 94px; background:url("logo.png") no-repeat scroll 0 0; text-indent:-9999px;}
 .asidepanel{float:left; width:214px; margin:0 17px 0 0;}
 .contpanel{float:left; width:679px;}
 .tophead{overflow:hidden;}
 .topsection{overflow:hidden; padding:6px 0 15px 0;}
 .global-nav{float:left;}
 .global-nav ul{overflow:hidden; font-size:11px;}
-.global-nav li{float:left;line-height: 22px; margin: 0 12px 0 0; padding:0 0 0 8px; background:url("../images/blt-globalnav.gif") no-repeat scroll 0 center;}
+.global-nav li{float:left;line-height: 22px; margin: 0 12px 0 0; padding:0 0 0 8px; background:url("blt-globalnav.gif") no-repeat scroll 0 center;}
 .cartinfo{float:right;}
 .cartinfo li{float:left; line-height:20px; font-size:11px;margin:0 20px 0 0;}
 .cartinfo li.cart-detail{margin:0 20px 0 0; background:url("../images/icon-cart.png") no-repeat scroll 0 0; padding:0 0 0 22px;}
-.cartinfo li.login a {background:url("../images/icon-login.png") no-repeat scroll 0 0px; padding:1px 0 0 22px;}
+.cartinfo li.login a {background:url("icon-login.png") no-repeat scroll 0 0px; padding:1px 0 0 22px;}
 .cartinfo li.logout{background:url("../images/icon-logout.png") no-repeat scroll 0 2px; padding:0 0 0 22px;}
 .sechead{background:#df5321; padding:6px 10px; color:#ffffff; line-height:16px; text-transform:uppercase; border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0;}
 .subhead{color:#383838; line-height:16px; margin:0 0 10px;}
@@ -31,7 +31,19 @@
 .sfield{float:left; margin:0 10px 0 0;}
 .product-select{width:215px; border:1px solid #808080; font-size:11px; padding:2px; margin:0px;}
 .search_input{border:1px solid #808080; padding:3px 2px; width:215px; font-size:11px;}
-.sbtn-submit{background:#ADD73A; color:#ffffff; font-size:12px; font-weight:bold; border:0; cursor:pointer; display:block; padding:2px 8px;  border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; overflow:visible;}
+.sbtn-submit {
+    background: none repeat scroll 0 0 #ADD73A;
+    border: 0 none;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 1px;
+    overflow: visible;
+    padding: 2px 8px;
+}
 .sbutton{float:left;}
 
 /* sidenav */
@@ -283,7 +295,7 @@ ol.progress-steps li a {
 .sublevel a:hover{color:#4B82B7;}
 .submenu{margin-top:4px;padding:0;}
 .submenu li{border-bottom:0; background: url("../images/blt-globalnav.gif") no-repeat scroll 0px 11px transparent; padding-left:10px}
-input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; /*height: 23px; line-height: 31px;*/ padding: 6px 8px; width: 330px;}
+input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; /*height: 23px; line-height: 31px;*/  width: 330px;}
 #user_submit{ background:#ADD73A; font-weight:bold; cursor:pointer; font-family:12px; padding:3px 5px; font-family:Verdana, Arial, Helvetica, sans-serif; border:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#FFFFFF; overflow:visible;margin-top:18px;}
 
 .products h4{margin:0 0 10px 10px; font-size:14px;}
