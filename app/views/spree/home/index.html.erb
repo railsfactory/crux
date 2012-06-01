@@ -1,5 +1,4 @@
- <%=p 1111111111111111111111111111%>
- <%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
+<%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
 <% content_for :sidebar do %>
   <div data-hook="homepage_sidebar_navigation">
     <%= render "spree/shared/taxonomies" %>
@@ -12,9 +11,9 @@
 
 
 <div class="main-wrapper page">
-	<div class="banner"><img src="images/banner.png" alt="banner" /></div>
+	<div class="banner"><img src="/assets/banner.png" alt="banner" /></div>
 	<div class="login-btn" style="margin: -93px 0 0 20px;position: absolute;width: 200px;">
-     <a href="/stores_registration"><img alt="login-btn" src="/images/login-btn-blue.png"></a>
+     <a href="/stores_registration"><img alt="login-btn" src="/assets/login-btn-blue.png"></a>
     </div>
 </div>
 <div class="content main-wrapper rc8">
