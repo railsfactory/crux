@@ -11,15 +11,9 @@ module Spree
 
 def retrieve_products(domain=nil)
 			@products_scope = get_base_scope(domain)
-		  if !domain.nil? && !@products_scope.blank?
-      @products_scope = @products_scope.find_all_by_domain_url(domain)
-		end
-  curr_page = manage_pagination && keywords ? 1 : page
-      @products = @products_scope.paginate({
-          :include  => [:images, :master],
-          :per_page => per_page,
-          :page     => curr_page
-        })   
+          curr_page = page || 1
+
+          @products = @products_scope.includes([:master]).page(curr_page).per(per_page)
 				end
 			
 		

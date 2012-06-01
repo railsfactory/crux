@@ -1,13 +1,14 @@
 class Spree::HomeController < Spree::BaseController
-   require 'will_paginate/array'
+   #require 'will_paginate/array'
     helper 'spree/products'
 		helper :all
    respond_to :html
    include Spree::Admin::BaseHelper
    layout :choose_layout
    def index
-     @searcher = Spree::Config.searcher_class.new(params)
-     domain = get_sub_domain(current_subdomain)
+    p @searcher = Spree::Config.searcher_class.new(params)
+    p "22222222222222222222222222222222222222________________"
+    p domain = get_sub_domain(current_subdomain)
      @products = @searcher.retrieve_products(domain)
 		 	p=Spree::Product.find(:all,:conditions=>["domain_url=?",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10).map(&:id)
 	   @products=@products.reject{|x| p.include?(x.id)}

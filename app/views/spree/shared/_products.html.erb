@@ -1,47 +1,31 @@
 <%
-  paginated_products = @searcher.products if params.key?(:keywords)
+  paginated_products = @searcher.retrieve_products if params.key?(:keywords)
   paginated_products ||= products
 %>
-
-<% if products.any? %>
-
-	<div class="collections">
-							<h4 class="sechead">PRODUCTS</h4>
-							
-							<%stock_val=find_stock_value("show_zero_stock_products")%>
-		<div class="collection-img-wrap products">
-		<% if products.empty? %>
+<% if products.empty? %>
   <%= t(:no_products_found) %>
 <% elsif params.key?(:keywords) %>
-  <h4><%= t(:search_results, :keywords => h(params[:keywords])) %></h4>
-	<% end %>
-	<% products.each do |product| %>
-    <% if stock_val || product.has_stock? %>                                                      
-                                <div class="coll-left">
-																      <div id="product_<%= product.id %>" data-hook="products_list_item">
-
-                                    <div class="coll-img"><a href=""><%= link_to small_image(product), product %></a></div>
-                                    <div class="coll-info">
-                                        <div class="item-name"><%=product.name.capitalize%></div>
-                                        <div class="price-enlarge-buy">
-                                            <p class="price"><span></span><%= product_price(product) %></p>
-																						<%= link_to "BUY-IT", product,:class=>"buy-it"%>
-                                        </div>
-                                    </div>
-																		</div>
-                                </div>
-					<% end %>
-					<% end %>
-
-						</div><!--collection-img-wrap-->
-						</div>						
+  <h6 class="search-results-title"><%= t(:search_results, :keywords => h(params[:keywords])) %></h6>
 <% end %>
 
-<div class="pagination-wrap"><% if paginated_products.respond_to?(:total_pages)
+<% if products.any? %>
+<ul id="products" class="inline product-listing" data-hook>
+  <% reset_cycle('default') %>
+  <% products.each do |product| %>
+    <% if Spree::Config[:show_zero_stock_products] || product.has_stock? %>
+      <li id="product_<%= product.id %>" class="columns three <%= cycle("alpha", "secondary", "", "omega secondary") %>" data-hook="products_list_item" itemscope itemtype="http://schema.org/Product">
+        <div class="product-image">
+          <%= link_to small_image(product, :itemprop => "image"), product, :itemprop => 'url' %>
+        </div>
+        <%= link_to truncate(product.name, :length => 50), product, :class => 'info', :itemprop => "name", :title => product.name %>
+        <span class="price selling" itemprop="price"><%= number_to_currency product.price %></span>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+<% end %>
+
+<% if paginated_products.respond_to?(:num_pages)
       params.delete(:search)
       params.delete(:taxon)
-
-%><%= will_paginate(paginated_products,
-                    :previous_label => "&#171; #{t('previous')}",
-                    :next_label => "#{t('next')} &#187;") %>
-<% end %></div>
+%><%= paginate paginated_products %><% end %>
