@@ -6,6 +6,7 @@
 }
 
 .jcarousel-skin-tango .jcarousel-container-horizontal {
+     border: 1px solid #B6B6B6;   
     width: 617px;
     padding: 15px 30px;
     border:1px solid #B6B6B6;
@@ -52,13 +53,13 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
-    background: transparent url(../images/control-arrows.png) no-repeat -24px 0;
+    background: transparent url(/assets/control-arrows.png) no-repeat -24px 0;
 }
 
 .jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-next-horizontal {
     left: 5px;
     right: auto;
-    background-image: url(../images/control-arrows.png);
+      background: transparent url(/assets/control-arrows.png) no-repeat -24px 0;
 }
 
 .jcarousel-skin-tango .jcarousel-next-horizontal:hover,
@@ -85,13 +86,13 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
-    background: transparent url(../images/control-arrows.png) no-repeat 0 0;
+    background: transparent url(/assets/control-arrows.png) no-repeat 0 0;
 }
 
 .jcarousel-skin-tango .jcarousel-direction-rtl .jcarousel-prev-horizontal {
     left: auto;
     right: 5px;
-    background-image: url(../images/control-arrows.png);
+    background-image: url(/assets/control-arrows.png);
 }
 
 .jcarousel-skin-tango .jcarousel-prev-horizontal:hover, 

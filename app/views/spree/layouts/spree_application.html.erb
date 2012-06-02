@@ -67,17 +67,21 @@ end
 <ul><li><%= flash[:error] %></li></ul></div></div>
       <% end %>
 						<%=yield%>
-				<div class="brands">
+			<div class="brands">
 							<h4 class="sechead">LATEST COLLECTIONS</h4>
 							<div class="sroll-mid">
 								<div class="brand-list">
-									<div class="jcarousel-skin-tango">
-										
-									</div>
+									<%products=find_latest_products%>
+									<ul id="mycarousel" class="jcarousel-skin-tango">
+								 <%products.each do |product|%>
+										<li><%= link_to small_image(product), product %></li>
+									<%end%>
+									</ul>
 								</div>
 							</div>
 						</div>
 						<!-- brands -->
+
 					</div>
 				</div><!-- body container -->
                 <div class="footer">
