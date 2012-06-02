@@ -1,17 +1,25 @@
-<%= render "spree/shared/error_messages", :target => @user %>
+	<%= render "shared/error_messages", :target => @user %>
 <div id="new-customer">
-  <h4 class="sechead">New Customer</h4>
-  <div class="secinblock">
-    <%= form_for @user, :url => user_registration_path, :method => :post do |f| %>
-    <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
-    <div class="fm-elements">
-      <%= submit_tag t("create"), :class => 'button primary' %>
-    </div>
-    <% end %>
-    <div class="sing-in-bottom">
-      <ul>
-	<li> <%= link_to t("login_as_existing"), login_path %></li>
-      </ul>
-    </div>							        
-  </div>						
+
+	<h4 class="sechead">New Customer</h4>
+							    <div class="secinblock">
+									  <%= hook :signup do %>
+
+    <%= form_for(:user, :url => registration_path(@user)) do |f| %>
+							           <%=render "shared/user_form",:f=>f%>
+							            <div class="fm-elements">
+															<%= submit_tag t("create"), :class => 'button primary' %>
+							            </div>
+  <% end %>
+  <% end %>
+											
+							        <div class="sing-in-bottom">
+							            <ul>
+								            <li> <%= link_to t("login_as_existing"), login_path %></li>
+							            </ul>
+							        </div>							        
+							    </div>						
 </div>						
+		
+
+

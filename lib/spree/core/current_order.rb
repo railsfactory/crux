@@ -15,7 +15,7 @@ module Spree
      def current_order(create_order_if_necessary = false)
       return @current_order if @current_order
       if session[:order_id]
-      @current_order = Order.find_by_id(session[:order_id], :include => :adjustments)
+      @current_order = Spree::Order.find_by_id(session[:order_id], :include => :adjustments)
       end
       if create_order_if_necessary and (@current_order.nil? or @current_order.completed?)
       @current_order = Order.new
@@ -26,12 +26,12 @@ module Spree
       is_custom=false
             else
       #~ custom_subdomain=current_subdomain.split(".")[0]
-      custom_domain=StoreOwner.find_by_id(find_customization_domain.store_owner_id)
+      custom_domain=spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id)
       subdomain=custom_domain.domain
       is_custom=true
       end
-      store=StoreOwner.find_by_domain(subdomain)
-      store_owner=StoreownerOrder.new(:store_owner_id=>store.id,:order_id=>@current_order.id,:is_custom=>is_custom)
+      store=Spree::StoreOwner.find_by_domain(subdomain)
+      store_owner=Spree::StoreownerOrder.new(:store_owner_id=>store.id,:order_id=>@current_order.id,:is_custom=>is_custom)
       store_owner.save
       after_save_new_order
       end

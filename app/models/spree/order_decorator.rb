@@ -1,7 +1,8 @@
 Spree::Order.class_eval do
+  attr_accessible :store_owner_id, :order_id, :is_custom
   def available_shipping_methods(display_on = nil)
     return [] unless ship_address
-    ShippingMethod.all_available(self, display_on,find_order_domain)
+    Spree::ShippingMethod.all_available(self, display_on,find_order_domain)
   end
 
   def find_order_domain
@@ -10,7 +11,7 @@ Spree::Order.class_eval do
   end
 
   def available_payment_methods
-    @available_payment_methods||= PaymentMethod.where("domain_url=?",find_order_domain).available(:front_end)
+    @available_payment_methods||= Spree::PaymentMethod.where("domain_url=?",find_order_domain).available(:front_end)
   end
 
   def payment_method
