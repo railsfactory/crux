@@ -1,6 +1,8 @@
 Spree::Admin::Orders::CustomerDetailsController.class_eval do
+  p "_______________________________________________"
   respond_to :html
   def index
+    p "+++++++++++++++++++++++++++++++++++++++++++++++"
     params[:search] ||= {}
     params[:search][:completed_at_is_not_null] ||= '1' if Spree::Config[:show_only_complete_orders_by_default]
     @show_only_completed = params[:search][:completed_at_is_not_null].present?

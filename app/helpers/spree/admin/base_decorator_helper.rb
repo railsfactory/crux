@@ -3,6 +3,7 @@ module Spree
     module BaseDecoratorHelper
 		#To find users domain
 	def find_user_domain
+		p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 		unless current_user.has_role?"admin"
 			domain=current_user.domain_url
 		else

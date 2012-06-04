@@ -7,6 +7,7 @@ class Spree::UsersController < Spree::BaseController
     end
 
     def create
+      p "**********************************************************"
       @user = Spree::User.new(params[:user])
       if @user.save 
         if current_order
