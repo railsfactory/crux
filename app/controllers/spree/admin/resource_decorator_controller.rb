@@ -2,6 +2,7 @@ require 'spree/core/action_callbacks'
 Spree::Admin::ResourceController.class_eval do
 		include Spree::Admin::BaseHelper
 		def create
+			p "1111111111111111111111111111111111===================================="
 			invoke_callbacks(:create, :before)
 			name =  @object.class.name
 			success=@object.valid?
@@ -25,8 +26,10 @@ Spree::Admin::ResourceController.class_eval do
 		end
 
 		def add_domain
+			p "1111111111888888888888888888888888888888888888888888888"
 			if condition
-				@object.update_attributes(:domain_url=>find_user_domain)
+				p "________________________________________________________"
+				p @object.update_attributes(:domain_url=>find_user_domain)
 				if (model_class.name == "Taxonomy")
 					@object.root.update_attributes(:domain_url=>find_user_domain)
 				end
@@ -64,7 +67,9 @@ Spree::Admin::ResourceController.class_eval do
 		end
 
 		def condition
-			if ((model_class.name == "Product")||(model_class.name == "OptionType")||(model_class.name == "Property")||(model_class.name == "Prototype")||(model_class.name == "ProductGroup")||(model_class.name == "MailMethod")||(model_class.name == "TaxCategory")||(model_class.name == "Zone")||(model_class.name == "PaymentMethod")||(model_class.name == "ShippingMethod")||(model_class.name == "ShippingCategory")||(model_class.name == "Taxonomy") ||(model_class.name == "Promotion"))
+			p "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+			p model_class.name
+			if ((model_class.name == "Spree::Product")||(model_class.name == "Spree::OptionType")||(model_class.name == "Spree::Property")||(model_class.name == "Spree::Prototype")||(model_class.name == "Spree::ProductGroup")||(model_class.name == "Spree::MailMethod")||(model_class.name == "Spree::TaxCategory")||(model_class.name == "Spree::Zone")||(model_class.name == "Spree::PaymentMethod")||(model_class.name == "Spree::ShippingMethod")||(model_class.name == "Spree::ShippingCategory")||(model_class.name == "Spree::Taxonomy") ||(model_class.name == "Spree::Promotion"))
 		    return true
 			else
 			  return false
