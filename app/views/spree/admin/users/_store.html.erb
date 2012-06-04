@@ -11,7 +11,7 @@
 		<% unless current_user.has_role? "admin" %>
       <th><%= sort_link @search,:email,t("user"),{}, {:title => 'users_email_title'} %></th>
       <th>
-        <%= hook :admin_users_index_header_actions %>
+         <th data-hook="admin_users_index_header_actions"></th>
       </th>
 			<%else%>
 			<th><%= t("store_name") %></th>
@@ -26,11 +26,8 @@
   <tbody>
 	<% unless current_user.has_role? "admin" %>
     <% @users && @users.each do |user|%>
-      <tr id="<%= dom_id user %>">
-        <%- locals = {:user => user} %>
-        <%= hook :admin_users_index_rows, locals do %>
+      <tr id="<%= spree_dom_id user %>" data-hook="admin_users_index_rows">
           <td width="350px" class='user_email'><%=link_to user.email, object_url(user) %></td>
-        <% end %>
         <td>
 						<div data-hook="admin_users_index_row_actions">
             <%= link_to_edit user, :class => "edit" %> &nbsp;
@@ -79,23 +76,19 @@
 </table>
 
 
+
+
 <% content_for :sidebar do %>
-  <div class="box">
+  <div class="box" data-hook="admin_users_index_search">
     <h3><%= t(:search) %></h3>
-    <% @search = User.search %>
-    <%= form_for [:admin, @search] do |f| %>
-      <%- locals = {:f => f} %>
-				<div data-hook="admin_users_index_search">
-
-        <p>
-          <%= t("email") %><br />
-          <%= f.text_field :email_contains, :size=>18 %>
-        </p>
-				</div>
-								<div data-hook="admin_users_index_search_buttons">
-
-        <p><%= button t("search") %></p>
-				</div>
+    <%= search_form_for [:admin, @search] do |f| %>
+      <p>
+        <%= t(:email) %><br />
+        <%= f.text_field :email_cont, :size =>18 %>
+      </p>
+      <div data-hook="admin_users_index_search_buttons">
+        <p><%= button t(:search) %></p>
+      </div>
     <% end %>
   </div>
 <% end %>
@@ -107,7 +100,7 @@
 function viewdetails(id){
 {
 $.ajax({
-                        url:"/admin/store_details/billing_history",
+                        url:"spree/admin/store_details/billing_history",
                         data: "store="+id,
 												success: function(data) {
 			$('#status').html(data);
@@ -118,7 +111,7 @@ $.ajax({
 function check_status(store)
 {
 $.ajax({
-			url: "/admin/users/store_status",
+			url: "spree/admin/users/store_status",
 			data: "userid="+store,
 			
 });

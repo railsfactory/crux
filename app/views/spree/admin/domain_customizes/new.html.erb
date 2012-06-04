@@ -1,9 +1,9 @@
-<%= render 'shared/error_messages', :target => @domain_customize %>
+<%= render 'spree/shared/error_messages', :target => @domain_customize %>
 <h1>New Domain</h1>
 
 <%= form_for @domain_customize, :url=>{:controller=>"domain_customizes",:action=>:create} do |f| %>
     <%= render :partial => "form", :locals => { :f => f } %>
-    <%= render :partial => "admin/shared/new_resource_links" %>
+    <%= render :partial => "spree/admin/shared/new_resource_links" %>
 
 <%end%>
 

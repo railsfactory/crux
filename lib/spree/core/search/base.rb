@@ -10,10 +10,14 @@ module Spree
     end
 
 def retrieve_products(domain=nil)
-			@products_scope = get_base_scope(domain)
-          curr_page = page || 1
+			 base_scope = get_base_scope(domain)
+		  @products_scope = get_base_scope(domain)
+		  if !domain.nil? #&& !@products_scope.blank?
+      @products_scope = @products_scope.find_all_by_domain_url(domain)
+			end
+               curr_page = page || 1
 
-          @products = @products_scope.includes([:master]).page(curr_page).per(per_page)
+          @products = @products_scope#.include([:master]).page(curr_page).per(per_page)
 				end
 			
 		
@@ -21,38 +25,19 @@ def retrieve_products(domain=nil)
       @properties[name]
     end
 
-    protected
+     protected
     def get_base_scope(domain=nil)
-      base_scope = Spree::Product.active
+      base_scope = @cached_product_group ? @cached_product_group.products.active : Spree::Product.active
       base_scope = base_scope.in_taxon(taxon) unless taxon.blank?
       base_scope = get_products_conditions_for(base_scope, keywords) unless keywords.blank?			
 	    stock_val=check_stock_value("show_zero_stock_products",domain)
 			base_scope = base_scope.on_hand unless stock_val
-      base_scope = add_search_scopes(base_scope)
+      base_scope = base_scope.group_by_products_id #if @product_group.product_scopes.size > 1
       base_scope
     end
-		
-		    def add_search_scopes(base_scope)
-            search.each do |name, scope_attribute|
-              next if name.to_s =~ /eval|send|system/
-
-              scope_name = name.intern
-              if base_scope.respond_to? scope_name
-                base_scope = base_scope.send(scope_name, *scope_attribute)
-              else
-                base_scope = base_scope.merge(Spree::Product.search({scope_name => scope_attribute}).result)
-              end
-            end if search
-            base_scope
-          end
-		
    def check_stock_value(attr,domain)
-	config=Configuration.find_by_name("Default configuration")
-	if config?
-  pref=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)	
-	else
-		pref=[]
-	end
+	#p config=Spree::Configuration.find_by_name("Default configuration")
+  pref=Spree::Preference.where("domain_url=? ",domain)	
 	if  pref.blank?
 		val=Spree::Config[:show_zero_stock_products]
 	else
@@ -68,15 +53,22 @@ end
     end
 
     def prepare(params)
-      @properties[:taxon] = params[:taxon].blank? ? nil : Taxon.find(params[:taxon])
-      @properties[:keywords] = params[:keywords]
+      @properties[:taxon] = params[:taxon].blank? ? nil : Spree::Taxon.find(params[:taxon])
+            @properties[:keywords] = params[:keywords]
+            @properties[:search] = params[:search]
 
-      per_page = params[:per_page].to_i
-      @properties[:per_page] = per_page > 0 ? per_page : Spree::Config[:products_per_page]
-      @properties[:page] = (params[:page].to_i <= 0) ? 1 : params[:page].to_i
+            per_page = params[:per_page].to_i
+            @properties[:per_page] = per_page > 0 ? per_page : Spree::Config[:products_per_page]
+            @properties[:page] = (params[:page].to_i <= 0) ? 1 : params[:page].to_i
+      #~ @properties[:taxon] = params[:taxon].blank? ? nil : Taxon.find(params[:taxon])
+      #~ @properties[:keywords] = params[:keywords]
+
+      #~ per_page = params[:per_page].to_i
+      #~ @properties[:per_page] = per_page > 0 ? per_page : Spree::Config[:products_per_page]
+      #~ @properties[:page] = (params[:page].to_i <= 0) ? 1 : params[:page].to_i
 
       #~ if !params[:order_by_price].blank?
-        #~ @product_group = ProductGroup.new.from_route([params[:order_by_price]+"_by_master_price"])
+        #~ @product_group = Spree::ProductGroup.new.from_route([params[:order_by_price]+"_by_master_price"])
       #~ elsif params[:product_group_name]
         #~ @cached_product_group = ProductGroup.find_by_permalink(params[:product_group_name])
         #~ @product_group = ProductGroup.new

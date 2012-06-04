@@ -1,5 +1,5 @@
 class Spree::Admin::DomainCustomizesController  < Spree::Admin::ResourceController
-  resource_controller
+  #resource_controller
   before_filter :find_domain_customize, :only => [:edit, :update]
   
   def index

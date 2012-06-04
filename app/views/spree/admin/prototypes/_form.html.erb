@@ -7,7 +7,7 @@
 <h3><%= t("properties") %></h3>
 
 <ul class='checkbox-list' id='properties'>
-<%properties=Property.where(:domain_url=>current_user.domain_url)%>
+<%properties=Spree::Property.where(:domain_url=>current_user.domain_url)%>
 
 	<% properties && properties.sorted.each do |property| %>
   <% selected = if @prototype.new_record?
@@ -29,7 +29,7 @@
 <h3><%= t("option_types") %></h3>
 
 <ul class='checkbox-list' id='properties'>
-<%optiontypes=OptionType.where(:domain_url=>current_user.domain_url)%>
+<%optiontypes=Spree::OptionType.where(:domain_url=>current_user.domain_url)%>
 	<%optiontypes && optiontypes.each do |option_type| %>
   <% selected = if @prototype.new_record?
     (params[:option_type] and params[:option_type][:id] and params[:option_type][:id].include?(option_type.id.to_s))
