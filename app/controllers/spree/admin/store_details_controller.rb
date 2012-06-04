@@ -1,7 +1,8 @@
 class Spree::Admin::StoreDetailsController <Spree::Admin::ResourceController
   #~ resource_controller
   def index
-    @store_owners=Spree::StoreOwner.all.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
+   myarray=Spree::StoreOwner.all
+    @store_owners = Kaminari.paginate_array(myarray).page(params[:page]).per(Spree::Config[:admin_products_per_page])
     @store_details=Spree::StoreDetail.all
     if request.xhr?
       @owner=Spree::StoreOwner.find_by_domain(params[:domain])
