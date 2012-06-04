@@ -1,4 +1,5 @@
 Spree::Variant.class_eval do
+	attr_accessible :domain_url
   def available?
 		domain=Spree::Product.find_by_id(self.product_id).domain_url
 		back_order_val=check_value("allow_backorders",domain)

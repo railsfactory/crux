@@ -1,4 +1,5 @@
 Spree::Order.class_eval do
+   attr_accessible :domain_url
   attr_accessible :store_owner_id, :order_id, :is_custom
   def available_shipping_methods(display_on = nil)
     return [] unless ship_address

@@ -1,4 +1,5 @@
 Spree::Promotion.class_eval do
+	attr_accessible :domain_url
 #Overriding eligible? method to identify the domain
  def eligible?(order)
 		if order

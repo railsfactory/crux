@@ -1,4 +1,5 @@
 Spree::MailMethod.class_eval do
+ attr_accessible :domain_url
  def self.current(domain=nil,id=nil)
   if domain==nil
    return nil

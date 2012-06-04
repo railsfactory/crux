@@ -123,10 +123,10 @@ module Spree
   end
 
   def best_selling_taxons
-    taxonomy = Spree::Taxonomy.where(:domain_url=>current_user.domain_url)
-    taxons =  Spree::Taxon.connection.select_rows("select t.name, count(li.quantity) from line_items li inner join variants v on
-           li.variant_id = v.id inner join products p on v.product_id = p.id inner join products_taxons pt on p.id = pt.product_id
-           inner join taxons t on pt.taxon_id = t.id where t.taxonomy_id = #{taxonomy.id} group by t.name order by count(li.quantity) desc limit 5;") if taxonomy.present?
+    taxonomy = Spree::Taxonomy.find_by_domain_url(current_user.domain_url)
+    taxons =  Spree::Taxon.connection.select_rows("select t.name, count(li.quantity) from spree_line_items li inner join spree_variants v on
+           li.variant_id = v.id inner join spree_products p on v.product_id = p.id inner join spree_products_taxons pt on p.id = pt.product_id
+           inner join spree_taxons t on pt.taxon_id = t.id where t.taxonomy_id = #{taxonomy.id} group by t.name order by count(li.quantity) desc limit 5;") if taxonomy.present?
   end
 
   def last_five_orders

@@ -71,8 +71,8 @@ class Spree::CheckoutController < Spree::BaseController
   end
 
   def before_address
-    @order.bill_address ||= Address.default
-    @order.ship_address ||= Address.default
+    @order.bill_address ||= Spree::Address.default
+    @order.ship_address ||= Spree::Address.default
   end
 
   def before_delivery

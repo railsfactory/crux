@@ -1,5 +1,5 @@
 Spree::Taxon.class_eval do
-
+attr_accessible :domain_url
   def active_products(subdomain=nil)
     scope = self.products.active
 		domain=subdomain.split(".")[0]
