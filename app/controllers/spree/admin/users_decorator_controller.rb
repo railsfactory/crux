@@ -6,8 +6,8 @@ Spree::Admin::UsersController.class_eval do
       if current_user.nil?
         @collection=[]
       else
-       @search = Spree::User.registered.search(params[:q])
-       p @collection = refine_list(@search)#.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
+        @search = Spree::User.registered.search(params[:q])
+        @collection = Kaminari.paginate_array(refine_list(@search)).page(params[:page]).per(Spree::Config[:admin_products_per_page])
       end
     else
       @collection = Spree::User.includes(:bill_address => [:state, :country], :ship_address => [:state, :country]).where("users.email like :search
