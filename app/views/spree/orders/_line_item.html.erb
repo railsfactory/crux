@@ -1,42 +1,47 @@
 <tr class="<%= cycle('', 'alt') %>">
 		<td>
 			<%- locals = {:item_form => item_form, :variant => variant, :line_item => line_item} %>
-			  <td data-hook="cart_item_image">
+			
 			<% if variant.images.length == 0 %>
 			<%= small_image(variant.product) %>
 			<% else %>
 			<%=  image_tag variant.images.first.attachment.url(:small) ,:class=>"grid-link" %>
+			
 			<% end %>
 		</td>
 		<td class="pro-details">
-			  <td data-hook="cart_item_image">
+			
 			<h4><%= link_to variant.product.name,  product_path(variant.product) %></h4>
 			<%= variant_options variant %>
 			<%= truncate(variant.product.description, :length => 100, :omission => "...") %>
+			
 		</td>
 		<td>  
-			<td data-hook="cart_item_price">
+			
 			<%= number_to_currency line_item.price %>
-		</td>
-		<td>
-			 <td data-hook="cart_item_quantity">
-			<%= item_form.number_field :quantity, :min => 0, :class => "line_item_quantity", :size => 5 %>
 			
 		</td>
 		<td>
-			<td data-hook="cart_item_total">
+			
+			<%= item_form.text_field :quantity, :size => 3, :class => "txt_qty line_item_quantity" %>
+		
+		</td>
+		<td>
+			
 			 <%= number_to_currency(line_item.price * line_item.quantity) unless line_item.quantity.nil? %>
 			
 		</td>
 		<td>
-			<td data-hook="cart_item_delete">
-			 <%= link_to image_tag('icons/delete.png'), '#', :class => 'delete', :id => "delete_#{dom_id(line_item)}" %>
+			
+			<%= link_to(image_tag('/assets/admin/icons/delete.png'), '#', :class => 'delete') %>
 			
 		</td>
 </tr>     
+	                                  
+		 
 <tr class="ordertotal">
 		<td colspan="4">Order Total:</td>
-		<td><%#= "#{order_price(@order)}" %></td>
+		<td><%= @order.total %></td>
 		<td>&nbsp;</td>
 </tr>                                 
 		
