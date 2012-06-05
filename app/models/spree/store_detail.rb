@@ -1,6 +1,6 @@
 module Spree
 class StoreDetail < ActiveRecord::Base
-
+attr_accessible :product_id, :quantity, :domain_url
 		def self.store_details
 			owners=StoreOwner.all
 			owners.each do |owner|

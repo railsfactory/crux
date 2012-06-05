@@ -1,9 +1,9 @@
 Spree::InventoryUnit.class_eval do
-
+attr_accessible :variant, :state, :shipment
   def self.create_units(order, variant, sold, back_order)
-  	domain=Product.find_by_id(variant.product_id).domain_url
-		config=Configuration.find_by_name("Default configuration")
-		pref=Preference.where("domain_url=? AND owner_type=? AND owner_id=? ",domain,"Configuration",config.id)	
+  	domain=Spree::Product.find_by_id(variant.product_id).domain_url
+		config=Spree::Configuration.find_by_name("Default configuration")
+		pref=Spree::Preference.where("domain_url=? AND owner_type=?",domain,"Configuration")	
 		if  pref.blank?
 			back_order_val=Spree::Config[:allow_backorders]
 		else

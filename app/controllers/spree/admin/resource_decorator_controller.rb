@@ -76,4 +76,3 @@ Spree::Admin::ResourceController.class_eval do
 			end
 		end
 end
-end

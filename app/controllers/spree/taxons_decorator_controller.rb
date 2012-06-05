@@ -1,7 +1,7 @@
 Spree::TaxonsController.class_eval do
 	include Spree::Admin::BaseHelper
   def show
-    @taxon = Taxon.find_by_permalink!(params[:id])
+    @taxon = Spree::Taxon.find_by_permalink!(params[:id])
     return unless @taxon
     @searcher = Spree::Config.searcher_class.new(params.merge(:taxon => @taxon.id))
     domain = get_sub_domain(current_subdomain)

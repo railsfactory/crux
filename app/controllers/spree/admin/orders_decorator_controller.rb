@@ -21,13 +21,14 @@ Spree::Admin::OrdersController.class_eval do
 
         @search =Spree::Order.ransack(params[:q])
 				#@search=refine_list(@search)
-        @orders = refine_list(@search)#@search.result.includes([:user, :shipments, :payments]).page(params[:page]).per(Spree::Config[:orders_per_page])
+        p @orders =Kaminari.paginate_array(refine_list(@search)).page(params[:page]).per(Spree::Config[:orders_per_page])
+        
         respond_with(@orders)
   end
 
  def refine_list(orders)
     orders_arr = Spree::StoreownerOrder.find(:all,:conditions=>["store_owner_id = ?",current_user.store_owner.id]).map(&:order_id)
-    order_collection=Spree::Order.find(:all,:conditions=>["id in (?)",orders_arr])
+    order_collection=Spree::Order.find(:all,:conditions=>["id in (?) AND completed_at is NOT NULL",orders_arr])
     return order_collection
  end
 end
