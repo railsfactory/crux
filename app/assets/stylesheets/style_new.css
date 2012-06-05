@@ -18,9 +18,9 @@
 .global-nav li{float:left;line-height: 22px; margin: 0 12px 0 0; padding:0 0 0 8px; background:url("blt-globalnav.gif") no-repeat scroll 0 center;}
 .cartinfo{float:right;}
 .cartinfo li{float:left; line-height:20px; font-size:11px;margin:0 20px 0 0;}
-.cartinfo li.cart-detail{margin:0 20px 0 0; background:url("../images/icon-cart.png") no-repeat scroll 0 0; padding:0 0 0 22px;}
+.cartinfo li.cart-detail{margin:0 20px 0 0; background:url("icon-cart.png") no-repeat scroll 0 0; padding:0 0 0 22px;}
 .cartinfo li.login a {background:url("icon-login.png") no-repeat scroll 0 0px; padding:1px 0 0 22px;}
-.cartinfo li.logout{background:url("../images/icon-logout.png") no-repeat scroll 0 2px; padding:0 0 0 22px;}
+.cartinfo li.logout{background:url("icon-logout.png") no-repeat scroll 0 2px; padding:0 0 0 22px;}
 .sechead{background:#df5321; padding:6px 10px; color:#ffffff; line-height:16px; text-transform:uppercase; border-radius: 5px 5px 0 0; -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0;}
 .subhead{color:#383838; line-height:16px; margin:0 0 10px;}
 
@@ -103,7 +103,7 @@
 .pattr span {color: #798600; font-weight: bold;}
 
 /* similar items */
-.similar-items li{float:left; width:95px; margin:0 10px 0 0; background: url("../images/blt-square.gif") no-repeat scroll 0 9px transparent; padding: 4px 0 4px 10px;}
+.similar-items li{float:left; width:95px; margin:0 10px 0 0; background: url("blt-square.gif") no-repeat scroll 0 9px transparent; padding: 4px 0 4px 10px;}
 
 /* Payment Details */
 .form_block{padding:4px 0 10px 0; overflow:hidden;}
