@@ -6,7 +6,7 @@ Spree::MailMethod.class_eval do
   elsif domain=="domain" && id=="interceptor"
    return @mail
   else
-   @mail= MailMethod.where("environment=? AND domain_url=?",Rails.env,domain).first
+   @mail= Spree::MailMethod.where("environment=? AND domain_url=?",Rails.env,domain).first
    return @mail
   end
  end
