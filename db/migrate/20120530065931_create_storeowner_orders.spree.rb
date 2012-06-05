@@ -1,6 +1,7 @@
+# This migration comes from spree (originally 20110416115125)
 class CreateStoreownerOrders < ActiveRecord::Migration
   def self.up
-    create_table :storeowner_orders do |t|
+    create_table :spree_storeowner_orders do |t|
 			t.integer :store_owner_id
 			t.integer :order_id
       t.timestamps
@@ -8,6 +9,6 @@ class CreateStoreownerOrders < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :storeowner_orders
+    drop_table :spree_storeowner_orders
   end
 end

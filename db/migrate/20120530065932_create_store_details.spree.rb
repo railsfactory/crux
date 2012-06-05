@@ -1,6 +1,7 @@
+# This migration comes from spree (originally 20110520113621)
 class CreateStoreDetails < ActiveRecord::Migration
   def self.up
-    create_table :store_details do |t|
+    create_table :spree_store_details do |t|
 			t.string :domain_url
       t.integer :product_id
       t.integer :quantity
@@ -9,6 +10,6 @@ class CreateStoreDetails < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :store_details
+    drop_table :spree_store_details
   end
 end
