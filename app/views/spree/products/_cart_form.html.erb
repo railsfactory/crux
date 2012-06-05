@@ -1,7 +1,8 @@
 <%= form_for :order, :url => populate_orders_url do |f| %>
-  <div id="inside-product-cart-form" data-hook="inside_product_cart_form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+   <% if @product.price %>
+      <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
 
-    <% if @product.has_variants? %>
+<% if @product.has_variants? %>
       <div id="product-variants" class="columns five alpha">
         <h6 class="product-section-title"><%= t(:variants) %></h6>
         <ul>
@@ -30,23 +31,26 @@
       <div data-hook="product_price" class="columns five <% if !@product.has_variants? %> alpha <% else %> omega <% end %>">
         
         <div id="product-price">
-          <h6 class="product-section-title"><%= t(:price) %></h6>
+          
           <div><span class="price selling" itemprop="price"><%= number_to_currency @product.price %></span></div>
         </div>
+	</div>
+	<%end%>
+  <% if @product.has_stock? || Spree::Config[:allow_backorders] %>
+		<div class="pcount">
+			<span>Qty:</span><%= text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),1, :class => "title txtbox", :size => 3 %>
+		</div>
+    <div class="addtocart">
+					  <input type="submit" class="continue button primary" value="Add to cart" />
+		</div>
+  <% else %>
+    <%= content_tag('strong', t('out_of_stock')) %>
+  <% end %>
 
-        <div class="add-to-cart">
-          <% if @product.has_stock? || Spree::Config[:allow_backorders] %>      
-            <%= number_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
-              1, :class => 'title', :in => 1..@product.on_hand %>
-            <%= button_tag :class => 'large primary', :id => 'add-to-cart-button', :type => :submit do %>
-              <%= t(:add_to_cart) %>
-            <% end %>
-          <% else %>
-            <%= content_tag('strong', t(:out_of_stock)) %>
-          <% end %>
-        </div>
-
-      </div>
-    <% end %>    
-  </div>
 <% end %>
+<% end %>
+
+<% content_for :head do %>
+  <%= javascript_include_tag 'product' %>
+<% end %>
+	</div>

@@ -1,18 +1,20 @@
-<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @order } %>
-<table id="cart-detail" data-hook>
-  <thead>
-    <tr data-hook="cart_items_headers">
-      <th class="item" >Item</th>
-	<th class="desc" >Description</th>
-	<th class="price" >Price</th>
+<%= render "spree/shared/error_messages", :target => @order %>
+<table cellspacing="0" cellpadding="0" class="grid-table add-to-cart"  id="cart-detail">
+<thead>
+<tr>
+	
+	<th class="item">Item</th>
+	<th class="desc">Description</th>
+	<th class="price">Price</th>
 	<th class="qty">Qty</th>
 	<th class="total">Total</th>
 	<th class="delete_link"></th>
-    </tr>
-  </thead>
-  <tbody id="line_items" data-hook>
-    <%= order_form.fields_for :line_items do |item_form| %>
-      <%= render :partial => 'line_item', :locals => { :variant => item_form.object.variant, :line_item => item_form.object, :item_form => item_form } %>
-    <% end %>
-  </tbody>
+
+</tr>
+</thead>
+<tbody  id="line_items">
+<%= order_form.fields_for :line_items do |item_form| %>
+<%= render 'line_item', :variant => item_form.object.variant, :line_item => item_form.object, :item_form => item_form %>
+<% end %>
+</tbody>
 </table>

@@ -32,7 +32,6 @@ module Spree
 		end
 
 		def mail_settings(domain)
-			p "11111111111111111111111111!!!"
 				mail_methods=Spree::MailMethod.find_all_by_domain_url(domain)
 			unless mail_methods.blank?
 				Spree::MailSettings.init(domain)
