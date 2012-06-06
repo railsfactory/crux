@@ -17,7 +17,7 @@ class Spree::Admin::StoreDetailsController <Spree::Admin::ResourceController
         @product_name<<product_details.name
         @product_price<<product_details.master.price
         puts @product_price.inspect
-        quantity=Spre::StoreDetail.find_all_by_product_id(product).map(&:quantity).sum
+        quantity=Spree::StoreDetail.find_all_by_product_id(product).map(&:quantity).sum
         @pro_quantity<<quantity
         @total_price<<(product_details.master.price*(@plan.transaction_fee/100))*quantity
       end
