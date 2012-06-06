@@ -151,7 +151,7 @@ label.error { float:left; margin-top:5px; color:#FF0000;}
 .collection-img-wrap { overflow:hidden; border:1px solid #b6b6b6; border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; padding:10px 0 0 0; *padding-bottom:10px;}
 .col-left-wrap { overflow:hidden; float:left;}
 .coll-left {min-height: 190px; float:left; width:210px; margin: 0 0 10px 10px; position:relative; border:1px solid #dbdbdb; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; position:relative;}
-.coll-info { margin-top:18px; position:absolute; z-index:100; padding: 10px; width:190px; bottom:0; background: url("../images/shadow_top.png") repeat-x scroll 0 -35px #FFFFFF; border-radius:0 0 5px 5px; -moz-border-radius:0 0 5px 5px;  -webkit-border-radius:0 0 5px 5px;}
+.coll-info { margin-top:18px; position:absolute; z-index:100; padding: 10px; width:190px; bottom:0; background: url("shadow_top.png") repeat-x scroll 0 -35px #FFFFFF; border-radius:0 0 5px 5px; -moz-border-radius:0 0 5px 5px;  -webkit-border-radius:0 0 5px 5px;}
 .coll-img { text-align: center;}
 .size-color { overflow:hidden; border-bottom:1px dotted #a7a7a7; border-top:1px dotted #a7a7a7; margin-top:6px;}
 .size-color p { float:left; padding:6px 0; color:#6e6e6e;}
