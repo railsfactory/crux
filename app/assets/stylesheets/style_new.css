@@ -299,7 +299,7 @@ input.title, .txtinput, #user_email { border:1px solid #8191a5; display: block; 
 #user_submit{ background:#ADD73A; font-weight:bold; cursor:pointer; font-family:12px; padding:3px 5px; font-family:Verdana, Arial, Helvetica, sans-serif; border:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; color:#FFFFFF; overflow:visible;margin-top:18px;}
 
 .products h4{margin:0 0 10px 10px; font-size:14px;}
-
+.style_textinput{border:1px solid #8191a5; display: block; /*height: 23px; line-height: 31px;*/  width: 250px;}
 /*pagination*/
 
 .pagination-wrap{overflow:hidden; margin: 10px 0;}

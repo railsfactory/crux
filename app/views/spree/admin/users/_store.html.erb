@@ -100,7 +100,7 @@
 function viewdetails(id){
 {
 $.ajax({
-                        url:"/admin/store_details/billing_history",
+                        url:"spree/admin/store_details/billing_history",
                         data: "store="+id,
 												success: function(data) {
 			$('#status').html(data);
@@ -111,7 +111,7 @@ $.ajax({
 function check_status(store)
 {
 $.ajax({
-			url: "/admin/users/store_status",
+			url: "spree/admin/users/store_status",
 			data: "userid="+store,
 			
 });

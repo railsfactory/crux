@@ -31,9 +31,9 @@
 			 <%= number_to_currency(line_item.price * line_item.quantity) unless line_item.quantity.nil? %>
 			
 		</td>
-		<td>
-			
-			<%= link_to(image_tag('/assets/admin/icons/delete.png'), '#', :class => 'delete') %>
+		
+			<td>
+			<%= link_to(image_tag('/assets/admin/icons/delete.png'), '/#',:class => 'delete', :id => "delete_#{dom_id(line_item)}") %> 
 			
 		</td>
 </tr>     

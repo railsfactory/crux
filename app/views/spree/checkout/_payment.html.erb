@@ -1,5 +1,7 @@
+<h5 class="subhead">Card Details</h5>
 <fieldset id="payment" data-hook>
   <legend><%= t(:payment_information) %></legend>
+  <br class="space" />
   <div data-hook="checkout_payment_step">
     <% @order.available_payment_methods.each do |method| %>
     <p>
@@ -7,7 +9,7 @@
         <%= radio_button_tag "order[payments_attributes][][payment_method_id]", method.id, method == @order.payment_method %>
         <%= t(method.name, :scope => :payment_methods, :default => method.name) %>
       </label>
-    </p>
+    </p><br class="space" />
     <% end %>
 
     <ul id="payment-methods" data-hook>
@@ -28,5 +30,7 @@
 
 <div class="form-buttons" data-hook="buttons">
   <%= submit_tag t(:save_and_continue), :class => 'continue button primary' %>
+ <br class="space" /><br class="space" />
+</fieldset>
   <script>disableSaveOnClick();</script>
 </div>
