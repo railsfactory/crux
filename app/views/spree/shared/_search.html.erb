@@ -1,16 +1,16 @@
+
 <%unless (request.url.include?(APP_CONFIG['domain_url']) || request.url.include?(APP_CONFIG['secure_domain_url']))%>
 <% @taxons = @taxon && @taxon.parent ? @taxon.parent.children : get_taxons(current_subdomain)  %>
-<%= form_tag products_url, :method => :get do %>
 
+<%= form_tag products_path, :method => :get do %>
 <div class="prod-search-form">
-									<div class="search-head">Product Search</div>
+<div class="search-head">Product Search</div>
 									<div class="sfield">
-									<%= select_tag :taxon,
+  <%= select_tag :taxon,
         options_for_select([[t(:categories), '']] +
-                              @taxons.map {|t| [t.name, t.id]},
-                            @taxon ? @taxon.id : params[:taxon]) ,:class=>"product-select"%>
-								
-									</div>
+                              @taxons.map {|t| [t.name, t.id]}
+                            ),:class=>"product-select" %>
+  	</div>
 																			<div class="sfield">
 									  <%= text_field_tag :keywords, params[:keywords],:class=>"search_input",:html=>{:class=>"search_input "} %>
 									</div>
@@ -19,6 +19,4 @@
 									</div>								
 								</div>
 
-<% end %>
-<% end %>
-	
+<% end %><% end %>
