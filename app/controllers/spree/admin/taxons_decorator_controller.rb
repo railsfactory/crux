@@ -24,7 +24,7 @@ Spree::Admin::TaxonsController.class_eval do
   end
 
   def load_product
-    Product.find_by_permalink! params[:product_id]
+    Spree::Product.find_by_permalink! params[:product_id]
   end
 
 end
