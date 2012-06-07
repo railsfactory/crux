@@ -21,10 +21,11 @@ class Spree::UsersController < Spree::BaseController
     end
 
     def update
-      @store_owner=@user.store_owner
+	    
+       p  @store_owner=@user.store_owner
       if  @user.update_attributes(params[:user])
-        @store_owner.update_attribute(:card_number,params[:store_owner][:card_number]) unless params[:store_owner][:card_number].blank?
-        @store_owner.update_attribute(:cvv,params[:store_owner][:cvv]) unless params[:store_owner][:cvv].blank?
+        #~ @store_owner.update_attribute(:card_number,params[:store_owner][:card_number]) unless params[:store_owner][:card_number].blank?
+        #~ @store_owner.update_attribute(:cvv,params[:store_owner][:cvv]) unless params[:store_owner][:cvv].blank?
         if params[:user][:password].present?
           # this logic needed b/c devise wants to log us out after password changes
           user = Spree::User.reset_password_by_token(params[:user])
