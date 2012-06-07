@@ -5,7 +5,7 @@
 	<% product_counts=products_count_checking(current_user)%>
 	<%if product_counts == true%>
     <li id="new_product_link">
-      <%= button_link_to t("new_product"), new_object_url, {:remote => false, :icon => 'add', :id => 'admin_new_product'} %>
+      <%= button_link_to t("new_product"), new_object_url, {:remote => true, :icon => 'add', :id => 'admin_new_product'} %>
     </li>
 		<%end%>
   </ul>
