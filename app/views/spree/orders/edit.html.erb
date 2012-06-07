@@ -8,7 +8,7 @@
 
 <%else%>
 
-<%= form_for(@order, :url => update_cart_path, :html=>{:id=>'updatecart'}) do |order_form| %>
+<%= form_for(@order, :url => update_cart_path, :html=>{:id=>'update-cart'}) do |order_form| %>
 
 <%= render :partial => 'form', :locals => {:order_form => order_form} %>
 

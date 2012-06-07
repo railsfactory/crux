@@ -25,7 +25,13 @@
   <td data-hook="cart_item_total">
     <%= number_to_currency(line_item.price * line_item.quantity) unless line_item.quantity.nil? %>
   </td>
-  <td data-hook="cart_item_delete">
+ <td class="cart-item-delete" data-hook="cart_item_delete">
     <%= link_to image_tag('icons/delete.png'), '#', :class => 'delete', :id => "delete_#{dom_id(line_item)}" %>
   </td>
-</tr>
+</tr>     
+
+<tr class="ordertotal">
+		<td colspan="4">Order Total:</td>
+		<td><%= @order.total %></td>
+		<td>&nbsp;</td>
+</tr>                    
