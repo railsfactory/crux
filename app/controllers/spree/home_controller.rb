@@ -9,10 +9,10 @@ class Spree::HomeController < Spree::BaseController
     p @searcher = Spree::Config.searcher_class.new(params)
     p "22222222222222222222222222222222222222________________"
     p domain = get_sub_domain(current_subdomain)
-     myarray= @searcher.retrieve_products(domain)
+     @products= @searcher.retrieve_products(domain)
 		 	p=Spree::Product.find(:all,:conditions=>["domain_url=?",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10).map(&:id)
 	   #@products=@products.reject{|x| p.include?(x.id)}
-      respond_with(@products= Kaminari.paginate_array(myarray).page(params[:page]).per(6))
+      respond_with(@products= Kaminari.paginate_array(@products).page(params[:page]).per(6))
    end
 
    def choose_layout

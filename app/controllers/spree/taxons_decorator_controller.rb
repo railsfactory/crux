@@ -5,7 +5,8 @@ Spree::TaxonsController.class_eval do
     return unless @taxon
     @searcher = Spree::Config.searcher_class.new(params.merge(:taxon => @taxon.id))
     domain = get_sub_domain(current_subdomain)
-    @products = @searcher.retrieve_products(domain)
+    @test = @searcher.retrieve_products(domain)
+     @products = Kaminari.paginate_array(@test).page(params[:page]).per(6)
     respond_with(@taxon)
   end
 end

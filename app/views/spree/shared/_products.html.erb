@@ -1,4 +1,3 @@
-
 <% if products.empty? %>
   <h4><%= t(:no_products_found) %></h4>
 <% elsif params.key?(:keywords) %>
@@ -19,7 +18,7 @@
 						<div class="item-name"><%=product.name.capitalize%></div>
 						<div class="price-enlarge-buy">
 								<p class="price"><span ></span><%= number_to_currency product.price %></p>
-								
+
 								<%= link_to "BUY-IT", product,:class=>"buy-it"%>
 						</div>
 				</div>
@@ -33,6 +32,7 @@
 <% end %>
 
 <div class="pagination-wrap">
+
 <%= paginate(@products,:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
 
 </div>
