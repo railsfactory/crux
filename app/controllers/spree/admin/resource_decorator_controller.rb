@@ -69,7 +69,7 @@ Spree::Admin::ResourceController.class_eval do
 		def condition
 			p "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 			p model_class.name
-			if ((model_class.name == "Spree::Product")||(model_class.name == "Spree::User")||(model_class.name == "Spree::OptionType")||(model_class.name == "Spree::Property")||(model_class.name == "Spree::Prototype")||(model_class.name == "Spree::ProductGroup")||(model_class.name == "Spree::MailMethod")||(model_class.name == "Spree::TaxCategory")||(model_class.name == "Spree::Zone")||(model_class.name == "Spree::PaymentMethod")||(model_class.name == "Spree::ShippingMethod")||(model_class.name == "Spree::ShippingCategory")||(model_class.name == "Spree::Taxonomy") ||(model_class.name == "Spree::Promotion"))
+			if ((model_class.name == "Spree::Product")||(model_class.name == "Spree::User")||(model_class.name == "Spree::OptionType")||(model_class.name == "Spree::Property")||(model_class.name == "Spree::Prototype")||(model_class.name == "Spree::ProductGroup")||(model_class.name == "Spree::MailMethod")||(model_class.name == "Spree::TaxCategory")||(model_class.name == "Spree::Zone")||(model_class.name == "Spree::PaymentMethod")||(model_class.name == "Spree::ShippingMethod")||(model_class.name == "Spree::ShippingCategory")||(model_class.name == "Spree::Taxonomy") ||(model_class.name == "Spree::Activator"))
 		    return true
 			else
 			  return false
