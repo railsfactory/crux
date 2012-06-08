@@ -11,6 +11,10 @@ Spree::Core::Engine.routes.append do
 	match 'user_update_plan/:plan_id'=>'admin/upgrade_plans#user_update_plan',:as=>:update_plan
 	match 'admin/store_registration_payment_method'=>'admin/payment_methods#store_registration_payment_method',:as=>:store_registration_payment_method
 	match '/admin/users/store_status'=>'admin/users#store_owners'
+	 match '/static_pages/aboutus' => 'static_pages#aboutus'
+        match '/static_pages/contactus' => 'static_pages#contactus'
+        match '/static_pages/privacy' => 'static_pages#privacy'
+       match '/static_pages/terms' => 'static_pages#terms'
 	namespace :admin do
 		resources :pricing_plans
 		resources :domain_customizes
