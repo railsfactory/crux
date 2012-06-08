@@ -1,7 +1,4 @@
-<%
-  paginated_products = @searcher.products if params.key?(:keywords)
-  paginated_products ||= products
-%>
+
 <% if products.empty? %>
   <h4><%= t(:no_products_found) %></h4>
 <% elsif params.key?(:keywords) %>
@@ -35,11 +32,7 @@
 </div>						
 <% end %>
 
-<div class="pagination-wrap"><% if paginated_products.respond_to?(:num_pages)
-      params.delete(:search)
-      params.delete(:taxon)
+<div class="pagination-wrap">
+<%= paginate(@products,:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
 
-%><%= paginate(paginated_products,
-                    :previous_label => "&#171; #{t('previous')}",
-                    :next_label => "#{t('next')} &#187;") %>
-<% end %></div>
+</div>
