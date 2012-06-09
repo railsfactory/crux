@@ -1,7 +1,8 @@
 class Spree::UserPasswordsController < Devise::PasswordsController
-  include SpreeBase
+  #include SpreeBase
   #~ helper :users, 'spree/base'
- layout "home"
+  helper 'spree/users', 'spree/base'
+  layout "spree/layouts/home"
 
   def new
     super
