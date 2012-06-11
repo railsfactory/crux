@@ -6,15 +6,13 @@
 
   <thead>
   <tr>
-    <%= hook :admin_customize_index_headers do %>
       <th><%= t("customize_domain") %></th>
       <th><%= t("status") %></th>
       <th>
-        <%= hook :admin_customize_index_header_actions %>
       </th>
-    <% end %>
   </tr>
   </thead>
+  
   <tbody>
   <td><%= @domain_customize.custom_domain %></td>
   <td><%= (@domain_customize.status?) ? "Active" : "Inactive" %></td>
