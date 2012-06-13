@@ -38,6 +38,8 @@ class Spree::StoresRegistrationController < Spree::BaseController
 		@user = Spree::User.new(params[:user])
 		@store_owner = @user.build_store_owner(params[:store_owner])
 		@store_owner.pricing_plan_id = session[:plan]
+		@user.valid?
+		@store_owner.valid?
 		if @user.valid? && @store_owner.valid?
 			payment_response
 		else

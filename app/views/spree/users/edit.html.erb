@@ -1,7 +1,7 @@
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @user } %>
 
 <h4 class="sechead"><%= t(:editing_user) %></h4>
-
+<div class="secinblock">
 <%= form_for @user, :url => spree.user_path(@user), :method => :put do |f| %>
   <%= render :partial => 'spree/shared/user_form', :locals => { :f => f } %>
   <p>
@@ -10,5 +10,6 @@
   <%=submit_tag ("Update"),:class=>"sbtn-submit" %>
 
   </p>
+<br/>
 <% end %>
-
+  </div>

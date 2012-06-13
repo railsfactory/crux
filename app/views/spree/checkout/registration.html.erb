@@ -1,23 +1,25 @@
 <%= render "spree/shared/error_messages", :target => @user %>
-<h2><%= t("registration")%></h2>
+<h2><%= t("registration")%></h2><br/>
 <div id="registration">
   <div id="account">
     <%= render :file => 'spree/user_sessions/new' %>
   </div>
+  <br/>
   <% if Spree::Config[:allow_guest_checkout] %>
     <div id="guest_checkout">
       <%= render "spree/shared/error_messages", :target => @order %>
       <h4 class="sechead"><%= t(:guest_user_account) %></h4>
       <%= form_for @order, :url => update_checkout_registration_path, :html => { :method => :put, :id => "checkout_form_registration"} do |f| %>
         <div class="secinblock">
-					<div class="fm-elements">
-						<%= f.label :email, t("email") %><br />
-						<%= f.text_field :email, :class => 'txtinput required'  %>
-					</div>
-			 <div class="fm-elements">
-													<%= submit_tag t("continue"), :class => 'button primary' %>
-					            </div>
-				</div>
+                                        <div class="fm-elements">
+                                                <%= f.label :email, t("email") %><br />
+                                                <%= f.text_field :email, :class => 'txtinput required'  %>
+                                        </div>
+                                        
+                         <div class="fm-elements">
+                                                                                                        <%= submit_tag t("continue"), :class => 'button primary' %>
+                                                    </div>
+                                </div>
       <% end %>
     </div>
   <% end %>

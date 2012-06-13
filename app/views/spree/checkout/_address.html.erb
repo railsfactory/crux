@@ -4,214 +4,218 @@
 
 
 
-<h5 class="subhead">Billing Address</h5>                            	
-	<div class="form_block payment_address">	                            	
+<h5 class="subhead">Billing Address</h5>                                    
+        <div class="form_block payment_address">                                            
 
   <%= form.fields_for :bill_address do |bill_form| %>
     <div class="inner">
       <!--<p class="field">&nbsp;</p>-->
-				<div class="field_wrap" id="bfname" >
-					<label>First Name <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= bill_form.text_field :firstname, :class => 'txtinput required' %>
-						</div>
-				</div>
-				<div class="field_wrap" id="blname" >
-					<label>Last Name <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= bill_form.text_field :lastname, :class => 'txtinput required' %>
-						</div>
-				</div>
+                                <div class="field_wrap" id="bfname" >
+                                        <label>First Name <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= bill_form.text_field :firstname, :class => 'txtinput required' %>
+                                                </div>
+                                </div>
+                                <div class="field_wrap" id="blname" >
+                                        <label>Last Name <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= bill_form.text_field :lastname, :class => 'txtinput required' %>
+                                                </div>
+                                </div>
         <div class="field_wrap" id="baddress" >
-	      	<label>street_address<span class="req">*</span></label>
-	        	<div class="input_wrap">
-							<%= bill_form.text_field :address1, :class => 'txtinput required' %>
-						</div>
-				</div>
-		     <div class="field_wrap" id="baddress2" >
-						<label>street_address (cont'd)</label>
-							<div class="input_wrap">
-								<%= bill_form.text_field :address2,:class=>'txtinput' %>
-							</div>
-				 </div>
+                      <label>street_address<span class="req">*</span></label>
+                        <div class="input_wrap">
+                                                        <%= bill_form.text_field :address1, :class => 'txtinput required' %>
+                                                </div>
+                                </div>
+                     <div class="field_wrap" id="baddress2" >
+                                                <label>street_address (cont'd)</label>
+                                                        <div class="input_wrap">
+                                                                <%= bill_form.text_field :address2,:class=>'txtinput' %>
+                                                        </div>
+                                 </div>
 
-      		<div class="field_wrap" id="bcity" >
-						<label>city<span class="req">*</span></label>
-							<div class="input_wrap">
-								<%= bill_form.text_field :city, :class => 'txtinput required' %>
-							</div>
-					</div>
+                      <div class="field_wrap" id="bcity" >
+                                                <label>city<span class="req">*</span></label>
+                                                        <div class="input_wrap">
+                                                                <%= bill_form.text_field :city, :class => 'txtinput required' %>
+                                                        </div>
+                                        </div>
  
-   	<div class="field_wrap">
-				<label>State <span class="req">*</span></label>
-				<div class="input_wrap">
-					<% if Spree::Config[:address_requires_state] %>
-					<p class="field">
-						<span id="bstate"> <% have_states = !@order.bill_address.country.states.empty? %>
-							<%#= bill_form.label :state, t(:state) %>
-							<noscript>
-								<%= bill_form.text_field :state_name, :class => 'required txtinput' %>
-							</noscript> <% state_elements = [
-                    bill_form.collection_select(:state_id, @order.bill_address.country.states,
-                    :id, :name,
-                    {:include_blank => true},
-                    {:class => have_states ? " txtselect required" : "hidden",
-                      :disabled => !have_states}) +
-                    bill_form.text_field(:state_name,
-                    :class => !have_states ? " txtinput required" : " txtinput hidden",
-                    :disabled => have_states)
-                  ].join.gsub('"', "'").gsub("\n", "")%>
-							<script type="text/javascript" language="javascript" charset="utf-8">
-// <![CDATA[
-document.write("<%= raw state_elements %>");
-	// ]]>
-							</script> </span>
-					</p>
-					<% end %>
-				</div>
-			</div>
-			<div class="field_wrap">
+    <div class="field_wrap">
+                                <label>State <span class="req">*</span></label>
+                                <div class="input_wrap">
+                                        <% if Spree::Config[:address_requires_state] %>
+                                                <p class="field" id="bstate">
+          <% have_states = !@order.bill_address.country.states.empty? %>
+       
+          <noscript>
+            <%= bill_form.text_field :state_name, :class => 'required' %>
+          </noscript>
+          <% state_elements = [
+             bill_form.collection_select(:state_id, @order.bill_address.country.states,
+                                :id, :name,
+                                {:include_blank => true},
+                                {:class => have_states ? 'txtselect required state_fld' : 'txtinput hidden',
+                                :disabled => !have_states}) +
+             bill_form.text_field(:state_name,
+                                :class => !have_states ? 'txtinput required' : 'txtinput hidden',
+                                :disabled => have_states)
+             ].join.gsub('"', "'").gsub("\n", "")
+          %>
+          <%= javascript_tag do -%>
+            document.write("<%== state_elements %>");
+          <% end -%>
+        </p>
+      <% end %>
 
-					<div class="field_wrap" id="bzip" >
-						<label>zip<span class="req">*</span></label>
-							<div class="input_wrap">
-								<%= bill_form.text_field :zipcode, :class => 'txtinput required' %>
-							</div>
-					</div>
+                                </div>
+                        </div>          
+          
+          
+          
+                        <div class="field_wrap">
 
-							<div class="field_wrap">
-				<label>Country <span class="req">*</span></label>
-				<div class="input_wrap">
-					<p id="bcountry" class="field">
-						<span id="bcountry"><%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'txtselect required state_fld'} %></span>
-					</p>
-				</div>
-			</div>
+                                        <div class="field_wrap" id="bzip" >
+                                                <label>zip<span class="req">*</span></label>
+                                                        <div class="input_wrap">
+                                                                <%= bill_form.text_field :zipcode, :class => 'txtinput required' %>
+                                                        </div>
+                                        </div>
 
-							<div class="field_wrap" id="bphone" >
-	                            		<label>phone<span class="req">*</span></label>
-	                            		<div class="input_wrap">
+                                                        <div class="field_wrap">
+                                <label>Country <span class="req">*</span></label>
+                                <div class="input_wrap">
+                                        <p id="bcountry" class="field">
+                                                <span id="bcountry"><%= bill_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'txtselect required state_fld'} %></span>
+                                        </p>
+                                </div>
+                        </div>
+
+                                                        <div class="field_wrap" id="bphone" >
+                                                    <label>phone<span class="req">*</span></label>
+                                                    <div class="input_wrap">
           <%= bill_form.text_field :phone, :class => 'txtinput required' %>
-	                            		</div>
-							</div>
+                                                    </div>
+                                                        </div>
 
-								<% if Spree::Config[:alternative_billing_phone] %>
-							<div class="field_wrap" id="baltphone" >
-	                            		<label>alternative_phone<span class="req">*</span></label>
-	                            		<div class="input_wrap">
+                                                                <% if Spree::Config[:alternative_billing_phone] %>
+                                                        <div class="field_wrap" id="baltphone" >
+                                                    <label>alternative_phone<span class="req">*</span></label>
+                                                    <div class="input_wrap">
               <%= bill_form.text_field :alternative_phone %>
-	                            		</div>
-							</div>
-							<% end %>
+                                                    </div>
+                                                        </div>
+                                                        <% end %>
     </div>
   <% end %>
-	</div>
+        </div>
 
 
 
 </fieldset>
 <fieldset id='shipping'>
-			<%= form.fields_for :ship_address do |ship_form| %>
-			<h5 class="subhead">Shipping Address</h5>
-			<div class="form_block payment_address">
-				<div class="check_wrap">
-					<%= check_box_tag 'order[use_billing]', '1', (!(@order.bill_address.empty? && @order.ship_address.empty?) && @order.bill_address.eql?(@order.ship_address)) ,:class=>'txtcheck'%>
-					<label for="checkbox1">Use Billing Address</label>
-				</div>
-				<div class="inner">
-					<div class="field_wrap">
-						<label>First Name <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :firstname, :class => 'txtinput required' %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>Last Name <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :lastname, :class => 'txtinput required' %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>Street Address <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :address1, :class => 'txtinput required' %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>Street Address (cont'd)</label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :address2, :class => 'txtinput ' %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>City <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :city, :class => 'txtinput required' %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>State <span class="req">*</span></label>
-						<div class="input_wrap">
-							<% if Spree::Config[:address_requires_state] %>
-							<p class="field">
-								<span id="sstate"> <% have_states = !@order.ship_address.country.states.empty? %>
-									<%#= ship_form.label :state, t(:state) %>
-									<noscript>
-										<%= ship_form.text_field :state_name, :class => 'required txtinput' %>
-									</noscript> <% state_elements = [
-                        ship_form.collection_select(:state_id, @order.bill_address.country.states,
-                        :id, :name,
-                        {:include_blank => true},
-                        {:class => have_states ? "txtselect required state_fld" : "hidden",
-                          :disabled => !have_states}) +
-                        ship_form.text_field(:state_name,
-                        :class => !have_states ? "txtinput required" : "txtinput hidden",
-                        :disabled => have_states)
-                      ].join.gsub('"', "'").gsub("\n", "")%>
-									<script type="text/javascript" language="javascript" charset="utf-8">
-// <![CDATA[
-document.write("<%= raw state_elements %>");
-	// ]]>
-									</script> </span>
-							</p>
-							<% end %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>Zip <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :zipcode, :class => 'txtinput' %>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>Country <span class="req">*</span></label>
-						<div class="input_wrap">
-							<p id="scountry" class="field">
-								<span id="scountry"><%= ship_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'txtselect required state_fld'} %></span>
-							</p>
-						</div>
-					</div>
-					<div class="field_wrap">
-						<label>Phone <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :phone, :class => 'txtinput required' %>
-						</div>
-					</div>
-				</div>
-				<% if Spree::Config[:alternative_shipping_phone] %>
-				<div class="field_wrap">
-					<p id="saltphone">
-						<label>Phone <span class="req">*</span></label>
-						<div class="input_wrap">
-							<%= ship_form.text_field :alternative_phone, :class => 'txtinput required'  %>
-						</div>
-				</div>
-				<% end %>
-			</div>
-			<% end %>
-		</fieldset>
+                        <%= form.fields_for :ship_address do |ship_form| %>
+                        <h5 class="subhead">Shipping Address</h5>
+                        <div class="form_block payment_address">
+                                <div class="check_wrap">
+                                        <%= check_box_tag 'order[use_billing]', '1', (!(@order.bill_address.empty? && @order.ship_address.empty?) && @order.bill_address.eql?(@order.ship_address)) ,:class=>'txtcheck'%>
+                                        <label for="checkbox1">Use Billing Address</label>
+                                </div>
+                                <div class="inner">
+                                        <div class="field_wrap">
+                                                <label>First Name <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :firstname, :class => 'txtinput required' %>
+                                                </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>Last Name <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :lastname, :class => 'txtinput required' %>
+                                                </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>Street Address <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :address1, :class => 'txtinput required' %>
+                                                </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>Street Address (cont'd)</label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :address2, :class => 'txtinput ' %>
+                                                </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>City <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :city, :class => 'txtinput required' %>
+                                                </div>
+                                        </div>
+                          <div class="field_wrap">
+                                                <label>State <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <% if Spree::Config[:address_requires_state] %>
+                                <p class="field" id="sstate">
+          <% have_states = !@order.ship_address.country.states.empty? %>
+         
+          <noscript>
+            <%= ship_form.text_field :state_name, :class => 'required' %>
+          </noscript>
+          <% state_elements = [
+             ship_form.collection_select(:state_id, @order.ship_address.country.states,
+                                :id, :name,
+                                {:include_blank => true},
+                                {:class => have_states ? 'txtselect required state_fld' : 'txtinput hidden',
+                                :disabled => !have_states}) +
+             ship_form.text_field(:state_name,
+                                :class => !have_states ? 'txtinput required' : 'txtinput hidden',
+                                :disabled => have_states)
+             ].join.gsub('"', "'").gsub("\n", "")
+          %>
+          <%= javascript_tag do -%>
+            document.write("<%== state_elements %>");
+          <% end %>
+        </p>
+      <% end %>
+          </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>Zip <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :zipcode, :class => 'txtinput' %>
+                                                </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>Country <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <p id="scountry" class="field">
+                                                                <span id="scountry"><%= ship_form.collection_select :country_id, available_countries, :id, :name, {}, {:class => 'txtselect required state_fld'} %></span>
+                                                        </p>
+                                                </div>
+                                        </div>
+                                        <div class="field_wrap">
+                                                <label>Phone <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :phone, :class => 'txtinput required' %>
+                                                </div>
+                                        </div>
+                                </div>
+                                <% if Spree::Config[:alternative_shipping_phone] %>
+                                <div class="field_wrap">
+                                        <p id="saltphone">
+                                                <label>Phone <span class="req">*</span></label>
+                                                <div class="input_wrap">
+                                                        <%= ship_form.text_field :alternative_phone, :class => 'txtinput required'  %>
+                                                </div>
+                                </div>
+                                <% end %>
+                        </div>
+                        <% end %>
+                </fieldset>
 
-	                            <div class="fm-elements">
+                                    <div class="fm-elements">
   <input type="submit" class="continue button primary" value="<%=t("save_and_continue") %>" />
 </div>
 

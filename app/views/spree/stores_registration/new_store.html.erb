@@ -28,7 +28,7 @@
 <div class="err-msg"><%=error_message_on        :user,:password %></div>
 </div>
 <div class="filed-wrap">
-<label class="inlined">Confirm Password</label>
+<label class="inlined">Confirm Password<span>*</span></label>
 <%= u.password_field :password_confirmation%>
 <div class="err-msg"><%=error_message_on        :user,:password_confirmation %></div>
 </div>
@@ -83,11 +83,12 @@
 <div class="login-info rc8">
 <h3>Domain Name</h3>
 <div class="filed-wrap">
-<label class="inlined">Domain Name<span>*</span></label>
-http:<%= f.text_field :domain%> .crux.railsfactory.com
-<div class="err-msg"><%=error_message_on        :store_owner,:domain%></div>
+<label class="inlined">Domain Name<span>*</span><p><font size='1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http:</font></p></label>
+<span class="field_with_errors"><%= f.text_field :domain%> </span>
+<div class="err-msg"><div class="formError"><%=error_message_on        :store_owner,:domain%></div>
 </div>
-</div>
+<br><br/>&nbsp;&nbsp;&nbsp;&nbsp;.crux.railsfactory.com
+</div></div>
 <div class="login-info rc8">
 <h3>Credit Card Details</h3>
 <div class="filed-wrap">
