@@ -1,6 +1,6 @@
 <h4 class="sechead forgot_password"><%= t(:forgot_password) %></h4>
 						    <div class="secinblock">
-						        <%= form_for User.new, :as => :user, :url => user_password_path do |f| %>
+						        <%= form_for Spree::User.new, :as => :user, :url => user_password_path do |f| %>
 						            <div class="fm-elements">
 						                <label><%= t(:email) %>:</label>
 						                <div class="input-wrap">

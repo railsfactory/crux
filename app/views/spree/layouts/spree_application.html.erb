@@ -51,29 +51,7 @@ end
                         <%= yield :sidebar %>
           </aside>
                         <% end %>
-                                        <h4 class="sechead">PRODUCT GROUPS </h4>
-                <div class="prolist sidebar-item">
-                        <%variable=product_groups%>        
-                                                
-                        <% productgroup = variable.sort_by(&:price)%>
-                                                
-                        <% productgroup.each do |test|%>
-                                                
-                        <ul>
-                                                
-                        <li class="sublevel">
-                                                
-                                <%= test.name%>
-                                                
-                                <%=test.price%>
-                                                
-                        </li>
-                                                
-                        </ul>
-                                                
-                        <%end%>
-                                                
-                </div>        
+                                     
                                                 </div><!-- sidenav -->
                                                 <div class="promo-banner">
                                                 
