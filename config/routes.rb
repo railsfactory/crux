@@ -7,6 +7,8 @@ Spree::Core::Engine.routes.append do
 	match '/admin/owners'=>'admin/users#index',:as =>:admin_store_owners
 	match 'store/:id' => 'stores_registration#new_store'
 	match 'store' => 'stores_registration#save_store_details'
+	match '/user/password/reset_password' => 'password#reset_password'
+	match '/user/password/reset' => 'password#reset_password_data'
 	match '/storeowner' => 'stores_registration#storeowner',:as=>:storeowner
 	match 'user_update_plan/:plan_id'=>'admin/upgrade_plans#user_update_plan',:as=>:update_plan
 	match 'admin/store_registration_payment_method'=>'admin/payment_methods#store_registration_payment_method',:as=>:store_registration_payment_method

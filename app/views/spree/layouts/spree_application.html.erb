@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
+        <head>
   <head data-hook="inside_head">
     <%= render :partial => 'spree/shared/head' %>
   </head>
@@ -13,88 +13,112 @@ else
 @body_class = 'one-col'
 end
 end
-%>	
-	<body class="<%= @body_class %>" id="<%= @body_id %>">
-		<div class="wrapper">			
-			<div class="mainwrapper">
-				<div class="header">
-					<div class="logo">
-						<h1>
-							<a href="/">Home</a>
-						</h1>
-					</div>
-					<div class="tophead">
-						<div class="topsection">
-							<div class="global-nav">
-								<ul>
-									<li><a href="/">Home</a></li>
-									<li><a href="/static_pages/terms">Terms &amp; Conditions</a></li>
-									<li><a href="/static_pages/aboutus">About Us</a></li></li>
-								</ul>
-							</div>
-							<div class="cartinfo">
-								<ul>
+%>        
+        <body class="<%= @body_class %>" id="<%= @body_id %>">
+                <div class="wrapper">                        
+                        <div class="mainwrapper">
+                                <div class="header">
+                                        <div class="logo">
+                                                <h1>
+                                                        <a href="/">Home</a>
+                                                </h1>
+                                        </div>
+                                        <div class="tophead">
+                                                <div class="topsection">
+                                                        <div class="global-nav">
+                                                                <ul>
+                                                                        <li><a href="/">Home</a></li>
+                                                                        <li><a href="/static_pages/terms">Terms &amp; Conditions</a></li>
+                                                                        <li><a href="/static_pages/aboutus">About Us</a></li></li>
+                                                                </ul>
+                                                        </div>
+                                                        <div class="cartinfo">
+                                                                <ul>
             <%= render :partial => 'spree/shared/nav_bar' %>
-								</ul>
-							</div>
-						</div>
-						<div class="product-search">
+                                                                </ul>
+                                                        </div>
+                                                </div>
+                                                <div class="product-search">
           <%= render :partial => 'spree/shared/search' %>
-						</div>
-					</div>
-				</div><!-- header -->
-				<div class="body-container clearfix">
-					<div class="asidepanel">
-						<div class="sidenav">
-						<% if content_for?(:sidebar) %>
+                                                </div>
+                                        </div>
+                                </div><!-- header -->
+                                <div class="body-container clearfix">
+                                        <div class="asidepanel">
+                                                <div class="sidenav">
+                                                <% if content_for?(:sidebar) %>
           <aside id="sidebar" class="columns alpha four" data-hook>
-			<%= yield :sidebar %>
+                        <%= yield :sidebar %>
           </aside>
-			<% end %>
-						
-						</div><!-- sidenav -->
-						<div class="promo-banner">
-							<img src="/assets/promo-banner.png" alt="" />
-						</div>					
-					</div>
-					<div class="contpanel">						
-						   <% if flash.notice %>
-      <div class="flash notice">                            	<div class="errorwrapper">
+                        <% end %>
+                                        <h4 class="sechead">PRODUCT GROUPS </h4>
+                <div class="prolist sidebar-item">
+                        <%variable=product_groups%>        
+                                                
+                        <% productgroup = variable.sort_by(&:price)%>
+                                                
+                        <% productgroup.each do |test|%>
+                                                
+                        <ul>
+                                                
+                        <li class="sublevel">
+                                                
+                                <%= test.name%>
+                                                
+                                <%=test.price%>
+                                                
+                        </li>
+                                                
+                        </ul>
+                                                
+                        <%end%>
+                                                
+                </div>        
+                                                </div><!-- sidenav -->
+                                                <div class="promo-banner">
+                                                
+                                                        <img src="/assets/promo-banner.png" alt="" />
+                                                </div>                                        
+                                        </div>
+                                        <div class="contpanel">                                                
+                                                   <% if flash.notice %>
+      <div class="flash notice">                                    <div class="errorwrapper">
 <ul><li><%= flash.notice %></li></ul></div></div>
       <% end %>
       <% if flash[:error] %>
-      <div class="flash errors">                            	<div class="errorwrapper">
+      <div class="flash errors">                                    <div class="errorwrapper">
 <ul><li><%= flash[:error] %></li></ul></div></div>
       <% end %>
-						<%=yield%>
-			<div class="brands">
-							<h4 class="sechead">LATEST COLLECTIONS</h4>
-							<div class="sroll-mid">
-								<div class="brand-list">
-									<%products=find_latest_products%>
-									<ul id="mycarousel" class="jcarousel-skin-tango">
-								 <%products.each do |product|%>
-										<li><%= link_to small_image(product), product %></li>
-									<%end%>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- brands -->
+                                                <%=yield%>
+                        <div class="brands">
+                                                        <h4 class="sechead">LATEST COLLECTIONS</h4>
+                                                        <div class="sroll-mid">
+                                                                <div class="brand-list">
+                                                                        <%products=find_latest_products%>
+                                                                        <ul id="mycarousel" class="jcarousel-skin-tango">
+                                                                 <%products.each do |product|%>
+                                                                                <li><%= link_to small_image(product), product %></li>
+                                                                        <%end%>
+                                                                        </ul>
+                                                                        <br><br>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                                <!-- brands -->
 
-					</div>
-				</div><!-- body container -->
+                                        </div>
+                                </div><!-- body container -->
                 <div class="footer">
-            		<p class="copy-rights">Copyright &copy; 2012 <a href="http://www.railsfactory.org" target="_blank">Railsfactory</a>. All Rights Reserved</p>
+                            <p class="copy-rights">Copyright &copy; 2012 <a href="http://www.railsfactory.org" target="_blank">Railsfactory</a>. All Rights Reserved</p>
                     <ul>
-                    	<li><a href="/">Home</a></li><li>|</li>
-                        <li><a>About Us</a></li><li>|</li>
-                        <li><a >Contact Us</a></li><li>|</li>
-                        <li><a >Privacy</a></li><li>|</li>
-                        <li><a >Terms &amp; Conditions</a></li>
+                            <li><a href="/">Home</a></li><li>|</li>
+                        <li><a href="/static_pages/aboutus">About Us</a></li><li>|</li>
+                        <li><a href="/static_pages/contactus">Contact Us</a></li><li>|</li>
+                        <li><a href="/static_pages/privacy">Privacy</a></li><li>|</li>
+                        <li><a href="/static_pages/terms">Terms &amp; Conditions</a></li>
                     </ul>
-            	</div>
-			</div>
-		</div>
-	</body>
+                    </div>
+                        </div>
+                </div>
+        </body>
 </html>
