@@ -180,12 +180,14 @@
         </p>
       <% end %>
           </div>
-                                        </div>
+		</div>
                                         <div class="field_wrap">
-                                                <label>Zip <span class="req">*</span></label>
-                                                <div class="input_wrap">
-                                                        <%= ship_form.text_field :zipcode, :class => 'txtinput' %>
-                                                </div>
+
+                                        <div class="field_wrap" id="bzip" >
+                                                <label>zip<span class="req">*</span></label>
+                                                        <div class="input_wrap">
+                                                                <%=ship_form.text_field :zipcode, :class => 'txtinput required' %>
+                                                        </div>
                                         </div>
                                         <div class="field_wrap">
                                                 <label>Country <span class="req">*</span></label>
