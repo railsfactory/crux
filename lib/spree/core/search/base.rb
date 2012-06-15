@@ -10,7 +10,6 @@ module Spree
     end
 
 def retrieve_products(domain=nil)
-  p "(((((((((((((((((((((((((((((("
 			 base_scope = get_base_scope(domain)
 		  @products_scope = get_base_scope(domain)
 		  if !domain.nil? #&& !@products_scope.blank?
@@ -22,41 +21,20 @@ def retrieve_products(domain=nil)
 				end
 			
 		
-   def method_missing(name)
-          if @properties.has_key? name
-            @properties[name]
-          else
-            super
-          end
-        end
+    def method_missing(name)
+      @properties[name]
+    end
 
      protected
     def get_base_scope(domain=nil)
-      "____________________________________________________"  
-      base_scope = Spree::Product.active
-       base_scope = base_scope.in_taxon(taxon) unless taxon.blank?
-       p base_scope = get_products_conditions_for(base_scope, keywords) unless keywords.blank?			
-     stock_val=check_stock_value("show_zero_stock_products",domain)
-			#~ base_scope = base_scope.on_hand unless stock_val
-      #~ base_scope = base_scope.group_by_products_id #if @product_group.product_scopes.size > 1
-      #~ base_scope.
-      base_scope = add_search_scopes(base_scope)
-        base_scope
+      base_scope = @cached_product_group ? @cached_product_group.products.active : Spree::Product.active
+      base_scope = base_scope.in_taxon(taxon) unless taxon.blank?
+      base_scope = get_products_conditions_for(base_scope, keywords) unless keywords.blank?			
+	    stock_val=check_stock_value("show_zero_stock_products",domain)
+			base_scope = base_scope.on_hand unless stock_val
+      base_scope = base_scope.group_by_products_id #if @product_group.product_scopes.size > 1
+      base_scope
     end
-        def add_search_scopes(base_scope)
-            search.each do |name, scope_attribute|
-              next if name.to_s =~ /eval|send|system/
-
-              scope_name = name.intern
-              if base_scope.respond_to? scope_name
-                base_scope = base_scope.send(scope_name, *scope_attribute)
-              else
-                base_scope = base_scope.merge(Spree::Product.search({scope_name => scope_attribute}).result)
-              end
-            end if search
-            base_scope
-          end
-
    def check_stock_value(attr,domain)
 	#p config=Spree::Configuration.find_by_name("Default configuration")
   pref=Spree::Preference.where("domain_url=? ",domain)	

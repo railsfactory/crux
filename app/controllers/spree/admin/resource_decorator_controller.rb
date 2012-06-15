@@ -30,10 +30,10 @@ Spree::Admin::ResourceController.class_eval do
                         if condition
                                 p "________________________________________________________"
                                 p @object.update_attributes(:domain_url=>find_user_domain)
-                                if (model_class.name == "Spree::Taxonomy")
+                                if (model_class.name == "Taxonomy")
                                         @object.root.update_attributes(:domain_url=>find_user_domain)
                                 end
-                  elsif (model_class.name == "Spree::User")
+                  elsif (model_class.name == "User")
                                 @object.update_attributes(:domain_url=>find_user_domain)
                         end
                 end
@@ -44,7 +44,7 @@ Spree::Admin::ResourceController.class_eval do
                 end
 
                 def unique_sku_value
-                        if @object.class.name=="Spree::Product"
+                        if @object.class.name=="Product"
                                 product_sku=Spree::Product.find_all_by_domain_url(current_user.domain_url).map(&:sku)
                                 if product_sku.include?(params[:product][:sku])
                                         @object.errors[:sku]<<"must be Unique"

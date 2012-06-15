@@ -11,7 +11,7 @@ class Spree::Admin::MailMethodsController < Spree::Admin::ResourceController
         flash[:error] = t('admin.mail_methods.testmail.error') % {:e => e}
       ensure
         respond_with(@mail_method) { |format| format.html { redirect_to :back } }
-      end
+      ends
   private
   def initialize_mail_settings
     Spree::Core::MailSettings.init
