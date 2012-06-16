@@ -8,17 +8,7 @@
 <tbody>
 <tr>
 <td><strong>Item Total:</strong></td>
-
-<% @line_item =Spree::LineItem.find_all_by_order_id(order.id)%>
-<%r=0%>
-<td><strong><% @line_item.each do |k|%>
-
-<%qt=k.quantity%>
-
-<% r=r +qt.to_i%>
-<%end%>
-<%=r%>
-</strong></td>
+<td><strong><%= number_to_currency order.item_total %></strong></td>
 </tr>
 </tbody><tbody id="summary-order-charges">
 <% order.adjustments.each do |adjustment| %>

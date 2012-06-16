@@ -13,7 +13,6 @@ module Spree
 
     # The current incomplete order from the session for use in cart and during checkout
      def current_order(create_order_if_necessary = false)
-           p "{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{"
       return @current_order if @current_order
       if session[:order_id]
       @current_order = Spree::Order.find_by_id(session[:order_id], :include => :adjustments)

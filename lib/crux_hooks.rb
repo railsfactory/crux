@@ -1,3 +1,3 @@
-class CruxHooks < Spree::ThemeSupport::HookListener
+class CruxHooks 
   # custom hooks go here
 end
