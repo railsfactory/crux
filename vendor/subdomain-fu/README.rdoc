@@ -1,0 +1,114 @@
+= SubdomainFu
+
+SubdomainFu provides a modern implementation of subdomain handling in Rails.
+It takes aspects from account_location, request_routing, and other snippets
+found around the web and combines them to provide a single, simple solution
+for subdomain-based route and url management.
+
+**Note**: SubdomainFu has been rewritten to be compatible with Rails 3. If
+you are looking to use it on Rails 2.x, please install version v0.5.x instead.
+
+== Installation
+
+SubdomainFu is available both as a traditional plugin and a GemPlugin. To
+install it as a traditional plugin:
+
+  script/plugin install git://github.com/intridea/subdomain-fu.git
+  
+To use it as a gem, add it to your Gemfile. Until Rails 3 is officially released,
+the Rails 3 version of the plugin is only available as a prerelease gem:
+
+  gem 'subdomain-fu', '1.0.0.beta2'
+
+== Examples
+
+SubdomainFu works inside of Rails's URL Writing mechanisms to provide an easy and seamless
+way to link and otherwise understand cross-subdomain routing. You can use the :subdomain
+option both in named and non-named routes as well as in generated resources routes.
+
+Let's say my domain is 'intridea.com'. Here are some examples of the use of the :subdomain
+option:
+
+  url_for(:controller => "my_controller", 
+          :action => "my_action", 
+          :subdomain => "awesome") # => http://awesome.intridea.com/my_controller/my_action
+
+Now let's say I'm at http://awesome.intridea.com/ and I want back to the root.
+Specifying "false" will remove any current subdomain:
+
+  users_url(:subdomain => false)  # => http://intridea.com/users
+
+Note that this plugin does not honor the :only_path notion of routing when doing
+so would go against the intent of the command. For example, if I were at http://intridea.com
+again:
+
+  users_path(:subdomain => "fun") # => http://fun.intridea.com/users
+  users_path(:subdomain => false) # => /users
+                              
+In this way you can rest assured that you will never misdirect your links to the
+same subdomain when you meant to change it.
+
+== Use in controllers and views
+
+You have access to current_subdomain and current_domain methods.
+
+[current_subdomain] returns all subdomains. For the URL http://awesome.website.stuff.example.com, it will return "awesome.website.stuff"
+
+[current_domain] returns the domain excluding for the subdomain, including the TLD. For the URL http://awesome.website.stuff.example.com, it will return "website.stuff.example.com"
+
+If what you really want is the entire domain, then use <tt>request.domain</tt> in
+your controllers.  The purpose of current_domain is to only strip off the first 
+subdomain, if any, and return what's left.
+
+== Configuration
+
+You may need to configure SubdomainFu based on your development setup. To configure
+SubdomainFu simply call a block in an initializer like so:
+
+    SubdomainFu.configure do |config|
+      config.option_name = value
+    end
+
+Some available options are enumerated below.
+
+=== tld_size
+
+A hash for each environment of the size of the top-level domain name. 
+(something.com = 1, localhost = 0, etc.)
+
+  config.tld_size = 1 # sets for current environment
+  config.tld_sizes = {:development => 0,
+                           :test => 0,
+                           :production => 1} # set all at once (also the defaults)
+                         
+=== mirrors
+
+Mirrors are the subdomains that are equivalent to no subdomain (i.e. they 'mirror')
+the usage of the root domain.
+
+  config.mirrors = %w(www site we) # Defaults to %w(www)
+
+=== preferred_mirror
+
+SubdomainFu also understands the notion of a 'preferred mirror', that is, if you
+always want your links going to 'www.yourdomain.com' instead of 'yourdomain.com',
+you can set the preferred mirror like so:
+
+  config.preferred_mirror = "www"
+
+Now when you create a link with <tt>:subdomain => false</tt> in the options the subdomain
+will default to the preferred mirror.
+
+== Routing (Deprecated)
+
+Subdomain constraint routing has been removed from the scope of this plugin as Rails 3
+provides the functionality by default. For more info, see this blog post: 
+http://yehudakatz.com/2009/12/26/the-rails-3-router-rack-it-up/
+
+== Resources
+
+* GitHub Repository: http://github.com/intridea/subdomain-fu
+* RDocs: http://rdoc.info/projects/intridea/subdomain-fu
+
+Copyright (c) 2008-2010 Michael Bleigh (http://www.mbleigh.com/) and 
+Intridea, Inc. (http://www.intridea.com/). Released under the MIT license
