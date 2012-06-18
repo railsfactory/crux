@@ -231,7 +231,7 @@ $(document).ready(function(){
                 phone_number.match(/^[0-9]{8}$/ );
 }, "Please specify a valid phone number");
 jQuery.validator.addMethod("alpha", function(value, element) {
-return this.optional(element) || value == value.match(/[^0-9\W]+/);
+return this.optional(element) || value == value.match(/^[A-Za-z ]+$/);
  },"Only Characters Allowed.");
 });
 

@@ -10,9 +10,9 @@ def request_state_and_city_validation_based_on_zipcode
   unless loc.success 
     errors.add(:zipcode, " Unable to geocode your location from zipcode entered.") 
    else # Validate state and city fields in compare to loc object returned by geocode 
-   errors.add(:country,"Country doesn't matches with zipcode entered") if find_country_code!=loc.country_code
-	errors.add(:state, "State doesn't matches with zipcode entered") if find_state_code != loc.state
-   errors.add(:city, "City doesn't matches with zipcode entered") if self.city != loc.city 
+   errors.add(:country,"doesn't matches with zipcode entered") if find_country_code!=loc.country_code
+	errors.add(:state, "doesn't matches with zipcode entered") if find_state_code != loc.state
+   errors.add(:city, "doesn't matches with zipcode entered") if self.city != loc.city 
 	  end 
   end 
  def find_country_code
