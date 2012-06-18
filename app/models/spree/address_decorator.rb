@@ -18,9 +18,9 @@ def request_state_and_city_validation_based_on_zipcode
  def find_country_code
 self.country.id
 Spree::Country.find_by_name(self.country)
-Spree::Country.find_by_id(self.country.id).iso
+Spree::Country.find_by_id(self.country.id).iso if Spree::Country.find_by_name(self.country)
  end
  def find_state_code
-  Spree::State.find_by_id(self.state.id).abbr
+  Spree::State.find_by_id(self.state.id).abbr if  Spree::State.find_by_id(self.state)
 end
   end
