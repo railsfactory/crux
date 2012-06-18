@@ -8,14 +8,12 @@ class Spree::UserPasswordsController < Devise::PasswordsController
   end
 
   def create
-   p  user=Spree::User.find_by_email_and_domain_url(params[:user][:email],get_sub_domain(current_subdomain))
+    p  user=Spree::User.find_by_email_and_domain_url(params[:user][:email],get_sub_domain(current_subdomain))
     if user
-      p params[resource_name]
       self.resource = resource_class.send_reset_password_instructions(params[resource_name])
-      p "!1111111111111111111111111111111111111!!"
       if resource.errors.empty?
         set_flash_message(:notice, :send_instructions) if is_navigational_format?
-      respond_with resource, :location => spree.login_path
+        respond_with resource, :location => spree.login_path
       else
         respond_with_navigational(resource){ render :new }
       end
@@ -32,8 +30,8 @@ class Spree::UserPasswordsController < Devise::PasswordsController
   def update
     super
   end
-def reset_password
-  p params
-  user=Spree::User.find_by_	reset_password_token()
+  def reset_password
+    p params
+    user=Spree::User.find_by_	reset_password_token()
   end
 end

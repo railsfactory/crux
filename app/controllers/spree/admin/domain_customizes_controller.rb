@@ -1,7 +1,7 @@
 class Spree::Admin::DomainCustomizesController  < Spree::Admin::ResourceController
   #resource_controller
   before_filter :find_domain_customize, :only => [:edit, :update]
-  
+
   def index
     @domain_customize=Spree::DomainCustomize.find_by_store_owner_id(current_user.store_owner.id)
   end
@@ -23,7 +23,7 @@ class Spree::Admin::DomainCustomizesController  < Spree::Admin::ResourceControll
 
   def edit
     find_domain_customize
-   end
+  end
 
   def update
     find_domain_customize
@@ -34,9 +34,9 @@ class Spree::Admin::DomainCustomizesController  < Spree::Admin::ResourceControll
       render  "edit"
     end
   end
-  
+
   def find_domain_customize
     @domain_customize=Spree::DomainCustomize.find(params[:id])
   end
-  
+
 end

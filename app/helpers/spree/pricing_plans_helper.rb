@@ -1,4 +1,4 @@
 module Spree
-module PricingPlansHelper
-end
+  module PricingPlansHelper
+  end
 end

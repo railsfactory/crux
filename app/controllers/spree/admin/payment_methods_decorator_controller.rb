@@ -14,13 +14,13 @@ Spree::Admin::PaymentMethodsController.class_eval do
       respond_with(@payment_method)
     end
   end
-  
+
   def store_registration_payment_method
     if Spree::StoreRegPaymentMethod && Spree::StoreRegPaymentMethod.first
       @payment=Spree::StoreRegPaymentMethod.first
     else
       @payment=Spree::StoreRegPaymentMethod.new()
-    end	
+    end
     value=params[:store_reg_payment_method]
     if value && !value.blank?
       @payment.update_attributes(value)

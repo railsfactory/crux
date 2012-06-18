@@ -1,7 +1,7 @@
 Spree::Promotion.class_eval do
 	attr_accessible :domain_url
-#Overriding eligible? method to identify the domain
- def eligible?(order)
+  #Overriding eligible? method to identify the domain
+  def eligible?(order)
 		if order
 			store=StoreownerOrder.find_by_order_id(order.id).store_owner
 			if self.domain_url == store.domain

@@ -15,7 +15,7 @@ Spree::Admin::UsersController.class_eval do
                                                                                                                 OR addresses.lastname like :search
                                                                                                                 OR ship_addresses_users.firstname like :search
                                                                                                                 OR ship_addresses_users.lastname like :search",
-                                                                                                                         {:search => "#{params[:q].strip}%"}).limit(params[:limit] || 100)
+        {:search => "#{params[:q].strip}%"}).limit(params[:limit] || 100)
     end
   end
 
@@ -23,12 +23,12 @@ Spree::Admin::UsersController.class_eval do
 
   def refine_list(collection)
     unless current_user.has_role? "admin"
-    users_arr = Spree::User.find(:all,:conditions=>["domain_url = ? AND is_owner is NULL",current_user.domain_url]).map(&:id)
+      users_arr = Spree::User.find(:all,:conditions=>["domain_url = ? AND is_owner is NULL",current_user.domain_url]).map(&:id)
     else
       users_arr=Spree::User.find(:all,:conditions=>["is_owner = ?","1"]).map(&:id)
     end
     if !collection.blank?
-       #users_collection=collection.find("id in (?)",users_arr)
+      #users_collection=collection.find("id in (?)",users_arr)
       users_collection=Spree::User.find(:all,:conditions=>["id in (?)",users_arr])
     else
       users_collection=[]

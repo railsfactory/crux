@@ -1,76 +1,76 @@
 module Spree
   module Admin
     module BaseHelper
-    def find_user_domain
-		unless current_user.has_role?"admin"
-			domain=current_user.domain_url
-		else
-			domain="admin"
-		end
-	end
+      def find_user_domain
+        unless current_user.has_role?"admin"
+          domain=current_user.domain_url
+        else
+          domain="admin"
+        end
+      end
 
-	#To find the total transaction fee for the store owners
-	def find_transaction_fee(owner)
-		if owner && !owner.domain.blank?
-			products=Spree::StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
-			if products && !products.empty?
-				final_price=0
-				products.each do |product|
-					pro_quantity=Spree::StoreDetail.find_all_by_product_id(product).map(&:quantity).sum
-					pro_id=Spree::Product.find_by_id(product)
-					total_price=(pro_id.master.price*(owner.pricing_plan.transaction_fee/100))*pro_quantity
-					final_price=final_price+total_price
-				end
-			end
-		  return final_price
-		end
-	end
+      #To find the total transaction fee for the store owners
+      def find_transaction_fee(owner)
+        if owner && !owner.domain.blank?
+          products=Spree::StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
+          if products && !products.empty?
+            final_price=0
+            products.each do |product|
+              pro_quantity=Spree::StoreDetail.find_all_by_product_id(product).map(&:quantity).sum
+              pro_id=Spree::Product.find_by_id(product)
+              total_price=(pro_id.master.price*(owner.pricing_plan.transaction_fee/100))*pro_quantity
+              final_price=final_price+total_price
+            end
+          end
+          return final_price
+        end
+      end
 
-	 #To find the corressponding customized domain 
-	def find_customization_domain
-		customdomain=(request.url).split("/")[2]
-		custom=Spree::DomainCustomize.find_by_custom_domain(customdomain)
-	end
+      #To find the corressponding customized domain
+      def find_customization_domain
+        customdomain=(request.url).split("/")[2]
+        custom=Spree::DomainCustomize.find_by_custom_domain(customdomain)
+      end
 
-	#To find the corressponding sub domain
-	def get_sub_domain(domain)
-		if (request.url.include?(APP_CONFIG['separate_url']))
-			subdomain= domain.split(".")[0] if domain
-		elsif find_customization_domain
-			store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
-			subdomain=store.domain
-		end
-		return subdomain
-	end
+      #To find the corressponding sub domain
+      def get_sub_domain(domain)
+        if (request.url.include?(APP_CONFIG['separate_url']))
+          subdomain= domain.split(".")[0] if domain
+        elsif find_customization_domain
+          store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id)
+          subdomain=store.domain
+        end
+        return subdomain
+      end
 
-	#To find  the number of products to restrict the store owner(Based on pricing plan)
-	def products_count_checking(user)
-		pricing_count=user.store_owner.pricing_plan.no_of_products
-		products_count=Spree::Product.where(:domain_url=>user.domain_url,:deleted_at=>nil).length
-		if pricing_count>products_count
-			return true
-		else
-			return false
-		end
-	end
+      #To find  the number of products to restrict the store owner(Based on pricing plan)
+      def products_count_checking(user)
+        pricing_count=user.store_owner.pricing_plan.no_of_products
+        products_count=Spree::Product.where(:domain_url=>user.domain_url,:deleted_at=>nil).length
+        if pricing_count>products_count
+          return true
+        else
+          return false
+        end
+      end
 
-	#To find the preference for various settings
+      #To find the preference for various settings
 
-	def find_domain_preference(type)
-		config=Spree::Configuration.find_by_name(type)
-		if config
-			available=Spree::Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])	
-		else
-			available=[]
-		end
-	end
+      def find_domain_preference(type)
+        config=Spree::Configuration.find_by_name(type)
+        if config
+          available=Spree::Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])
+        else
+          available=[]
+        end
+      end
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
       def field_container(model, method, options = {}, &block)
         css_classes = options[:class].to_a
         if error_message_on(model, method).present?
@@ -157,7 +157,7 @@ module Spree
           text_field_tag(name, value, preference_field_options(options))
         when :boolean
           hidden_field_tag(name, 0) +
-          check_box_tag(name, 1, value, preference_field_options(options))
+            check_box_tag(name, 1, value, preference_field_options(options))
         when :string
           text_field_tag(name, value, preference_field_options(options))
         when :password
@@ -208,9 +208,9 @@ module Spree
         end
 
         field_options.merge!({
-          :readonly => options[:readonly],
-          :disabled => options[:disabled]
-        })
+            :readonly => options[:readonly],
+            :disabled => options[:disabled]
+          })
       end
 
       def preference_fields(object, form)
@@ -224,28 +224,28 @@ module Spree
       end
 
       def additional_field_for(controller, field)
-         field[:use] ||= 'text_field'
-         options = field[:options] || {}
+        field[:use] ||= 'text_field'
+        options = field[:options] || {}
 
-         object_name, method = controller.controller_name.singularize, attribute_name_for(field[:name])
+        object_name, method = controller.controller_name.singularize, attribute_name_for(field[:name])
 
-         case field[:use]
-         when 'check_box'
-           check_box(object_name, method, options, field[:checked_value] || 1, field[:unchecked_value] || 0)
-         when 'radio_button'
-           html = ''
-           field[:value].call(controller, field).each do |value|
-             html << radio_button(object_name, method, value, options)
-             html << " #{value.to_s} "
-           end
-           html
-         when 'select'
-           select(object_name, method, field[:value].call(controller, field), options, field[:html_options] || {})
-         else
-           value = field[:value] ? field[:value].call(controller, field) : get_additional_field_value(controller, field)
-           __send__(field[:use], object_name, method, options.merge(:value => value))
-         end # case
-       end
+        case field[:use]
+        when 'check_box'
+          check_box(object_name, method, options, field[:checked_value] || 1, field[:unchecked_value] || 0)
+        when 'radio_button'
+          html = ''
+          field[:value].call(controller, field).each do |value|
+            html << radio_button(object_name, method, value, options)
+            html << " #{value.to_s} "
+          end
+          html
+        when 'select'
+          select(object_name, method, field[:value].call(controller, field), options, field[:html_options] || {})
+        else
+          value = field[:value] ? field[:value].call(controller, field) : get_additional_field_value(controller, field)
+          __send__(field[:use], object_name, method, options.merge(:value => value))
+        end # case
+      end
 
       def product_picker_field(name, value)
         products = Product.with_ids(value.split(','))
@@ -271,91 +271,91 @@ module Spree
       def spree_dom_id(record)
         dom_id(record, 'spree')
       end
-		def find_stock_value(attr)
-			pref=find_domain_preference("Default configuration")
-			if  pref.blank?
-				if attr=="show_zero_stock_products"
-				  val=Spree::Config[:show_zero_stock_products]
-				elsif attr=="allow_backorders"
-			  	val=Spree::Config[:allow_backorders]
-				end	
-			else
-				val=pref.select{|x|x.name==attr}.map(&:value)[0]
-			end
-			return val
-		end
-
-		def get_taxons(domain)
-			subdomain= get_sub_domain(domain)
-			taxon=Spree::Taxon.roots.where('domain_url= ?',subdomain)
-		end
-
-		def find_storeowner_email(order)
-			domain=find_mail_domain(order)
-			store_owner=Spree::StoreOwner.find_by_domain(domain)
-			store_owner=store_owner.user.email
-		end
-
-
-		def find_mail_domain(order)
-			store=Spree::StoreownerOrder.find_by_order_id(order.id)
-			mail_domain=store.store_owner.domain
-		end
-
-		def mail_settings(domain)
-				mail_methods=Spree::MailMethod.find_all_by_domain_url(domain)
-			unless mail_methods.blank?
-				Spree::MailSettings.init(domain)
-				Mail.register_interceptor(MailDomainInterceptor)
-				return true
-			else
-				return false
-			end
-		end
-
-		def get_sub_domain(domain)
-			if (request.url.include?(APP_CONFIG['separate_url']))
-				subdomain= domain.split(".")[0] if domain
-			else
-				store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
-				subdomain=store.domain
-			end
-			return subdomain
-		end
-
-		def find_customization_domain
-			customdomain=(request.url).split("/")[2]
-			custom=Spree::DomainCustomize.find_by_custom_domain(customdomain)
-		end
-
-		def find_digital_domain(order)
-			store=Spree::StoreownerOrder.find_by_order_id(order.id)
-			if store.is_custom?
-				return store.store_owner.domain_customize.custom_domain
-			else
-				return store.store_owner.domain+"."+APP_CONFIG['separate_url']+"."+APP_CONFIG['domain_url'].split(".").last
-			end
-		end
-
-		def find_domain_preference(type)
-			config=Spree::Configuration.find_by_name(type)
-			if config
-				available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])        
-			else
-				available=[]
-			end
-		end
-	def find_mail_methods(domain)
-	  @mail= Spree::MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
-		return @mail
-	end
-	def find_latest_products
-   Spree::Product.find(:all,:conditions=>["domain_url=? AND deleted_at IS NULL",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
-	end
-      private
-        def attribute_name_for(field_name)
-          field_name.gsub(' ', '_').downcase
+      def find_stock_value(attr)
+        pref=find_domain_preference("Default configuration")
+        if  pref.blank?
+          if attr=="show_zero_stock_products"
+            val=Spree::Config[:show_zero_stock_products]
+          elsif attr=="allow_backorders"
+            val=Spree::Config[:allow_backorders]
+          end
+        else
+          val=pref.select{|x|x.name==attr}.map(&:value)[0]
         end
+        return val
+      end
+
+      def get_taxons(domain)
+        subdomain= get_sub_domain(domain)
+        taxon=Spree::Taxon.roots.where('domain_url= ?',subdomain)
+      end
+
+      def find_storeowner_email(order)
+        domain=find_mail_domain(order)
+        store_owner=Spree::StoreOwner.find_by_domain(domain)
+        store_owner=store_owner.user.email
+      end
+
+
+      def find_mail_domain(order)
+        store=Spree::StoreownerOrder.find_by_order_id(order.id)
+        mail_domain=store.store_owner.domain
+      end
+
+      def mail_settings(domain)
+				mail_methods=Spree::MailMethod.find_all_by_domain_url(domain)
+        unless mail_methods.blank?
+          Spree::MailSettings.init(domain)
+          Mail.register_interceptor(MailDomainInterceptor)
+          return true
+        else
+          return false
+        end
+      end
+
+      def get_sub_domain(domain)
+        if (request.url.include?(APP_CONFIG['separate_url']))
+          subdomain= domain.split(".")[0] if domain
+        else
+          store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id)
+          subdomain=store.domain
+        end
+        return subdomain
+      end
+
+      def find_customization_domain
+        customdomain=(request.url).split("/")[2]
+        custom=Spree::DomainCustomize.find_by_custom_domain(customdomain)
+      end
+
+      def find_digital_domain(order)
+        store=Spree::StoreownerOrder.find_by_order_id(order.id)
+        if store.is_custom?
+          return store.store_owner.domain_customize.custom_domain
+        else
+          return store.store_owner.domain+"."+APP_CONFIG['separate_url']+"."+APP_CONFIG['domain_url'].split(".").last
+        end
+      end
+
+      def find_domain_preference(type)
+        config=Spree::Configuration.find_by_name(type)
+        if config
+          available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])
+        else
+          available=[]
+        end
+      end
+      def find_mail_methods(domain)
+        @mail= Spree::MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
+        return @mail
+      end
+      def find_latest_products
+        Spree::Product.find(:all,:conditions=>["domain_url=? AND deleted_at IS NULL",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
+      end
+      private
+      def attribute_name_for(field_name)
+        field_name.gsub(' ', '_').downcase
+      end
     end
   end
 end

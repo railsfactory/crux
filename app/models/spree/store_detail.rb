@@ -1,6 +1,6 @@
 module Spree
-class StoreDetail < ActiveRecord::Base
-attr_accessible :product_id, :quantity, :domain_url
+  class StoreDetail < ActiveRecord::Base
+    attr_accessible :product_id, :quantity, :domain_url
 		def self.store_details
 			owners=StoreOwner.all
 			owners.each do |owner|
@@ -17,7 +17,7 @@ attr_accessible :product_id, :quantity, :domain_url
 		def self.find_transaction_fee(owner)
 			price=owner.pricing_plan
 			if owner && !owner.domain.blank?
-					products=StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
+        products=StoreDetail.where("domain_url=?",owner.domain).map(&:product_id).uniq
 				if products && !products.empty?
 					final_price=0
 					products.each do |product|
@@ -71,15 +71,15 @@ attr_accessible :product_id, :quantity, :domain_url
 		end
 
 
-		def self.paypal_gateway	
+		def self.paypal_gateway
 			gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>APP_CONFIG['paypal_username'],:password =>APP_CONFIG['paypal_password'],:signature =>APP_CONFIG['paypal_signature'])
 			return gateway
 		end
 
 		def self.payment_response(owner,total_amounts,store_credit_details,store_bill_details)
 			authorize= paypal_gateway.authorize(total_amounts, store_credit_details,
-			:ip => owner.ip,
-			:billing_address =>store_bill_details
+        :ip => owner.ip,
+        :billing_address =>store_bill_details
 			)
 			if authorize.params['ack']=="Success"
 				response=paypal_gateway.capture(total_amounts, authorize.authorization)
@@ -110,5 +110,5 @@ attr_accessible :product_id, :quantity, :domain_url
 			billing_details=BillingHistory.create!(:store_owner_id=>owner.id,:amount=>total_amounts,:billing_date=>Date.today,:transaction_id=>transaction_id,:acknowledge=>acknowledge,:payment_type=>type)
 		end
 
-end
+  end
 end

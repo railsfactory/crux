@@ -1,7 +1,7 @@
 class Spree::Admin::StoreDetailsController <Spree::Admin::ResourceController
   #~ resource_controller
   def index
-   myarray=Spree::StoreOwner.all
+    myarray=Spree::StoreOwner.all
     @store_owners = Kaminari.paginate_array(myarray).page(params[:page]).per(Spree::Config[:admin_products_per_page])
     @store_details=Spree::StoreDetail.all
     if request.xhr?
@@ -25,16 +25,16 @@ class Spree::Admin::StoreDetailsController <Spree::Admin::ResourceController
     end
   end
   def store_billing
-   @store_owner=current_user.store_owner
-   unless @store_owner.billing_histories.blank?
-    @billing_histories=@store_owner.billing_histories
-   end
+    @store_owner=current_user.store_owner
+    unless @store_owner.billing_histories.blank?
+      @billing_histories=@store_owner.billing_histories
+    end
   end
   def billing_history
-   if request.xhr?
-    store_owner=Spree::StoreOwner.find_by_id(params[:store], :include => :billing_histories)
-    billing_histories=store_owner.billing_histories
-    render :partial=>"billing_history", :locals => { :owner => store_owner,:billings=>billing_histories}
-   end
+    if request.xhr?
+      store_owner=Spree::StoreOwner.find_by_id(params[:store], :include => :billing_histories)
+      billing_histories=store_owner.billing_histories
+      render :partial=>"billing_history", :locals => { :owner => store_owner,:billings=>billing_histories}
+    end
   end
 end

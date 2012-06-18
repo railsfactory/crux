@@ -1,5 +1,5 @@
 Spree::UserRegistrationsController.class_eval do
- #include SpreeBase
+  #include SpreeBase
   helper 'spree/users', 'spree/base'
   ssl_required
   after_filter :associate_user, :only => :create
@@ -49,7 +49,7 @@ Spree::UserRegistrationsController.class_eval do
     super
   end
   protected
-    def check_permissions
-      authorize!(:create, resource)
-    end
+  def check_permissions
+    authorize!(:create, resource)
+  end
 end

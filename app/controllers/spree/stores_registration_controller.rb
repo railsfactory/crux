@@ -4,13 +4,13 @@ class Spree::StoresRegistrationController < Spree::BaseController
 	ActiveMerchant::Billing::Base.mode = :test
 	include ActiveMerchant::Billing
 	layout 'spree/layouts/saas'
-	def paypal_gateway	
+	def paypal_gateway
 		gateway = ActiveMerchant::Billing::PaypalGateway.new(:login =>@payment.username,:password =>@payment.password,:signature =>@payment.signature)
 		return gateway
 	end
 
 	def index
-  	@plans = Spree::PricingPlan.find(:all,:conditions=>"is_active=true")	
+  	@plans = Spree::PricingPlan.find(:all,:conditions=>"is_active=true")
 	end
 
 	def pricing_plan(id)
@@ -61,33 +61,33 @@ class Spree::StoresRegistrationController < Spree::BaseController
 		sign_in_and_redirect(:user,@user)
 	end
 
-	def credit_card			
+	def credit_card
 		ActiveMerchant::Billing::CreditCard.new(:type =>  params[:store_owner][:card_type],:first_name => params[:store_owner][:first_name],:last_name => params[:store_owner][:last_name],
-  	:number =>  params[:store_owner][:card_number],
-	  :month =>  params[:store_owner][:expiration_month],
-	  :year =>  params[:store_owner][:expiration_year],
-	  :verification_value => params[:store_owner][:cvv]
+      :number =>  params[:store_owner][:card_number],
+      :month =>  params[:store_owner][:expiration_month],
+      :year =>  params[:store_owner][:expiration_year],
+      :verification_value => params[:store_owner][:cvv]
 	  )
 	end
 
 	def billing_address
 	  address=Hash.new
 	  address={ :name => params[:store_owner][:name],
-	  :address1 => params[:store_owner][:address1],
-	  :address2 =>params[:store_owner][:address2],
-	  :city =>params[:store_owner][:city],
-	  :state => params[:store_owner][:state],
-	  :country => params[:store_owner][:country],
-	  :zip => params[:store_owner][:zipcode],
-	  :phone => params[:store_owner][:phoneno]}
+      :address1 => params[:store_owner][:address1],
+      :address2 =>params[:store_owner][:address2],
+      :city =>params[:store_owner][:city],
+      :state => params[:store_owner][:state],
+      :country => params[:store_owner][:country],
+      :zip => params[:store_owner][:zipcode],
+      :phone => params[:store_owner][:phoneno]}
 	end
 
 	def payment_response
-	@payment=Spree::StoreRegPaymentMethod && Spree::StoreRegPaymentMethod.first ? Spree::StoreRegPaymentMethod.first : []
+    @payment=Spree::StoreRegPaymentMethod && Spree::StoreRegPaymentMethod.first ? Spree::StoreRegPaymentMethod.first : []
 		unless @payment.blank?
   	  authorize= paypal_gateway.authorize((@amount*100).round, credit_card,:ip => request.remote_ip,:billing_address =>billing_address)
 		  if authorize.success?
-		  @response=paypal_gateway.capture((@amount* 100).round, authorize.authorization)
+        @response=paypal_gateway.capture((@amount* 100).round, authorize.authorization)
 				if @response.success?
 					@user.is_owner = true
 					@user.domain_url = params[:store_owner][:domain]
@@ -111,7 +111,7 @@ class Spree::StoresRegistrationController < Spree::BaseController
 		  else
 			  flash[:error]= "Payment could not be processed,please check your details"
 			  render  "new_store"
-		  end	
+		  end
 		end
 	end
 

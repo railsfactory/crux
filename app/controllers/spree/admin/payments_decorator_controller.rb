@@ -1,5 +1,5 @@
-Spree::Admin::PaymentsController.class_eval do 
-include Spree::Admin::BaseHelper
+Spree::Admin::PaymentsController.class_eval do
+  include Spree::Admin::BaseHelper
   def load_data
     @amount = params[:amount] || load_order.total
     @payment_methods = Spree::PaymentMethod.available(:back_end).reject{|x| x.domain_url!=current_user.domain_url}

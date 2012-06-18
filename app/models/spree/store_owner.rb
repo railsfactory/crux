@@ -1,6 +1,6 @@
 include Geokit::Geocoders
 module Spree
-class StoreOwner < ActiveRecord::Base
+  class StoreOwner < ActiveRecord::Base
 		has_one :domain_customize
 		has_one :pricing_plan
 		has_many :storeowner_orders
@@ -26,27 +26,27 @@ class StoreOwner < ActiveRecord::Base
 		validates :zipcode,:presence =>{:message=>"Please enter a Zip code"}
 		validate :request_state_and_city_validation_based_on_zipcode, :if => :zipcode
 		#~ validates_credit_card :card_number, :card_type,:allow_blank => true
-	
-	def request_state_and_city_validation_based_on_zipcode 
-		poll = true # default true for new objects 
-		if poll 
-			loc = MultiGeocoder.geocode("#{self.zipcode},#{find_country_code}") 
-		end # Add Validation Error if location is not found 
-		unless loc.success 
-			errors.add(:zipcode, " Unable to geocode your location from zipcode entered.") 
-		else # Validate state and city fields in compare to loc object returned by geocode 
-			errors.add(:country,"Country doesn't matches with zipcode entered") if find_country_code!=loc.country_code
-			errors.add(:state, "State doesn't matches with zipcode entered") if find_state_code != loc.state
-			errors.add(:city, "City doesn't matches with zipcode entered") if self.city != loc.city 
-		end 
-	end 
-end
+
+    def request_state_and_city_validation_based_on_zipcode
+      poll = true # default true for new objects
+      if poll
+        loc = MultiGeocoder.geocode("#{self.zipcode},#{find_country_code}")
+      end # Add Validation Error if location is not found
+      unless loc.success
+        errors.add(:zipcode, " Unable to geocode your location from zipcode entered.")
+      else # Validate state and city fields in compare to loc object returned by geocode
+        errors.add(:country,"Country doesn't matches with zipcode entered") if find_country_code!=loc.country_code
+        errors.add(:state, "State doesn't matches with zipcode entered") if find_state_code != loc.state
+        errors.add(:city, "City doesn't matches with zipcode entered") if self.city != loc.city
+      end
+    end
+  end
 end
 
-	def find_country_code
-		Spree::Country.find_by_name(self.country).iso
-	end
+def find_country_code
+  Spree::Country.find_by_name(self.country).iso
+end
 
-	def find_state_code
-		Spree::State.find_by_name(self.state).abbr
-	end
+def find_state_code
+  Spree::State.find_by_name(self.state).abbr
+end

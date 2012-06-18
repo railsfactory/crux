@@ -8,9 +8,8 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
     @search =Spree::PricingPlan.ransack(params[:search])
     #~ @pricing_plans = @search#.all.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
     a=@search.object
-    p a
     @pricing_plans = a
-    
+
     #~ p @pricing_plans
     #~ p @pricing_plans.object
     respond_to do |format|
@@ -21,7 +20,7 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
 
   # GET /pricing_plans/1
   # GET /pricing_plans/1.xml
-  
+
   def show
     find_pricing_plan
     respond_to do |format|
@@ -32,7 +31,7 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
 
   # GET /pricing_plans/new
   # GET /pricing_plans/new.xml
-  
+
   def new
     @pricing_plan =Spree::PricingPlan.new
     respond_to do |format|
@@ -42,14 +41,14 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
   end
 
   # GET /pricing_plans/1/edit
-  
+
   def edit
     find_pricing_plan
   end
 
   # POST /pricing_plans
   # POST /pricing_plans.xml
-  
+
   def create
     @pricing_plan = Spree::PricingPlan.new(params[:pricing_plan])
     respond_to do |format|
@@ -65,7 +64,7 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
 
   # PUT /pricing_plans/1
   # PUT /pricing_plans/1.xml
-  
+
   def update
     find_pricing_plan
     respond_to do |format|
@@ -81,7 +80,7 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
 
   # DELETE /pricing_plans/1
   # DELETE /pricing_plans/1.xml
-  
+
   def destroy
     find_pricing_plan
     @pricing_plan.destroy
@@ -90,7 +89,7 @@ class Spree::Admin::PricingPlansController < Spree::Admin::ResourceController
       format.xml  { head :ok }
     end
   end
-  
+
   def find_pricing_plan
     @pricing_plan = Spree::PricingPlan.find(params[:id])
   end

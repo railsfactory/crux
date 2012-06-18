@@ -11,14 +11,14 @@ module Spree
       end
       return false
     end
-def find_stock_value(attr)
+    def find_stock_value(attr)
 			pref=find_domain_preference("Default configuration")
 			if  pref.blank?
 				if attr=="show_zero_stock_products"
 				  val=Spree::Config[:show_zero_stock_products]
 				elsif attr=="allow_backorders"
 			  	val=Spree::Config[:allow_backorders]
-				end	
+				end
 			else
 				val=pref.select{|x|x.name==attr}.map(&:value)[0]
 			end
@@ -43,18 +43,15 @@ def find_stock_value(attr)
 		end
 
 		def mail_settings(domain)
-      p "+++++++++++++++++++++++++++++++++++++++++++++"
-			p	mail_methods=Spree::MailMethod.find_all_by_domain_url(domain)
-      p mail_methods.blank?
-			unless mail_methods.blank?
-      p "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
-				 Spree::Core::MailSettings.init(domain)
-          Mail.register_interceptor(Spree::Core::MailInterceptor)
-        p "___________________(((((((((((((((((("
+      mail_methods=Spree::MailMethod.find_all_by_domain_url(domain)
+      unless mail_methods.blank?
+
+        Spree::Core::MailSettings.init(domain)
+        Mail.register_interceptor(Spree::Core::MailInterceptor)
+
 				return true
 			else
-        p "0000000000000000000000000000000000000"
-				return false
+        return false
 			end
 		end
 
@@ -62,7 +59,7 @@ def find_stock_value(attr)
 			if (request.url.include?(APP_CONFIG['separate_url']))
 				subdomain= domain.split(".")[0] if domain
 			else
-				store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id) 
+				store=Spree::StoreOwner.find_by_id(find_customization_domain.store_owner_id)
 				subdomain=store.domain
 			end
 			return subdomain
@@ -85,19 +82,19 @@ def find_stock_value(attr)
 		def find_domain_preference(type)
 			config=Spree::Configuration.find_by_name(type)
 			if config
-				available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])        
+				available=Preference.find(:all,:conditions =>["domain_url=? AND owner_type=? AND owner_id=? ",get_sub_domain(current_subdomain),"Configuration",config.id])
 			else
 				available=[]
 			end
 		end
-	def find_mail_methods(domain)
-	  @mail= Spree::MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
-		return @mail
-	end
-	def find_latest_products
-Spree::Product.find(:all,:conditions=>["domain_url=? AND deleted_at IS NULL",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
+    def find_mail_methods(domain)
+      @mail= Spree::MailMethod.where("environment=? AND domain_url=?",Rails.env,domain)
+      return @mail
+    end
+    def find_latest_products
+      Spree::Product.find(:all,:conditions=>["domain_url=? AND deleted_at IS NULL",get_sub_domain(current_subdomain)],:order=>"id desc",:limit=>10)
 
-	end
+    end
     def link_to_cart(text = nil)
       return "" if current_spree_page?(cart_path)
 
@@ -200,8 +197,8 @@ Spree::Product.find(:all,:conditions=>["domain_url=? AND deleted_at IS NULL",get
         root_taxon.children.map do |taxon|
           css_class = (current_taxon && current_taxon.self_and_ancestors.include?(taxon)) ? 'current' : nil
           content_tag :li, :class => css_class do
-           link_to(taxon.name, seo_url(taxon)) +
-           taxons_tree(taxon, current_taxon, max_level - 1)
+            link_to(taxon.name, seo_url(taxon)) +
+              taxons_tree(taxon, current_taxon, max_level - 1)
           end
         end.join("\n").html_safe
       end
@@ -242,11 +239,11 @@ Spree::Product.find(:all,:conditions=>["domain_url=? AND deleted_at IS NULL",get
     end
 
     def gem_available?(name)
-       Gem::Specification.find_by_name(name)
+      Gem::Specification.find_by_name(name)
     rescue Gem::LoadError
-       false
+      false
     rescue
-       Gem.available?(name)
+      Gem.available?(name)
     end
 
     def method_missing(method_name, *args, &block)

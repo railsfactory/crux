@@ -1,4 +1,4 @@
 module Spree
-module DomainCustomizesHelper
-end
+  module DomainCustomizesHelper
+  end
 end

@@ -6,8 +6,8 @@ Spree::Admin::OptionTypesController.class_eval do
     selected_option_types = []
     @product.options.each do |option|
       selected_option_types << option.option_type
-     end
-     @available_option_types.delete_if {|ot| selected_option_types.include? ot}
+    end
+    @available_option_types.delete_if {|ot| selected_option_types.include? ot}
   end
 
 end

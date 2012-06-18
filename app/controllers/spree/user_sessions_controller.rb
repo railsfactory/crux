@@ -41,7 +41,7 @@ class Spree::UserSessionsController < Devise::SessionsController
       render :new
     end
   end
-  
+
   def show_error
     session.clear
     flash[:error]="You are not a registered user of this site"
@@ -78,4 +78,4 @@ class Spree::UserSessionsController < Devise::SessionsController
     I18n.t(:log_in)
   end
 
- end
+end

@@ -15,7 +15,7 @@ Spree::Admin::TaxonsController.class_eval do
       end
     end
   end
-	
+
   def available
     @product = load_product
     @taxons = params[:q].blank? ? [] : Spree::Taxon.where('lower(name) LIKE ? AND domain_url=?', "%#{params[:q].mb_chars.downcase}%",find_user_domain)
