@@ -18,7 +18,7 @@ instead of using spree_auth.
 
 Clone the git repo   
 
-git clone -b 0-60-stable git://github.com/spree/spree.git
+git clone -b 1-1-stable git://github.com/spree/spree.git
 
 cd spree
 
@@ -64,9 +64,9 @@ Personalised configurations for his shop.
 
 Add to the following gem dependency in sandbox/Gemfile
 
-gem "crux",:git => "git://github.com/railsfactory/crux.git"
+gem "crux",:git => "git://github.com/railsfactory/crux.git",:branch=>"crux-1-1"
 
-gem 'subdomain-fu', '1.0.0.beta2', :git => "git://github.com/nhowell/subdomain-fu.git"
+gem 'subdomain-fu', :git => "git@github.com:railsfactory/crux_subdomain_fu.git"
 
 gem 'dynamic_form'
 
@@ -78,9 +78,7 @@ cd sandbox
 
 bundle install
 
-bundle exec rake spree_core:install
-
-bundle exec rake crux:install
+rake railties:install:migrations
 
 bundle exec rake db:migrate
 
@@ -91,7 +89,7 @@ Add the settings.yml file in sandbox/config
 
 
 For instance:
-====
+========
 
 development/production:
 
